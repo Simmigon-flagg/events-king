@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <CssBaseline />
         <Navbar />
         <Hero />
-        <Container fixed style={{ fontSize: 30 }} sx={{ height: "100vh" }} >
+        <Container fixed style={{backgroundColor:"black", fontSize: 30 }} sx={{ height: "100vh" }} >
           {children}
         </Container>
         <Footer />

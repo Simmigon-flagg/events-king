@@ -4,7 +4,7 @@ import { Box, Container, CssBaseline, Grid } from '@mui/material';
 import Carousel from '../Carousel/Carousel';
 const Hero = () => {
     return (
-        <div className=''>
+        <div className='hero'>
 
             {/* <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2} padding={1} sx={{ display: "flex", justifyContent: "center", alignContent: "center" }} >
