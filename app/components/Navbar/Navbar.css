@@ -1,106 +1,79 @@
-/* Existing CSS */
-nav {
+/* src/Navbar.css */
+.navbar {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background: #1b2430;
-    background: white;
-    color: black;
-    padding: 20px 80px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .75);
-
-}
-
-#navbar {
-
-    display: flex;
     align-items: center;
-    justify-content: center;
-
-}
-
-#navbar li {
-    list-style: none;
-    padding: 0 20px;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
     position: relative;
-
-}
-
-#navbar li a {
-    text-decoration: none;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: black;
-}
-
-#navbar li a:hover,
-#navbar li a.active {
-    color: green;
-}
-
-#navbar li a:hover::after,
-#navbar li a.active::after {
-    content: "";
-    width: 30%;
-    height: 2px;
-    background: green;
-    position: absolute;
-    bottom: -4px;
-    left: 20px;
-
-}
-
-#mobile {
-    display: none;
-}
-
-#mobile i {
-    color: black;
-    align-items: center;
-}
-.logo {
-    width: 100%;    
   }
   
+  .navbar-logo {
+    display: flex;
+    justify-content: space-evenly;
+    
+    font-size: 1.5rem;
 
-@media screen and (max-width:769px) {
-
-    #navbar {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        position: fixed;
-        top: 85px;
-        right: -300px;
-        width: 300px;
-        height: 100vh;
-        background: whitesmoke;
-        box-shadow: 0 40px 60px rgb(0, 0, 0, 0.75);
-        padding: 40px 0 0 10px;
-        transition: 0.3s ease-in-out;
-
+  }
+  
+  .navbar-links {
+    display: flex;
+    margin-right: 3%;    
+    gap: 2rem;
+  }
+  
+  .navbar-links {
+    color: yellow;
+    text-decoration: none;
+  }
+  
+  .navbar-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 0.3rem;
+    cursor: pointer;
+  }
+  
+  .navbar-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 5px;
+      left: -100%;
+      background-color: #333;
+      width: 100%;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      transition: left 0.3s ease;
+      z-index: 1;
+      font-size: xx-large;
     }
-
-    #navbar.active {
-
-        right: 0px;
-
-
+  
+    .navbar-links.open {
+      left: 0;
+      animation: slideIn 0.3s forwards;
     }
-
-    #navbar li {
-        margin-bottom: 25px;
-
+  
+    .navbar-toggle {
+      display: flex;
     }
-
-    #mobile {
-        display: block;
-        margin-left: 25px;
+  }
+  
+  @keyframes slideIn {
+    from {
+      left: -100%;
     }
-
-    #mobile i {
-        font-size: 30px;
-        cursor: pointer;
+    to {
+      left: 0;
     }
-}
+  }
+  
