@@ -1,9 +1,9 @@
 /* src/Footer.css */
 .footer {
+  margin-top: auto ;
   position: relative;
   display: flex;
   justify-content: center;
-  
   bottom: 0;
   width: 100%;
   background-color: #333;

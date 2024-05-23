@@ -17,10 +17,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <ThemeProvider>
-        <body className={inter.className}>
+        <body className={inter.className} style={{display: "flex",flexDirection: "column"}}>
           <CssBaseline />
           <Navbar />
-          <Container fixed style={{ fontSize: 30 }} sx={{ height: "100vh" }} >
+          <Container fixed style={{ fontSize: 30 }} sx={{  }} >
             {children}
           </Container>
           <Footer />

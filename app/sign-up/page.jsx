@@ -1,7 +1,6 @@
 "use client"
-import React, { useEffect } from 'react'
+import React from 'react'
 import "./Sign-up.css"
-import { useColorScheme } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Typography from '@mui/joy/Typography';
