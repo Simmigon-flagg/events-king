@@ -1,50 +1,34 @@
-.textShadow {
-    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-}
-
+/* src/Footer.css */
 .footer {
-    width: 100%;  
-    height: 100%;
-    bottom: 0;
-    margin-top:  40px;
-    aspect-ratio: 16/9;
-    background-color: rgba(90, 112, 130, 0.5);          
-    font-size: 27px;
-    color: white;
-
+  margin-top: auto ;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
 }
 
-/* Extra Small Devices (Phones) */
-@media only screen and (max-width: 576px) {
-
-    /* Your CSS styles for extra small devices go here */
-    .footer {
-        display: flex;
-        flex-direction: column;
-        /* align-items: center; */
-        font-size: 27px;
-        aspect-ratio: 16/9;
-        align-items: last baseline;
-    }
+body, html {
+  height: 100%;
+  margin: 0;
 }
 
-/* Small Devices (Tablets) */
-@media only screen and (min-width: 577px) and (max-width: 768px) {
-    /* Your CSS styles for small devices go here */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Medium Devices (Laptops, Desktops) */
-@media only screen and (min-width: 769px) and (max-width: 992px) {
-    /* Your CSS styles for medium devices go here */
-
+.App {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Large Devices (Desktops) */
-@media only screen and (min-width: 993px) and (max-width: 1200px) {
-    /* Your CSS styles for large devices go here */
-}
-
-/* Extra Large Devices (Large Desktops) */
-@media only screen and (min-width: 1201px) {
-    /* Your CSS styles for extra large devices go here */
+.content {
+  flex: 1;
 }

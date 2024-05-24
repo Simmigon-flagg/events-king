@@ -1,0 +1,82 @@
+/* App.css */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }
+  
+  .app {
+    text-align: center;
+  }
+  
+  .app-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .app.light .app-header {
+    background-color: #f0f0f0;
+    color: black;
+  }
+  
+  .app.dark .app-header {
+    background-color: #282c34;
+    color: white;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+/* Base styles for all devices */
+.testpage {
+    font-family: Arial, sans-serif;
+}
+
+/* Styles for extra small devices (phones) */
+@media only screen and (max-width: 480px) {
+    .testpage {
+        background-color: lightblue;
+    }
+}
+
+/* Styles for small devices (phones) */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+    .testpage {
+        background-color: lightgreen;
+    }
+}
+
+/* Styles for medium devices (tablets) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .testpage {
+        background-color: lightcoral;
+    }
+}
+
+/* Styles for large devices (desktops) */
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+    .testpage {
+        background-color: lightgoldenrodyellow;
+    }
+}
+
+/* Styles for extra large devices (large desktops) */
+@media only screen and (min-width: 1201px) {
+    .testpage {
+        background-color: lightgray;
+    }
+}

@@ -1,0 +1,44 @@
+/* Base styles for all devices */
+.skeleton {
+
+    
+    
+    
+}
+
+/* Styles for extra small devices (phones) */
+@media only screen and (max-width: 480px) {
+    .skeleton {
+        background-color: rgb(6, 14, 232);
+    }
+}
+
+/* Styles for small devices (phones) */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+    .skeleton {
+        background-color: lightgreen;
+    }
+}
+
+/* Styles for medium devices (tablets) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .skeleton {
+        background-color: lightcoral;
+    }
+}
+
+/* Styles for large devices (desktops) */
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+    .skeleton {
+        background-color: lightgoldenrodyellow;
+        
+
+    }
+}
+
+/* Styles for extra large devices (large desktops) */
+@media only screen and (min-width: 1201px) {
+    .skeleton {
+        background-color: lightgray;
+    }
+}

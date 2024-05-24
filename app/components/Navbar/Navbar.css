@@ -1,106 +1,73 @@
-/* Existing CSS */
-nav {
+/* src/Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+  position: relative;
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+  margin: 0 20px;
+}
+
+.navbar-links {
+  display: flex;
+  margin: 0 20px;
+  gap: 1rem;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.navbar-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+}
+
+@media (max-width: 768px) {
+  .navbar-links {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #1b2430;
-    background: white;
-    color: black;
-    padding: 20px 80px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .75);
-
-}
-
-#navbar {
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-#navbar li {
-    list-style: none;
-    padding: 0 20px;
-    position: relative;
-
-}
-
-#navbar li a {
-    text-decoration: none;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: black;
-}
-
-#navbar li a:hover,
-#navbar li a.active {
-    color: green;
-}
-
-#navbar li a:hover::after,
-#navbar li a.active::after {
-    content: "";
-    width: 30%;
-    height: 2px;
-    background: green;
+    flex-direction: column;
     position: absolute;
-    bottom: -4px;
-    left: 20px;
-
-}
-
-#mobile {
-    display: none;
-}
-
-#mobile i {
-    color: black;
+    top: 0;
+    left: -100%;
+    background-color: #333;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
     align-items: center;
-}
-.logo {
-    width: 100%;    
+    transition: left 0.3s ease;
   }
-  
 
-@media screen and (max-width:769px) {
+  .navbar-links.open {
+    left: 0;
+    animation: slideIn 0.3s forwards;
+  }
 
-    #navbar {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        position: fixed;
-        top: 85px;
-        right: -300px;
-        width: 300px;
-        height: 100vh;
-        background: whitesmoke;
-        box-shadow: 0 40px 60px rgb(0, 0, 0, 0.75);
-        padding: 40px 0 0 10px;
-        transition: 0.3s ease-in-out;
+  .navbar-toggle {
+    display: flex;
+  }
+}
 
-    }
-
-    #navbar.active {
-
-        right: 0px;
-
-
-    }
-
-    #navbar li {
-        margin-bottom: 25px;
-
-    }
-
-    #mobile {
-        display: block;
-        margin-left: 25px;
-    }
-
-    #mobile i {
-        font-size: 30px;
-        cursor: pointer;
-    }
+@keyframes slideIn {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0;
+  }
 }

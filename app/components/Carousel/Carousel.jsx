@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { FaQuoteRight } from 'react-icons/fa';
 import data from '@/public/data';
-
+import "./Carousel.css"
 const Carousel = () => {
     const [people, setPeople] = useState(data);
     const [index, setIndex] = useState(0);
