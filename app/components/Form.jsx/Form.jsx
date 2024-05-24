@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext } from "react";
-import AttendeesContext from "@/app/context/AttendeesContext";
+import AttendeesContext from "@/context/AttendeesContext";
 
 const Form = () => {
   const { handleChangeInput, formData, handleSubmit, isEditing } =

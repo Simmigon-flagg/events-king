@@ -5,7 +5,7 @@ import Footer from "../app/components/Footer/Footer"
 import CssBaseline from '@mui/material/CssBaseline';
 import { Container } from '@mui/system';
 import { ThemeProvider } from '@/context/ThemeContext';
-import { AttendeesProvider } from "./context/AttendeesContext";
+import { AttendeesProvider } from "../context/AttendeesContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
