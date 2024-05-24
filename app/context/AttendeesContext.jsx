@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect, createContext } from 'react';
 import { nanoid } from 'nanoid';
 

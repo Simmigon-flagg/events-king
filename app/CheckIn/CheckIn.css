@@ -1,0 +1,223 @@
+
+ .section{
+   padding: 5rem 0;
+ }
+ 
+ .section-center{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   /* width: 100vw; */
+   margin: 0 auto;
+   max-width: 35rem;
+   margin-top: 8rem;
+   background: #fff;
+   border-radius: 0.25rem;
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+   transition: all 0.3s linear;
+   padding: 2rem;
+ }
+ 
+ .form {
+   display: flex;
+   justify-content: center;
+ }
+ 
+ .edit-btn,
+ .delete-btn {
+   background: transparent;
+   border-color: transparent;
+   cursor: pointer;
+   font-size: 1.0rem;
+   margin: 0 0.10rem;
+   transition: all 0.3s linear;
+ }
+ 
+ .edit-btn {
+   color: green;
+ }
+ 
+ .delete-btn{
+   color: red;
+ }
+ 
+ 
+ 
+ 
+ 
+ /* CSS */
+ .button-68 {
+   appearance: none;
+   backface-visibility: hidden;
+   background-color: #27ae60;
+   border-radius: 5px;
+   border-style: none;
+   box-shadow: rgba(46, 251, 131, 0.15) 0 4px 9px;
+   box-sizing: border-box;
+   color: #fff;
+   cursor: pointer;
+   display: inline-block;
+   font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+   font-size: 14px;
+   font-weight: 600;
+   letter-spacing: normal;
+   line-height: 1.5;
+   outline: none;
+   overflow: hidden;
+   padding: 5px 10px;
+   position: relative;
+   text-align: center;
+   text-decoration: none;
+   transform: translate3d(0, 0, 0);
+   transition: all .3s;
+   user-select: none;
+   -webkit-user-select: none;
+   touch-action: manipulation;
+   vertical-align: top;
+   white-space: nowrap;
+ }
+ 
+ .button-68:hover {
+   background-color: #1e8449;
+   opacity: 1;
+   transform: translateY(0);
+   transition-duration: .35s;
+ }
+ 
+ .button-68:active {
+   transform: translateY(2px);
+   transition-duration: .35s;
+ }
+ 
+ .button-68:hover {
+   box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+ }
+ 
+ 
+ 
+ /* CSS */
+ .btn-warning {
+   appearance: none;
+   backface-visibility: hidden;
+   background-color: #e90000;
+   border-radius: 5px;
+   border-style: none;
+   box-shadow: rgba(46, 251, 131, 0.15) 0 4px 9px;
+   box-sizing: border-box;
+   color: #fff;
+   cursor: pointer;
+   display: inline-block;
+   font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+   font-size: 14px;
+   font-weight: 600;
+   letter-spacing: normal;
+   line-height: 1.5;
+   outline: none;
+   overflow: hidden;
+   padding: 5px 10px;
+   position: relative;
+   text-align: center;
+   text-decoration: none;
+   transform: translate3d(0, 0, 0);
+   transition: all .3s;
+   user-select: none;
+   -webkit-user-select: none;
+   touch-action: manipulation;
+   vertical-align: top;
+   white-space: nowrap;
+ }
+ 
+ .btn-warning:hover {
+   background-color: #1e8449;
+   opacity: 1;
+   transform: translateY(0);
+   transition-duration: .35s;
+ }
+ 
+ .btn-warning:active {
+   transform: translateY(2px);
+   transition-duration: .35s;
+ }
+ 
+ .btn-warning:hover {
+   box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+ }
+ 
+ 
+ .form-input {
+   padding: 5px 10px;
+   margin-right: 5px;
+   font-size: 14px;
+   width: 200px;
+ }
+ ul {
+   padding: 0;
+   list-style-type: none;
+   margin-top: 20px;
+ }
+ 
+ .list-group-item{
+   display: flex;
+   justify-content: space-between;
+ 
+   
+ }
+ 
+ .list-4{
+   display: flex;
+   justify-content: space-between;
+   padding: 8px;
+   border-bottom: 1px solid #ccc;
+ }
+ .div-4{
+   display: flex;
+   justify-content: space-between;
+   padding: 8px;
+   border-bottom: 1px solid #ccc;
+ }
+ 
+ .form-4{
+   display: flex;
+   flex-direction: column;
+   
+ }
+ 
+ .form-4 input{
+   justify-self: center;
+   margin: 5px;
+ }
+ 
+ 
+ .btn-actions > *:not(:last-child) {
+   margin-right: 15px; /* Adjust the spacing between the icons */
+ }
+ 
+ .column-name,
+ .list-5 {
+   display: grid;
+   grid-template-columns: 1fr 1fr auto; /* Adjust the width of the first column as needed */
+   align-items: center;
+   padding: 10px;
+   border-bottom: 1px solid #ccc; 
+ }
+ 
+ .actions {
+   display: flex;
+   justify-content: flex-start; /* Align the actions to the right */
+   margin-left: 30px;
+   gap: 10px;
+   align-items: center;
+   /* padding: 10px; */
+ }
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
