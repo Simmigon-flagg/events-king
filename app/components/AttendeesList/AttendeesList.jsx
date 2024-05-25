@@ -6,8 +6,8 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 
 const AttendeesList = () => {
-  const { attendees, handleDelete, handleEdit, isEditing } =
-    useContext(AttendeesContext);
+  const { attendees, handleDelete, handleEdit, isEditing } = useContext(AttendeesContext);
+
   return (
     <section className="section-list-4">
       <h3>Attendees:</h3>
@@ -15,6 +15,7 @@ const AttendeesList = () => {
       {attendees.map((item, index) => {
         const { id, firstName, lastName, email } = item;
         return (
+        
           <div className="div-4" key={item.id}>
             <div>{index + 1}.</div>
             <div>{firstName}</div>

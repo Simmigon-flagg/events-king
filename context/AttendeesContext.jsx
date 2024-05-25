@@ -26,8 +26,7 @@ import { nanoid } from 'nanoid';
       
         const [formData, setFormData] = useState(initialValues);
         const [attendees, setAttendees] = useState(getLocalStorage())
-        const [isEditing, setIsEditing] = useState(false)
-        const [editID, setEditId] = useState(null);
+        const [isEditing, setIsEditing] = useState(false)        
     
         useEffect(()=>{
             localStorage.setItem("attendees", JSON.stringify(attendees))
@@ -57,6 +56,7 @@ import { nanoid } from 'nanoid';
             }
             if (isValid) {
                 if (isEditing) {
+                 
                     updateAttendees() // save edit
                     setFormData(initialValues); //clears the form
                     setIsEditing(false);
@@ -81,14 +81,17 @@ import { nanoid } from 'nanoid';
         }
     
         const updateAttendees = () => {
+
+            attendees.map(attendee => {
+                console.log(attendee.id + " " + formData.id)
+                console.log(attendee.id === formData.id)
+                
+            })
             setAttendees((prevAttendees) => {
                 return prevAttendees.map(attendee => {
                     if (attendee.id === formData.id) {
                         return {
-                            ...attendee,
-                            firstName: formData.firstName,
-                            lastName: formData.lastName,
-                            email: formData.email
+                            ...formData
                         }
                     }
                     return attendee;

@@ -5,9 +5,10 @@ import AttendeesContext from "@/context/AttendeesContext";
 const Form = () => {
   const { handleChangeInput, formData, handleSubmit, isEditing } =
     useContext(AttendeesContext);
-  const { firstName, lastName, email } = formData;
+  const { id, firstName, lastName, email } = formData;
   return (
     <section className="form-section-4">
+      <div>{isEditing ? id: null}</div>
       <form className="form-4" onSubmit={handleSubmit}>
         <input
           type="text"
