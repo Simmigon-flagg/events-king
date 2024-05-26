@@ -1,18 +1,30 @@
 import { Button } from '@mui/joy'
-import React from 'react'
+import React, { useContext } from 'react'
+import { useRouter } from 'next/router'
+import { TopicsContext } from '@/context/TopicsContext'
+import TopicsForm from '@/app/components/Forms/TopicsForm'
 
-const EditTopic = () => {
-  return (
-    <div style={{ marginTop: 30 }}>
-
-      <form>
-        <input type='text' placeholder='Title' />
-        {" "}
-        <input type='text' placeholder='description' />
-      </form>
-      <Button style={{ backgroundColor: "green" }}>Update Topic</Button>
-    </div>
-  )
-}
+const EditTopic = ({params}) => {
+  const { topics } = useContext(TopicsContext);
+  const { id } = params;
+  const { topic } = getTopicById(id);
+  // const { title, description } = topic;
+  const getTopicById = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
+        cache: "no-store",
+      });
+  
+      if (!res.ok) {
+        throw new Error("Failed to fetch topic");
+      }
+  
+      return res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+    return <TopicsForm />;
+  }
 
 export default EditTopic

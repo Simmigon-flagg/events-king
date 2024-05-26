@@ -1,25 +1,16 @@
 import React from 'react'
 import TopicsList from '../components/TopicsList'
 import { Button } from '@mui/joy';
-import Link from 'next/link';
+
+import TopicsForm from '../components/Forms/TopicsForm';
 const Topics = () => {
     return (
         <>
-            <div style={{ marginTop:30}}>
-                
-                <form>
-                    <input type='text' placeholder='Title'/>
-                    {" "}
-                    <input type='text' placeholder='description'/>
-                </form>
+            <div style={{ marginTop:30}}> 
                 <Button style={{ backgroundColor: "green" }}>Add Topic</Button>
             </div>
-            <div style={{}}>
-                <Button style={{ backgroundColor: "red", marginRight: 15 }}>Remove</Button>
-               <Link  href={`/editTopic/${'123'}`}>
-               <Button style={{ backgroundColor: "brown" }} >Edit</Button>
-               </Link> 
-            </div>
+            <TopicsForm />
+               <hr />
             <div>{<TopicsList />}</div>
         </>
     )

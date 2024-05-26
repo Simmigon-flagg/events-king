@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Container } from '@mui/system';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { AttendeesProvider } from "../context/AttendeesContext";
+import { TopicsProvider } from "@/context/TopicsContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <ThemeProvider>
+        <TopicsProvider>
         <AttendeesProvider>
         <body className={inter.className} style={{display: "flex",flexDirection: "column"}}>
           <CssBaseline />
@@ -28,6 +30,7 @@ export default function RootLayout({ children }) {
           <Footer />
         </body>
         </AttendeesProvider>
+        </TopicsProvider>
       </ThemeProvider>
     </html>
   );
