@@ -1,8 +1,12 @@
+"use server"
+
 import React from 'react'
 
-const TopicsList = () => {
+const TopicsList = async () => {
+  
   return (
-    <div>TopicsList</div>
+   <>topic</>
+
   )
 }
 
