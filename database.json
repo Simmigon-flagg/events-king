@@ -1,1 +1,49 @@
-{}
+{
+    "topics": [
+        {
+            "id": 1,
+            "title": "Navigating your career in the age of AI",
+            "description": "Your goals and AI jobs and opportunities",
+            "speaker": "Clarissa McIver",
+            "date": "2024-06-21",
+            "time": "14:30",
+            "location": "Abernathy Hall"
+        },
+        {
+            "id": 2,
+            "title": "The Future of Work: Remote and Hybrid Models",
+            "description": "Exploring the shift towards remote and hybrid work environments",
+            "speaker": "David Ortiz",
+            "date": "2024-06-22",
+            "time": "10:00",
+            "location": "Chandler Auditorium"
+        },
+        {
+            "id": 3,
+            "title": "AI Ethics and Responsible Innovation",
+            "description": "Understanding the ethical implications of AI development",
+            "speaker": "Priya Singh",
+            "date": "2024-06-23",
+            "time": "11:30",
+            "location": "Baker Hall"
+        },
+        {
+            "id": 4,
+            "title": "Data Privacy in the Digital Age",
+            "description": "Protecting personal data amidst growing digitalization",
+            "speaker": "Liam Chen",
+            "date": "2024-06-24",
+            "time": "09:00",
+            "location": "Newton Conference Room"
+        },
+        {
+            "id": 5,
+            "title": "Blockchain and Decentralized Finance",
+            "description": "Exploring the impact of blockchain on the financial sector",
+            "speaker": "Sophia Martinez",
+            "date": "2024-06-25",
+            "time": "16:00",
+            "location": "Hamilton Hall"
+        }
+    ]
+}
