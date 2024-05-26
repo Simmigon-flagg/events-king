@@ -3,6 +3,10 @@ import mongoose, { Schema } from "mongoose";
 const topicSchema = new Schema({
     title: String,
     desc: String,
+    speaker: String,
+    date: String,
+    time: String,
+    location: String
 }, {
     timestamps: true,
 }
