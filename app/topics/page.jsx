@@ -6,9 +6,9 @@ import TopicsForm from '../components/Forms/TopicsForm';
 const Topics = () => {
     return (
         <>
-            <div style={{ marginTop:30}}> 
+            {/* <div style={{ marginTop:30}}> 
                 <Button style={{ backgroundColor: "green" }}>Add Topic</Button>
-            </div>
+            </div> */}
             <TopicsForm />
                <hr />
             <div>{<TopicsList />}</div>

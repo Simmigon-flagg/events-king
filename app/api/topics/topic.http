@@ -18,7 +18,8 @@ content-type: application/json
     "title": "New This 2",
     "desc": "New desc 2"
 }
-###
+
+### get all topics
 GET http://localhost:3000/api/topics HTTP/1.1
 
 ### Find by Id
