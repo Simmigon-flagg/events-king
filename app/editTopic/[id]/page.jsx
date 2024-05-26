@@ -3,15 +3,15 @@ import React from 'react'
 
 const EditTopic = () => {
   return (
-    <div style={{ marginTop:30}}>
-                
-    <form>
-        <input type='text' placeholder='Title'/>
+    <div style={{ marginTop: 30 }}>
+
+      <form>
+        <input type='text' placeholder='Title' />
         {" "}
-        <input type='text' placeholder='description'/>
-    </form>
-    <Button style={{ backgroundColor: "green" }}>Update Topic</Button>
-</div>
+        <input type='text' placeholder='description' />
+      </form>
+      <Button style={{ backgroundColor: "green" }}>Update Topic</Button>
+    </div>
   )
 }
 
