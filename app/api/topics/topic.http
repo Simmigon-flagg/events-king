@@ -2,6 +2,10 @@ POST http://localhost:3000/api/topics HTTP/1.1
 content-type: application/json
 
 {
-    "title": "More than words",
-    "desc": "More than words is a nice song."
+   "title": "AI Ethics and Responsible Innovation",
+            "description": "Understanding the ethical implications of AI development",
+            "speaker": "Priya Singh",
+            "date": "2024-06-23",
+            "time": "11:30",
+            "location": "Baker Hall"
 }
