@@ -20,7 +20,7 @@ import { useRouter } from 'next/navigation';
         if(topics){
             return (topics = JSON.parse(localStorage.getItem("topics")));
         }else{
-            return [initialValues];
+            return [];
         }
     }
     
@@ -90,11 +90,6 @@ import { useRouter } from 'next/navigation';
     
         const updateTopics = () => {
 
-            topics.map(topic => {
-                console.log(topic.id + " " + formData.id)
-                console.log(topic.id === formData.id)
-                
-            })
             setTopics((prevTopics) => {
                 return prevTopics.map(topic => {
                     if (topic.id === formData.id) {
@@ -123,4 +118,4 @@ import { useRouter } from 'next/navigation';
         )
     }
 
-export default TopicsContext
+    export default TopicsContext

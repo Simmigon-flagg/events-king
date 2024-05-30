@@ -82,11 +82,7 @@ import { nanoid } from 'nanoid';
     
         const updateAttendees = () => {
 
-            attendees.map(attendee => {
-                console.log(attendee.id + " " + formData.id)
-                console.log(attendee.id === formData.id)
-                
-            })
+    
             setAttendees((prevAttendees) => {
                 return prevAttendees.map(attendee => {
                     if (attendee.id === formData.id) {

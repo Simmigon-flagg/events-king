@@ -8,7 +8,7 @@ const EditTopicForm = ({topic}) => {
     const router = useRouter();
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, value)
+      
         setEdit(prev => ({
             ...prev,
             [name]: value

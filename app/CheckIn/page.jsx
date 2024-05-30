@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from '../components/Form/Form'
+import Form from '../components/Forms/AttendeeForm'
 import AttendeesList from '../components/AttendeesList/AttendeesList'
 import "./CheckIn.css"
 

@@ -1,7 +1,6 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import "./Login.css"
-import { useColorScheme } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Typography from '@mui/joy/Typography';
@@ -10,12 +9,38 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-
+import { signIn } from "next-auth/react"
+import { useRouter } from 'next/navigation';
 const Login = () => {
+  const [formData, setFormData] = useState({ email: "da@email.com", password: "admin123" });
+  const router = useRouter()
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+  const handleSubmit = async () => {
+    const response = await signIn("credentials", {
+      email: formData.email,
+      password: formData.password,
+      redirect: true,
+      callbackUrl: "/topics" // Optional: Specify the callback URL
+
+    })
+
+    if (!response || response.error) {
+      setError(response?.error || "Failed to sign in");
+    }
+    debugger
+  }
   return (
     <div className='login'>
       <main>
-        
+
         <CssBaseline />
         <Sheet
           sx={{
@@ -42,8 +67,11 @@ const Login = () => {
             <FormLabel>Email</FormLabel>
             <Input
               // html input attribute
+              onChange={handleChange}
               name="email"
               type="email"
+              value={formData.email}
+              // value={"simmigon@gmail.com"}
               placeholder="johndoe@email.com"
             />
           </FormControl>
@@ -51,12 +79,15 @@ const Login = () => {
             <FormLabel>Password</FormLabel>
             <Input
               // html input attribute
+              onChange={handleChange}
+              value={formData.password}
+              // value={"123456"}
               name="password"
               type="password"
               placeholder="password"
             />
           </FormControl>
-          <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+          <Button onClick={handleSubmit} sx={{ mt: 1 /* margin top */ }}>Log in</Button>
           <Typography
             endDecorator={<Link href="/sign-up">Sign up</Link>}
             fontSize="sm"
