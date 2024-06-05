@@ -43,7 +43,7 @@ const EventDetails = async ({ params }) => {
       <div>EventDetails {event.location}</div>
       <div>EventDetails {event.host}</div>
       <div>EventDetails {event.description}</div>
-      <SearchBar topics={topics}/>
+      <SearchBar items={topics}/>
       
    
       <Button variant='contained' >Add Topic</Button>

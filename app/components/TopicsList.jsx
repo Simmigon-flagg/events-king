@@ -22,9 +22,12 @@ const TopicsList = async () => {
       <div>Topics List</div>
       {topics.map(topic => {
         return (<div key={topic._id}>
-          <h2>{topic.title}</h2>
-          <p>{topic.desc}</p>         
-          <RemoveBtn id={topic._id}/>
+          <Link href={`/topicDetails/${topic._id}`}>
+            <h2>{topic.title}</h2>
+
+          </Link>
+          <p>{topic.desc}</p>
+          <RemoveBtn id={topic._id} />
           <Link href={`/editTopic/${topic._id}`}>
             <FaEdit />
           </Link>

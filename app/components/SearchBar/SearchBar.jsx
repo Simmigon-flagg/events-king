@@ -2,7 +2,7 @@
 import { Button } from '@mui/material'
 import React, { useState } from 'react'
 
-const SearchBar = ({ topics }) => {
+const SearchBar = ({ items }) => {
 
     const [searchTerm, setSearchTerm] = useState({
         title: ""
@@ -18,15 +18,15 @@ const SearchBar = ({ topics }) => {
     return (
         <>
             <input type='text' name="title" value={searchTerm.title} placeholder='Search' onChange={handleSearch} />
-            {topics.filter(topic => {
+            {items.filter(item => {
                 if (searchTerm.title == "" || searchTerm.title == null) {
-                    return topic;
-                } if (topic.title.toLowerCase().includes(searchTerm.title.toLowerCase())) {
-                    return topic;
+                    return item;
+                } if (item.title.toLowerCase().includes(searchTerm.title.toLowerCase())) {
+                    return item;
                 }
 
-            }).map(topic => {
-                return (<div key={topic._id}>{topic.title}</div>)
+            }).map(item => {
+                return (<div key={item._id}>{item.title}</div>)
             })
 
             }
