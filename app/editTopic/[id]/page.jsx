@@ -3,6 +3,7 @@
 // import TopicsContext from '@/context/TopicsContext'
 // import TopicsForm from '@/app/components/Forms/TopicsForm'
 import EditTopicForm from '@/app/components/Forms/EditTopicForm';
+import { Container } from '@mui/material';
 // import { useRouter } from 'next/navigation';
 // const { title, description } = topic;
 const getTopicById = async (id) => {
@@ -13,8 +14,8 @@ const getTopicById = async (id) => {
     if (!res.ok) {
       throw new Error("Failed to fetch topic");
     }
-    
-    
+
+
     return res.json();
   } catch (error) {
     console.log(error);
@@ -22,10 +23,17 @@ const getTopicById = async (id) => {
 };
 const EditTopic = async ({ params }) => {
   // const { topics } = useContext(TopicsContext);
-  const {id} = params;  
-  const {topic} =  await getTopicById(id);
+  
+  const { id } = params;
+  const { topic } = await getTopicById(id);
 
-  return (<EditTopicForm topic={topic}/>);
+  return (
+    <Container fixed>
+
+      <EditTopicForm topic={topic} />
+    </Container>
+  )
+    ;
 }
 
 export default EditTopic

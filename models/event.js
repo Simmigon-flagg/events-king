@@ -6,7 +6,8 @@ const eventSchema = new Schema({
     host: String,
     date: String,
     time: String,
-    location: String
+    location: String,
+    description: String
 }, {
     timestamps: true,
 }

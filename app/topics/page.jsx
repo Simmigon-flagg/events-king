@@ -3,16 +3,15 @@ import TopicsList from '../components/TopicsList'
 import { Button } from '@mui/joy';
 
 import TopicsForm from '../components/Forms/TopicsForm';
+import { Container } from '@mui/material';
 const Topics = () => {
     return (
-        <>
-            {/* <div style={{ marginTop:30}}> 
-                <Button style={{ backgroundColor: "green" }}>Add Topic</Button>
-            </div> */}
+        <Container fixed>
             <TopicsForm />
-               <hr />
+            <hr />
             <div>{<TopicsList />}</div>
-        </>
+        </Container>
+
     )
 }
 

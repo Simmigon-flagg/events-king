@@ -1,5 +1,5 @@
 "use client"
-import { Box, Grid } from '@mui/material'
+import { Box, Container, Grid } from '@mui/material'
 import React, { useContext } from 'react'
 import "./Testpage.css"
 import { ThemeContext } from '@/context/ThemeContext';
@@ -7,6 +7,8 @@ import { ThemeContext } from '@/context/ThemeContext';
 const TestPage = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
+    <Container fixed>
+
     <Grid className='testpage'>
       <div className={`app ${theme}`}>
         <header className="app-header">
@@ -17,6 +19,7 @@ const TestPage = () => {
         </header>
       </div>
     </Grid>
+    </Container>
   )
 }
 

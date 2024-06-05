@@ -1,40 +1,42 @@
 /* Base styles for all devices */
 
-.about {
+.dashboard {
     font-family: Arial, sans-serif;
+    /* width: 100%;
+    height: 100%; */
 }
 
 /* Styles for extra small devices (phones) */
 @media only screen and (max-width: 480px) {
-    .about {
+    .dashboard {
         background-color: lightblue;
     }
 }
 
 /* Styles for small devices (phones) */
 @media only screen and (min-width: 481px) and (max-width: 767px) {
-    .about {
+    .dashboard {
         background-color: lightgreen;
     }
 }
 
 /* Styles for medium devices (tablets) */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .about {
+    .dashboard {
         background-color: lightcoral;
     }
 }
 
 /* Styles for large devices (desktops) */
 @media only screen and (min-width: 1025px) and (max-width: 1200px) {
-    .about {
+    .dashboard {
         background-color: lightgoldenrodyellow;
     }
 }
 
 /* Styles for extra large devices (large desktops) */
 @media only screen and (min-width: 1201px) {
-    .about {
+    .dashboard {
         background-color: lightgray;
     }
 }

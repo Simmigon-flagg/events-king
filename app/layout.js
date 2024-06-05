@@ -7,9 +7,7 @@ import { Container } from '@mui/system';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { AttendeesProvider } from "../context/AttendeesContext";
 import { TopicsProvider } from "@/context/TopicsContext";
-import { AuthProvider } from "@/providers/AuthProviders";
-import Login from "./login/page";
-import { SessionProvider } from "@/context/SessionContext";
+import { getSession } from "next-auth/react";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,18 +24,19 @@ export default function RootLayout({ children }) {
 
         <body className={inter.className} style={{ display: "flex", flexDirection: "column" }}>
           <CssBaseline />
-          <SessionProvider>
+  
 
             <Navbar />
-          </SessionProvider>
+                 
 
             <TopicsProvider>
               <AttendeesProvider>
-                <Container fixed style={{ fontSize: 30 }} sx={{}} >
+                
                   {children}
-                </Container>
+                
               </AttendeesProvider>
             </TopicsProvider>
+            
 
             <Footer />
     

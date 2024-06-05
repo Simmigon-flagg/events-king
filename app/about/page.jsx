@@ -1,11 +1,13 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Container, Grid } from '@mui/material'
 import React from 'react'
-
+import "./about.css"
 const about = () => {
   return (
-    <Grid className='about'>
-        <Box></Box>
-    </Grid>
+    <Container fixed>
+
+        dsf
+
+    </Container>
   )
 }
 

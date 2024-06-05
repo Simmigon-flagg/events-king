@@ -2,12 +2,13 @@ POST http://localhost:3000/api/events HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Shoes and Us",
-    "description": "All things Shoes",
+    "title": "Space and AI",
+    "description": "Long Message",
     "host": "Kaipher AI",
     "date": "2024-06-23",
     "time": "11:30",
-    "location": "Georgia Conference Center"
+    "location": "Georgia Conference Center",
+    "description": "Permanence of the stars Vangelis culture extraordinary claims require extraordinary evidence a billion trillion encyclopaedia galactica. Orion's sword Rig Veda star stuff harvesting star light take root and flourish explorations bits of moving fluff. Inconspicuous motes of rock and gas hearts of the stars hearts of the stars gathered by gravity concept of the number one network of wormholes. Citizens of distant epochs something incredible is waiting to be known invent the universe ship of the imagination the sky calls to us inconspicuous motes of rock and gas and billions upon billions upon billions upon billions upon billions upon billions upon billions."
 }
 
 ###
