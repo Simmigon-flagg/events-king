@@ -2,7 +2,7 @@
 import { Button } from '@mui/joy'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-const EditTopicForm = ({ item }) => {
+const EditEventForm = ({ item }) => {
 
     const [edit, setEdit] = useState(item)
     const router = useRouter();
@@ -16,17 +16,17 @@ const EditTopicForm = ({ item }) => {
     }
     const handleSubmit = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/topics/${edit._id}`, {
+            const response = await fetch(`http://localhost:3000/api/events/${edit._id}`, {
                 method: "PUT",
                 header: { "Content-type": "application/json" },
                 body: JSON.stringify(edit)
 
             })
             if (!response.ok) {
-                throw new Error("Topic was not updated")
+                throw new Error("Event was not updated")
             }
             router.refresh();
-            router.push("/topics")
+            router.push("/events")
         } catch (error) {
             console.log(error);
         }
@@ -36,20 +36,16 @@ const EditTopicForm = ({ item }) => {
             <div>
                 <input type="text" onChange={handleChange} value={edit.title} name="title" placeholder='title' />
                 <input type="text" onChange={handleChange} value={edit.desc} name="desc" placeholder='desc' />
-                <input type="text" onChange={handleChange} value={edit.speaker} name="speaker" placeholder='speaker' />
+                <input type="text" onChange={handleChange} value={edit.host} name="host" placeholder='host' />
                 <input type="text" onChange={handleChange} value={edit.date} name="date" placeholder='date' />
                 <input type="text" onChange={handleChange} value={edit.time} name="time" placeholder='time' />
                 <input type="text" onChange={handleChange} value={edit.location} name="location" placeholder='location' />
             </div>
             <div style={{ marginTop: 30 }}>
-                <Button style={{ backgroundColor: "green" }} onClick={handleSubmit}>Update Topic</Button>
-            </div>
-            <div>
-                {/* <RemoveBtn /> */}
-                {/* <FaEdit onClick={handleEdit}/> */}
+                <Button style={{ backgroundColor: "green" }} onClick={handleSubmit}>Update Event</Button>
             </div>
         </div>
     )
 }
 
-export default EditTopicForm
+export default EditEventForm

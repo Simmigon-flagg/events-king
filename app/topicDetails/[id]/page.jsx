@@ -15,6 +15,7 @@ const getTopicById = async (id) => {
     console.log(error);
   }
 };
+
 const TopicsDetails = async ({ params }) => {
   const { id } = params;
   const { topic } = await getTopicById(id);
@@ -23,12 +24,13 @@ const TopicsDetails = async ({ params }) => {
       <div>topicDetails {topic.id}</div>
       <div>topicDetails {topic.title}</div>
       <div>topicDetails {topic.date}</div>
+      <div>topicDetails {topic.time}</div>
       <div>topicDetails {topic.location}</div>
       <div>topicDetails {topic.host}</div>
       <div>topicDetails {topic.description}</div>
 
-      {/* <SearchTopics /> */}
-      {/* <Button variant='contained' >Add Topic</Button> */}
+      
+
       <Button variant='contained' >Create Topic</Button>
     </>
   )

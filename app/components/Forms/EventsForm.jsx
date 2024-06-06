@@ -1,7 +1,5 @@
 'use client'
-import React, { useContext, useState } from 'react'
-import { FaEdit } from 'react-icons/fa'
-import RemoveBtn from '../Buttons/RemoveBtn'
+import React, { useState } from 'react'
 import { Button } from '@mui/joy'
 // import TopicsContext from '@/context/TopicsContext'
 

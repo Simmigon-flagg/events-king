@@ -1,7 +1,5 @@
 import SearchBar from '@/app/components/SearchBar/SearchBar';
-import SearchTopics from '@/app/components/SearchTopics/SearchTopics';
-import TopicsList from '@/app/components/TopicsList';
-import { Button, Input } from '@mui/material';
+import { Button } from '@mui/material';
 const getEventById = async (id) => {
   try {
     const res = await fetch(`http://localhost:3000/api/events/${id}`, {

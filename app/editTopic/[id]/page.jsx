@@ -1,12 +1,7 @@
-// import { Button } from '@mui/joy'
-// import React, { useContext } from 'react'
-// import TopicsContext from '@/context/TopicsContext'
-// import TopicsForm from '@/app/components/Forms/TopicsForm'
 import EditTopicForm from '@/app/components/Forms/EditTopicForm';
 import { Container } from '@mui/material';
-// import { useRouter } from 'next/navigation';
-// const { title, description } = topic;
-const getTopicById = async (id) => {
+
+
   try {
     const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
       cache: "no-store",
@@ -30,7 +25,7 @@ const EditTopic = async ({ params }) => {
   return (
     <Container fixed>
 
-      <EditTopicForm topic={topic} />
+      <EditTopicForm item={topic} />
     </Container>
   )
     ;
