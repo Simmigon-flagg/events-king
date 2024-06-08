@@ -29,13 +29,13 @@ export default function RootLayout({ children }) {
             <Navbar />
                  
 
-            <TopicsProvider>
-              <AttendeesProvider>
+            {/* <TopicsProvider> */}
+              {/* <AttendeesProvider> */}
                 
                   {children}
                 
-              </AttendeesProvider>
-            </TopicsProvider>
+              {/* </AttendeesProvider> */}
+            {/* </TopicsProvider> */}
             
 
             <Footer />

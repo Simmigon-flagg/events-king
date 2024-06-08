@@ -6,8 +6,8 @@ const Home = () => {
   return (
     <Container fixed>
 
-    <Hero />
-    </Container>            
+      <Hero />
+    </Container>
   )
 }
 

@@ -1,7 +1,8 @@
 "use client"
-import { Button } from '@mui/material'
+import Link from 'next/link'
+import RemoveBtn from '../Buttons/RemoveBtn'
+import { FaEdit } from 'react-icons/fa'
 import React, { useState } from 'react'
-import { DataGrid } from '@mui/x-data-grid';
 
 const SearchBar = ({ items, id }) => {
 
@@ -67,8 +68,16 @@ const SearchBar = ({ items, id }) => {
                 return null;
             }).map(item => (
                 <div key={item._id}>
-                    <div>{item.title} {id}</div>
+                    <div>{item._id}</div>
                     <button onClick={() => handleGetId(item._id, id)}>Add Topic</button>
+                    <Link href={`/topicdetails/${item._id}`}>
+                        <h2>{item.title}</h2>
+                    </Link>
+                    <p>{item.desc}</p>
+                    <RemoveBtn id={item._id} />
+                    <Link href={`/edittopic/${item._id}`}>
+                        <FaEdit />
+                    </Link>
                 </div>
             ))}
         </>

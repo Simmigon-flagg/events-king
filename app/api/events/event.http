@@ -9,6 +9,7 @@ content-type: application/json
     "time": "11:30",
     "location": "Georgia Conference Center",
     "description": "Permanence of the stars Vangelis culture extraordinary claims require extraordinary evidence a billion trillion encyclopaedia galactica. Orion's sword Rig Veda star stuff harvesting star light take root and flourish explorations bits of moving fluff. Inconspicuous motes of rock and gas hearts of the stars hearts of the stars gathered by gravity concept of the number one network of wormholes. Citizens of distant epochs something incredible is waiting to be known invent the universe ship of the imagination the sky calls to us inconspicuous motes of rock and gas and billions upon billions upon billions upon billions upon billions upon billions upon billions."
+
 }
 
 ###
@@ -28,7 +29,7 @@ content-type: application/json
 GET http://localhost:3000/api/events HTTP/1.1
 
 ### Find by Id
-GET http://localhost:3000/api/events/66532eec4081a8bac7d0313c HTTP/1.1
+GET http://localhost:3000/api/events/665fb6fd6398bfcf6cecc29e HTTP/1.1
 
 ###
 PUT http://localhost:3000/api/events/665287411f6bb03a581b70b7 HTTP/1.1

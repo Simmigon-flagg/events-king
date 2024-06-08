@@ -1,5 +1,6 @@
 import SearchBar from '@/app/components/SearchBar/SearchBar';
 import { Button } from '@mui/material';
+import { useContext } from 'react';
 const getEventById = async (id) => {
   try {
     const res = await fetch(`http://localhost:3000/api/events/${id}`, {
@@ -33,18 +34,23 @@ const EventDetails = async ({ params }) => {
   const { id } = params;
   const { event } = await getEventById(id);
   const { topics } = await getTopics()
+  const handleOnChange = () => {
+    console.log("Changed")
+  }
+  
+  
   return (
     <>
-      <div>EventDetails {id}</div>
+      <div>EventDetails {event._id}</div>
       <div>EventDetails {event.title}</div>
       <div>EventDetails {event.date}</div>
       <div>EventDetails {event.location}</div>
       <div>EventDetails {event.host}</div>
       <div>EventDetails {event.description}</div>
-      <SearchBar items={topics}/>
+      <SearchBar items={topics} id={event._id}/>
       
    
-      <Button variant='contained' >Add Topic</Button>
+      
       <Button variant='contained' >Create Topic</Button>
     </>
   )

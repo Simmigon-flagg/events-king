@@ -29,7 +29,7 @@ const Login = () => {
       email: formData.email,
       password: formData.password,
       redirect: true,
-      callbackUrl: "/topics" // Optional: Specify the callback URL
+      callbackUrl: "/events" // Optional: Specify the callback URL
 
     })
 

@@ -1,7 +1,7 @@
 import EditTopicForm from '@/app/components/Forms/EditTopicForm';
 import { Container } from '@mui/material';
 
-
+const getTopicById = async (id) => {
   try {
     const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
       cache: "no-store",
