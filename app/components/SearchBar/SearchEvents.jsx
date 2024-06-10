@@ -57,7 +57,7 @@ const SearchBar = ({ items, id }) => {
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
-        { field: 'itemId', headerName: 'Item Id', width: 90 },
+        { field: 'itemId', headerName: 'Event Id', width: 90 },
         {
             field: 'title',
             headerName: 'Title',
@@ -106,7 +106,7 @@ const SearchBar = ({ items, id }) => {
             renderCell: (params) => (
 
                 <Link
-                    href={`/eventdetails/${params.row.itemId}`}
+                    href={`/eventdetails/${params.row.id}`}
                 >
                     <Button
 

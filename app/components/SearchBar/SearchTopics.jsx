@@ -8,7 +8,7 @@ import { Box, Button } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 const SearchBar = ({ items, id }) => {
     const router = useRouter()
-    
+    const [ids, setIds] = useState([])
     const [searchTerm, setSearchTerm] = useState({
         title: ""
     });
@@ -58,9 +58,31 @@ const SearchBar = ({ items, id }) => {
         }
     };
 
+    const getIds = (rowIds) => {
+        setIds(rowIds)
+        console.log(ids)
+
+    }
+
+    const handleDeleteSelected = async () => {
+        try {
+            await Promise.all(ids.map(id =>{
+
+                console.log(id)
+                fetch(`/api/topics?id=${id}`, { method: 'DELETE' })
+            }
+            ));
+            alert('Items deleted successfully!');
+            router.refresh()
+        } catch (error) {
+            alert('Failed to delete items');
+            console.error(error);
+        }
+    };
+
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
-        { field: 'itemId', headerName: 'Item Id', width: 90 },
+        { field: 'itemId', headerName: 'Topic Id', width: 90 },
         {
             field: 'title',
             headerName: 'Title',
@@ -157,9 +179,9 @@ const SearchBar = ({ items, id }) => {
 
     const rows = filteredItems.map((item, index) => {
         return {
-            id: index + 1, // Ensure IDs start from 1
+            id: item._id, // Ensure IDs start from 1
             title: item.title,
-            itemId: item._id,
+            itemId: index + 1,
             description: item.description,
             host: item.host,
             // date: item.date,
@@ -170,6 +192,7 @@ const SearchBar = ({ items, id }) => {
     return (
         <>
             <input type='text' name="title" value={searchTerm.title} placeholder='Search' onChange={handleSearch} />
+            <Button onClick={handleDeleteSelected}>Delete Selected</Button>
             <Box sx={{ height: 400, width: '100%' }}>
                 <DataGrid
                     rows={rows}
@@ -184,6 +207,7 @@ const SearchBar = ({ items, id }) => {
                     pageSizeOptions={[6]}
                     checkboxSelection
                     disableRowSelectionOnClick
+                    onRowSelectionModelChange={(selectedId) => getIds(selectedId)}
                 />
             </Box>
         </>
