@@ -40,4 +40,4 @@ content-type: application/json
 }
 
 ###
-DELETE  http://localhost:3000/api/events?id=6654ff3258db5f9de8892c24 HTTP/1.1
+DELETE  http://localhost:3000/api/events?id=66648cc982e7658c01145eff HTTP/1.1

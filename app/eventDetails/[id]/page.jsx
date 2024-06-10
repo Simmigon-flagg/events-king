@@ -1,5 +1,6 @@
 import SearchBar from '@/app/components/SearchBar/SearchBar';
 import { Button } from '@mui/material';
+import Link from 'next/link';
 import { useContext } from 'react';
 const getEventById = async (id) => {
   try {
@@ -37,8 +38,8 @@ const EventDetails = async ({ params }) => {
   const handleOnChange = () => {
     console.log("Changed")
   }
-  
-  
+
+
   return (
     <>
       <div>EventDetails {event._id}</div>
@@ -47,11 +48,13 @@ const EventDetails = async ({ params }) => {
       <div>EventDetails {event.location}</div>
       <div>EventDetails {event.host}</div>
       <div>EventDetails {event.description}</div>
-      <SearchBar items={topics} id={event._id}/>
-      
-   
-      
-      <Button variant='contained' >Create Topic</Button>
+      <div>Topics at the event {event.topics}</div>
+      <SearchBar items={topics} id={event._id} />
+
+
+      <Link href={"/topics"}>
+        <Button variant='contained' >Create Topic</Button>
+      </Link>
     </>
   )
 }

@@ -7,6 +7,7 @@ import { Container } from '@mui/material';
 const Topics = () => {
     return (
         <Container fixed>
+            <>Topics</>
             <TopicsForm />
             <hr />
             <div>{<TopicsList />}</div>

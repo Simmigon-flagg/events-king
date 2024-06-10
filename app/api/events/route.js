@@ -3,8 +3,7 @@ import Event from "@/models/event";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-    const data = await request.json();
-    console.log(data)
+    const data = await request.json();    
     await connectMongoDB();
     await Event.create({ ...data });
     return NextResponse.json({ message: "Event Created" }, { status: 201 })

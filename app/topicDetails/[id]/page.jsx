@@ -29,9 +29,6 @@ const TopicsDetails = async ({ params }) => {
       <div>topicDetails {topic.host}</div>
       <div>topicDetails {topic.description}</div>
 
-      
-
-      <Button variant='contained' >Create Topic</Button>
     </>
   )
 }

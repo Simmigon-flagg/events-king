@@ -3,9 +3,12 @@ import Link from 'next/link'
 import RemoveBtn from '../Buttons/RemoveBtn'
 import { FaEdit } from 'react-icons/fa'
 import React, { useState } from 'react'
-
+import { useRouter } from 'next/navigation' 
+import { Box, Button } from '@mui/material'
+import { DataGrid } from '@mui/x-data-grid'
 const SearchBar = ({ items, id }) => {
-
+    const router = useRouter()
+    
     const [searchTerm, setSearchTerm] = useState({
         title: ""
     });
@@ -55,33 +58,146 @@ const SearchBar = ({ items, id }) => {
         }
     };
 
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 90 },
+        { field: 'itemId', headerName: 'Item Id', width: 90 },
+        {
+            field: 'title',
+            headerName: 'Title',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'description',
+            headerName: 'Description',
+            width: 150,
+            editable: true,
+        }
+        ,
+        {
+            field: 'location',
+            headerName: 'Location',
+            width: 150,
+            editable: true,
+        }
+        ,
+        {
+            field: 'host',
+            headerName: 'Host',
+            width: 150,
+            editable: true,
+        }
+        
+        ,
+        // {
+        //     field: 'date',
+        //     headerName: 'Date',
+        //     width: 150,
+        //     editable: true,
+        // }
+        // ,
+        // {
+        //     field: 'time',
+        //     headerName: 'time',
+        //     width: 150,
+        //     editable: true,
+        // },
+        {
+            field: "topicActions",
+            headerName: "Topic Details",
+            width: 200,
+
+            renderCell: (params) => (
+
+                <Link
+                    href={`/topicdetails/${params.row.itemId}`}
+                >
+                    <Button
+
+
+                    //   onClick={() => alert(params.row.itemId)}
+                    >
+                        View
+                    </Button>
+                </Link>
+
+            )
+        },
+        {
+            field: "editActions",
+            headerName: "Edit Topic",
+            width: 200,
+
+            renderCell: (params) => (
+
+                <Link
+                    href={`/edittopic/${params.row.itemId}`}
+                >
+                    <Button
+
+
+                    //   onClick={() => alert(params.row.itemId)}
+                    >
+                        View
+                    </Button>
+                </Link>
+
+            )
+        },
+    ];
+    const filteredItems = items.filter(item => {
+        if (searchTerm.title === "" || searchTerm.title == null) {
+            return item;
+        }
+        if (item.title.toLowerCase().includes(searchTerm.title.toLowerCase())) {
+            return item;
+        }
+        return null;
+    });
+
+    const rows = filteredItems.map((item, index) => {
+        return {
+            id: index + 1, // Ensure IDs start from 1
+            title: item.title,
+            itemId: item._id,
+            description: item.description,
+            host: item.host,
+            // date: item.date,
+            // time: item.time,
+            location: item.location
+        };
+    });
     return (
         <>
             <input type='text' name="title" value={searchTerm.title} placeholder='Search' onChange={handleSearch} />
-            {items.filter(item => {
-                if (searchTerm.title === "" || searchTerm.title == null) {
-                    return item;
-                }
-                if (item.title.toLowerCase().includes(searchTerm.title.toLowerCase())) {
-                    return item;
-                }
-                return null;
-            }).map(item => (
-                <div key={item._id}>
-                    <div>{item._id}</div>
-                    <button onClick={() => handleGetId(item._id, id)}>Add Topic</button>
-                    <Link href={`/topicdetails/${item._id}`}>
-                        <h2>{item.title}</h2>
-                    </Link>
-                    <p>{item.desc}</p>
-                    <RemoveBtn id={item._id} />
-                    <Link href={`/edittopic/${item._id}`}>
-                        <FaEdit />
-                    </Link>
-                </div>
-            ))}
+            <Box sx={{ height: 400, width: '100%' }}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: {
+                                pageSize: 6,
+                            },
+                        },
+                    }}
+                    pageSizeOptions={[6]}
+                    checkboxSelection
+                    disableRowSelectionOnClick
+                />
+            </Box>
         </>
     );
 };
 
 export default SearchBar;
+
+{/* <button onClick={() => handleGetId(item._id, id)}>Add Topic</button>
+<Link href={`/topicdetails/${item._id}`}>
+    <h2>{item.title}</h2>
+</Link>
+<p>{item.desc}</p>
+<RemoveBtn id={item._id} />
+<Link href={`/edittopic/${item._id}`}>
+    <FaEdit />
+</Link> */}

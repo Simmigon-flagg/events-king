@@ -6,8 +6,9 @@ import EventsList from '../components/Events/List';
 const Events = () => {
   return (
     <Container fixed>
-      <EventsForm />
       <div>Events</div>
+      <EventsForm />
+
       <EventsList />
     </Container>
   )
