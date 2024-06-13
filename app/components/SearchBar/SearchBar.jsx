@@ -14,7 +14,7 @@ const SearchBar = ({ items, id }) => {
 
     const handleSearch = (e) => {
         const { name, value } = e.target;
-        console.log(name, value);
+        
         setSearchTerm(prev => ({
             ...prev,
             [name]: value
@@ -22,8 +22,7 @@ const SearchBar = ({ items, id }) => {
     };
 
     const handleGetId = async (topic_Id) => {
-        console.log(topic_Id);
-        console.log(id);
+
         try {
             // Fetch the existing event
             const res = await fetch(`http://localhost:3000/api/events/${id}`, {
@@ -72,6 +71,17 @@ const SearchBar = ({ items, id }) => {
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
         { field: 'itemId', headerName: 'Item Id', width: 90 },
+        {
+            field: "addtopic",
+            headerName: "Add Topic",
+            width: 200,
+
+            renderCell: (params) => (
+
+                <Button variant="contained" onClick={() => handleGetId(params.row.itemId)}>Add Topic</Button>
+
+            )
+        },
         {
             field: 'title',
             headerName: 'Title',
@@ -133,17 +143,7 @@ const SearchBar = ({ items, id }) => {
 
             )
         },
-        {
-            field: "addtopic",
-            headerName: "Add Topic",
-            width: 200,
-
-            renderCell: (params) => (
-
-                <button onClick={() => handleGetId(params.row.itemId)}>Add Topic {params.row.itemId}</button>
-
-            )
-        },
+      
     ];
 
     const rows = filteredItems.map((item, index) => {
@@ -162,6 +162,7 @@ const SearchBar = ({ items, id }) => {
     return (
         <>
             <input type='text' name="title" value={searchTerm.title} placeholder='Search' onChange={handleSearch} />
+            
             <Box sx={{ height: 400, width: '100%' }}>
                 <DataGrid
                     rows={rows}

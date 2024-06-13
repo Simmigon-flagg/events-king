@@ -18,14 +18,12 @@ const SearchBar = ({ items, id }) => {
 
     const getIds = (rowIds) => {
         setIds(rowIds)
-        console.log(ids)
 
     }
     const handleDeleteSelected = async () => {
         try {
-            await Promise.all(ids.map(id =>{
-
-                console.log(id)
+            await Promise.all(ids.map(id => {
+                
                 fetch(`/api/events?id=${id}`, { method: 'DELETE' })
             }
             ));
@@ -56,7 +54,7 @@ const SearchBar = ({ items, id }) => {
     });
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        { field: 'id', headerName: 'ID', width: 30 },
         { field: 'itemId', headerName: 'Event Id', width: 90 },
         {
             field: 'title',
@@ -68,14 +66,13 @@ const SearchBar = ({ items, id }) => {
             field: 'description',
             headerName: 'Description',
             width: 150,
-            editable: true,
+            
         }
         ,
         {
             field: 'location',
             headerName: 'Location',
-            width: 150,
-            editable: true,
+            width: 150,            
         }
         ,
         {
@@ -89,31 +86,37 @@ const SearchBar = ({ items, id }) => {
             field: 'date',
             headerName: 'Date',
             width: 150,
-            editable: true,
-        }
-        ,
-        // {
-        //     field: 'time',
-        //     headerName: 'time',
-        //     width: 150,
-        //     editable: true,
-        // },
+            
+        },
         {
             field: "actions",
             headerName: "Actions",
-            width: 200,
+            width: 90,
 
             renderCell: (params) => (
 
                 <Link
-                    href={`/eventdetails/${params.row.id}`}
+                    href={`/eventdetails/${params.row.itemId}`}
                 >
-                    <Button
-
-
-                    //   onClick={() => alert(params.row.itemId)}
-                    >
+                    <Button>
                         View
+                    </Button>
+                </Link>
+
+            )
+        },
+        {
+            field: "editActions",
+            headerName: "Edit Topic",
+            width: 90,
+
+            renderCell: (params) => (
+
+                <Link
+                    href={`/editevent/${params.row.edit}`}
+                >
+                    <Button>
+                        Edit
                     </Button>
                 </Link>
 
@@ -123,9 +126,10 @@ const SearchBar = ({ items, id }) => {
 
     const rows = filteredItems.map((item, index) => {
         return {
-            id: item._id, // Ensure IDs start from 1
+            id: index + 1, // Ensure IDs start from 1
+            itemId: item._id,
+            edit: item._id, // Ensure IDs start from 1
             title: item.title,
-            itemId: index + 1,
             description: item.description,
             host: item.host,
             date: item.date,
@@ -138,7 +142,6 @@ const SearchBar = ({ items, id }) => {
         <>
             <input type='text' name="title" value={searchTerm.title} placeholder='Search' onChange={handleSearch} />
             <Button onClick={handleDeleteSelected}>Delete Selected</Button>
-            {JSON.stringify(ids)}
 
             <Box sx={{ height: 400, width: '100%' }}>
                 <DataGrid
@@ -163,15 +166,3 @@ const SearchBar = ({ items, id }) => {
 };
 
 export default SearchBar;
-{/* <div key={item._id}>
-                        <div>{item._id}</div>
-
-                        <Link href={`/eventdetails/${item._id}`} >
-                            <h2>{item.title}</h2>
-                        </Link>
-                        <p>{item.desc}</p>
-                        <RemoveBtn id={item._id} />
-                        <Link href={`/editevent/${item._id}`}>
-                            <FaEdit />
-                        </Link>
-                    </div> */}

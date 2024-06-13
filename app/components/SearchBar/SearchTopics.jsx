@@ -3,7 +3,7 @@ import Link from 'next/link'
 import RemoveBtn from '../Buttons/RemoveBtn'
 import { FaEdit } from 'react-icons/fa'
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation' 
+import { useRouter } from 'next/navigation'
 import { Box, Button } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 const SearchBar = ({ items, id }) => {
@@ -65,8 +65,9 @@ const SearchBar = ({ items, id }) => {
     }
 
     const handleDeleteSelected = async () => {
+        console.log(ids)
         try {
-            await Promise.all(ids.map(id =>{
+            await Promise.all(ids.map(id => {
 
                 console.log(id)
                 fetch(`/api/topics?id=${id}`, { method: 'DELETE' })
@@ -81,8 +82,8 @@ const SearchBar = ({ items, id }) => {
     };
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
-        { field: 'itemId', headerName: 'Topic Id', width: 90 },
+        { field: 'id', headerName: 'ID', width: 30 },
+        { field: 'ids', headerName: 'Topic Id', width: 90 },
         {
             field: 'title',
             headerName: 'Title',
@@ -109,7 +110,7 @@ const SearchBar = ({ items, id }) => {
             width: 150,
             editable: true,
         }
-        
+
         ,
         // {
         //     field: 'date',
@@ -179,9 +180,10 @@ const SearchBar = ({ items, id }) => {
 
     const rows = filteredItems.map((item, index) => {
         return {
-            id: item._id, // Ensure IDs start from 1
+            id: index + 1, // Ensure IDs start from 1
+            ids: item._id, // Ensure IDs start from 1
             title: item.title,
-            itemId: index + 1,
+            itemId: item._id,
             description: item.description,
             host: item.host,
             // date: item.date,

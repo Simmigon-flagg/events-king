@@ -6,10 +6,9 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
-// import TopicsContext from '@/context/TopicsContext'
 
 const EventsForm = () => {
-  // const { handleEdit } = useContext(TopicsContext);
+  
   const router = useRouter()
   const [formData, setFormData] = useState({
     title: "",
@@ -43,8 +42,7 @@ const EventsForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Empty text boxes needs handling
-    // alert(JSON.stringify(formData));
+
     try {
       const response = await fetch("http://localhost:3000/api/events",
         {
@@ -81,7 +79,7 @@ const EventsForm = () => {
       <div>
         <input type="text" onChange={handleChange} value={formData.title} name="title" placeholder='title' />
         <input type="text" onChange={handleChange} value={formData.desc} name="desc" placeholder='desc' />
-        <input type="text" onChange={handleChange} value={formData.speaker} name="speaker" placeholder='speaker' />
+        <input type="text" onChange={handleChange} value={formData.speaker} name="host" placeholder='host' />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DatePicker']}>
             <DatePicker
@@ -107,8 +105,6 @@ const EventsForm = () => {
         <Button style={{ backgroundColor: "green" }} onClick={handleSubmit}>Add Event</Button>
       </div>
       <div>
-        {/* <RemoveBtn /> */}
-        {/* <FaEdit onClick={handleEdit}/> */}
       </div>
     </div>
   )

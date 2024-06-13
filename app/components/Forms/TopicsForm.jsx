@@ -7,11 +7,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import dayjs from 'dayjs';
+import { useRouter } from 'next/navigation';
 
 // import TopicsContext from '@/context/TopicsContext'
 
 const TopicsForm = () => {
   // const { handleEdit } = useContext(TopicsContext);
+  const router = useRouter()
   const [formData, setFormData] = useState({
     title: "",
     desc: "",
@@ -64,6 +66,7 @@ const TopicsForm = () => {
           time: null,
           location: ""
         });
+        router.refresh();
       } else {
         throw new Error("Failed to create a topic");
       }
