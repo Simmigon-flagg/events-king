@@ -1,17 +1,18 @@
-'use client'
-import React, { useState } from 'react'
-import { Button } from '@mui/joy'
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import dayjs from 'dayjs';
-import { useRouter } from 'next/navigation';
+"use client";
+import React, { useState } from "react";
+import Button from '@mui/material/Button';
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import dayjs from "dayjs";
+import { useRouter } from "next/navigation";
+import TextField from "@mui/material/TextField";
+import "./TopicsForm.css";
 
 const TopicsForm = () => {
-
-  const router = useRouter()
+  const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -23,23 +24,23 @@ const TopicsForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleDateChange = (date) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      date: date ? date.format('YYYY-MM-DD') : null
+      date: date ? date.format("YYYY-MM-DD") : null,
     }));
   };
 
   const handleTimeChange = (time) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      time: time ? time.format('HH:mm') : null
+      time: time ? time.format("HH:mm") : null,
     }));
   };
 
@@ -51,9 +52,9 @@ const TopicsForm = () => {
       const response = await fetch("http://localhost:3000/api/topics", {
         method: "POST",
         headers: {
-          "Content-type": "application/json"
+          "Content-type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
       if (response.ok) {
         setFormData({
@@ -62,7 +63,7 @@ const TopicsForm = () => {
           speaker: "",
           date: null,
           time: null,
-          location: ""
+          location: "",
         });
         router.refresh();
       } else {
@@ -74,16 +75,42 @@ const TopicsForm = () => {
   };
 
   return (
-    <div>
-      <div>
-        <input type="text" onChange={handleChange} value={formData.title} name="title" placeholder='title' />
-        <input type="text" onChange={handleChange} value={formData.description} name="description" placeholder='description' />
-        <input type="text" onChange={handleChange} value={formData.speaker} name="speaker" placeholder='speaker' />
+    <div className="container-topic-forms">
+      <div className="form-box">
+        {/* All MUI controlled input or text field options here: https://mui.com/material-ui/react-text-field/ */}
 
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={['DatePicker']}>
+        <TextField
+          id="topics-form-input"
+          label="Session Title"
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+        />
+         <TextField
+         id="topics-form-input"
+         label="Speaker"
+          type="text"
+          name="speaker"
+          value={formData.speaker}
+          onChange={handleChange}
+        />
+
+        <TextField
+        id="topics-form-input"
+         label="Location"
+          type="text"
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+        />
+
+<div className="wrapper-dateTime-picker">
+    <LocalizationProvider dateAdapter={AdapterDayjs} >
+          <DemoContainer components={["DatePicker"]} >
             <DatePicker
-              label="Basic date picker"
+            id="topics-form-input"
+              label="Date"
               value={formData.date ? dayjs(formData.date) : null}
               onChange={handleDateChange}
             />
@@ -91,23 +118,34 @@ const TopicsForm = () => {
         </LocalizationProvider>
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={['TimePicker']}>
+          <DemoContainer components={["TimePicker"]}>
             <TimePicker
-              label="Basic time picker"
-              value={formData.time ? dayjs(formData.time, 'HH:mm') : null}
+            id="topics-form-input"
+              label="Time"
+              value={formData.time ? dayjs(formData.time, "HH:mm") : null}
               onChange={handleTimeChange}
             />
           </DemoContainer>
         </LocalizationProvider>
+    </div>
 
-        <input type="text" onChange={handleChange} value={formData.location} name="location" placeholder='location' />
+    <TextField
+        id="topics-form-input"
+          label="Description"
+          multiline
+          rows={4}
+          value={formData.description}
+          onChange={handleChange}
+        />
       </div>
       <div style={{ marginTop: 30 }}>
-        <Button style={{ backgroundColor: "green" }} onClick={handleSubmit}>Add Topic</Button>
+      <Button variant="contained" size="large" onClick={handleSubmit}>
+          Add Topic
+        </Button>
+        
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default TopicsForm
+export default TopicsForm;

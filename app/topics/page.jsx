@@ -8,6 +8,7 @@ const Topics = () => {
     return (
         <Container fixed>
             <>Topics</>
+            {/* TODO: Create a Modal for the Add topics form */}
             <TopicsForm />
             <hr />
             <div>{<TopicsList />}</div>

@@ -21,7 +21,7 @@ const TopicsDetails = async ({ params }) => {
   const { topic } = await getTopicById(id);
   return (
     <>
-      <div>topicDetails {topic.id}</div>
+      <div>topicDetails {topic._id}</div>
       <div>topicDetails {topic.title}</div>
       <div>topicDetails {topic.date}</div>
       <div>topicDetails {topic.time}</div>
