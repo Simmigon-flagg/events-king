@@ -12,7 +12,7 @@ const EventsForm = () => {
   const router = useRouter()
   const [formData, setFormData] = useState({
     title: "",
-    desc: "",
+    description: "",
     speaker: "",
     date: "",
     time: "",
@@ -58,7 +58,7 @@ const EventsForm = () => {
 
         setFormData({
           title: "",
-          desc: "",
+          description: "",
           speaker: "",
           date: "",
           time: "",
@@ -78,7 +78,7 @@ const EventsForm = () => {
     <div>
       <div>
         <input type="text" onChange={handleChange} value={formData.title} name="title" placeholder='title' />
-        <input type="text" onChange={handleChange} value={formData.desc} name="desc" placeholder='desc' />
+        <input type="text" onChange={handleChange} value={formData.description} name="description" placeholder='description' />
         <input type="text" onChange={handleChange} value={formData.speaker} name="host" placeholder='host' />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DatePicker']}>

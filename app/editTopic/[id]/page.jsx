@@ -17,8 +17,7 @@ const getTopicById = async (id) => {
   }
 };
 const EditTopic = async ({ params }) => {
-  // const { topics } = useContext(TopicsContext);
-  
+
   const { id } = params;
   const { topic } = await getTopicById(id);
 

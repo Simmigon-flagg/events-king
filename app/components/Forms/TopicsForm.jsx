@@ -9,14 +9,12 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 
-// import TopicsContext from '@/context/TopicsContext'
-
 const TopicsForm = () => {
-  // const { handleEdit } = useContext(TopicsContext);
+
   const router = useRouter()
   const [formData, setFormData] = useState({
     title: "",
-    desc: "",
+    description: "",
     speaker: "",
     date: null,
     time: null,
@@ -60,7 +58,7 @@ const TopicsForm = () => {
       if (response.ok) {
         setFormData({
           title: "",
-          desc: "",
+          description: "",
           speaker: "",
           date: null,
           time: null,
@@ -79,7 +77,7 @@ const TopicsForm = () => {
     <div>
       <div>
         <input type="text" onChange={handleChange} value={formData.title} name="title" placeholder='title' />
-        <input type="text" onChange={handleChange} value={formData.desc} name="desc" placeholder='desc' />
+        <input type="text" onChange={handleChange} value={formData.description} name="description" placeholder='description' />
         <input type="text" onChange={handleChange} value={formData.speaker} name="speaker" placeholder='speaker' />
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -107,10 +105,7 @@ const TopicsForm = () => {
       <div style={{ marginTop: 30 }}>
         <Button style={{ backgroundColor: "green" }} onClick={handleSubmit}>Add Topic</Button>
       </div>
-      <div>
-        {/* <RemoveBtn /> */}
-        {/* <FaEdit onClick={handleEdit} /> */}
-      </div>
+
     </div>
   )
 }

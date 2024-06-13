@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
     const initialValues = {
         id: id,
         title: "",
-        desc: "",
+        description: "",
         speaker: "",
         date: "",
         time: "",

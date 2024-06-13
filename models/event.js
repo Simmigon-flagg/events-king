@@ -3,7 +3,6 @@ import mongoose, { Schema } from "mongoose";
 // Define the Event schema with topics as an optional array of references to Topic
 const eventSchema = new Schema({
     title: String,
-    desc: String,
     host: String,
     date: String,
     time: String,

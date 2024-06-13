@@ -18,8 +18,7 @@ const getEventById = async (id) => {
 };
 
 const EditEvent = async ({ params }) => {
-  // const { topics } = useContext(TopicsContext);
-
+  
   const { id } = params;
   const { event } = await getEventById(id);
 

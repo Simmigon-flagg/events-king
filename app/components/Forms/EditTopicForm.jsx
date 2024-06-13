@@ -35,7 +35,7 @@ const EditTopicForm = ({ item }) => {
         <div>
             <div>
                 <input type="text" onChange={handleChange} value={edit.title} name="title" placeholder='title' />
-                <input type="text" onChange={handleChange} value={edit.desc} name="desc" placeholder='desc' />
+                <input type="text" onChange={handleChange} value={edit.description} name="description" placeholder='description' />
                 <input type="text" onChange={handleChange} value={edit.speaker} name="speaker" placeholder='speaker' />
                 <input type="text" onChange={handleChange} value={edit.date} name="date" placeholder='date' />
                 <input type="text" onChange={handleChange} value={edit.time} name="time" placeholder='time' />

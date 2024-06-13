@@ -1,6 +1,7 @@
 import React from 'react'
 
 import SearchTopics from './SearchBar/SearchTopics'
+
 const getTopics = async () => {
   try {
     const response = await fetch("http://localhost:3000/api/topics", {

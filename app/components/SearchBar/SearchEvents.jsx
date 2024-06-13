@@ -54,8 +54,8 @@ const SearchBar = ({ items, id }) => {
     });
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 30 },
-        { field: 'itemId', headerName: 'Event Id', width: 90 },
+        { field: 'itemId', headerName: 'ID', width: 30 },
+        { field: 'id', headerName: 'Event Id', width: 90 },
         {
             field: 'title',
             headerName: 'Title',
@@ -96,7 +96,7 @@ const SearchBar = ({ items, id }) => {
             renderCell: (params) => (
 
                 <Link
-                    href={`/eventdetails/${params.row.itemId}`}
+                    href={`/eventdetails/${params.row.id}`}
                 >
                     <Button>
                         View
@@ -126,8 +126,8 @@ const SearchBar = ({ items, id }) => {
 
     const rows = filteredItems.map((item, index) => {
         return {
-            id: index + 1, // Ensure IDs start from 1
-            itemId: item._id,
+            id: item._id, // Ensure IDs start from 1
+            itemId: index + 1,
             edit: item._id, // Ensure IDs start from 1
             title: item.title,
             description: item.description,

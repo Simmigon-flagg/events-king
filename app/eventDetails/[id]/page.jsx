@@ -30,29 +30,23 @@ const getTopics = async () => {
     console.log("Error loading topics: ", error);
   }
 }
-const getEventTopics = async  (event, topics) => {
+const getEventTopics = async (event, topics) => {
   return await event.topics.map(eventTopicId => {
     const topicData = topics.map(topic => {
-      if(topic._id === eventTopicId){
+      if (topic._id === eventTopicId) {
         return topic;
       }
-    })
-    console.log(topicData[0])
+    })    
     return topicData[0]
-  })
-  // console.log(eventData)
+  })  
 }
 
 const EventDetails = async ({ params }) => {
-  
+
   const { topics } = await getTopics()
   const { id } = params;
   const { event } = await getEventById(id);
-  const eventTopic =  await   
-  getEventTopics(event, topics)
-  const handleOnChange = () => {
-    console.log("Changed")
-  }
+  const eventTopic = await getEventTopics(event, topics)
 
 
   return (
@@ -64,11 +58,18 @@ const EventDetails = async ({ params }) => {
       <div>EventDetails {event.host}</div>
       <div>EventDetails {event.description}</div>
       <div>Topics at the event {event.topics}</div>
-      <div>Topics at {eventTopic.title}</div>
-      {JSON.stringify(eventTopic)}
-      <div>Topics at the event {eventTopic.id}</div>
-      <div>Topics at the event {eventTopic?.location}</div>
-      
+      {eventTopic.map(topic => {
+        return (<div key={topic._id}>
+          {topic?.title}
+          {topic?.speaker}
+          {topic?.date}
+          {topic?.time}
+          {topic?.location}
+          {topic?.description}
+        </div>)
+      })}
+
+
       <SearchBar items={topics} id={event._id} />
 
 

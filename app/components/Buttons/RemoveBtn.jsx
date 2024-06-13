@@ -1,7 +1,6 @@
 "use client"
-import React, { useContext } from 'react'
+import React from 'react'
 import { FaTrash } from 'react-icons/fa'
-import TopicsContext from '@/context/TopicsContext'
 import { useRouter } from 'next/navigation'
 
 const RemoveBtn = ({ id }) => {

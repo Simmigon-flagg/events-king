@@ -82,8 +82,8 @@ const SearchBar = ({ items, id }) => {
     };
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 30 },
-        { field: 'ids', headerName: 'Topic Id', width: 90 },
+        { field: 'ids', headerName: '#', width: 90 },
+        { field: 'id', headerName: 'Topic ID', width: 30 },
         {
             field: 'title',
             headerName: 'Title',
@@ -180,8 +180,8 @@ const SearchBar = ({ items, id }) => {
 
     const rows = filteredItems.map((item, index) => {
         return {
-            id: index + 1, // Ensure IDs start from 1
-            ids: item._id, // Ensure IDs start from 1
+            id:  item._id, // Ensure IDs start from 1
+            ids:index + 1, // Ensure IDs start from 1
             title: item.title,
             itemId: item._id,
             description: item.description,
@@ -217,13 +217,3 @@ const SearchBar = ({ items, id }) => {
 };
 
 export default SearchBar;
-
-{/* <button onClick={() => handleGetId(item._id, id)}>Add Topic</button>
-<Link href={`/topicdetails/${item._id}`}>
-    <h2>{item.title}</h2>
-</Link>
-<p>{item.desc}</p>
-<RemoveBtn id={item._id} />
-<Link href={`/edittopic/${item._id}`}>
-    <FaEdit />
-</Link> */}
