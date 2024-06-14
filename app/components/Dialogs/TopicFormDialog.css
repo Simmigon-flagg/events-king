@@ -1,0 +1,8 @@
+.dialog-container{
+    display: flex;
+    justify-content: ;
+}
+
+.btn-dialog{
+    justify-self: flex-end;
+}

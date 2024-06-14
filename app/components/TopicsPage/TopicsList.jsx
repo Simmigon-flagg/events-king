@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SearchTopics from './SearchBar/SearchTopics'
+import SearchTopics from '../SearchBar/SearchTopics'
 
 const getTopics = async () => {
   try {
@@ -10,7 +10,7 @@ const getTopics = async () => {
     if (!response.ok) {
       throw new Error("Failed to fetch topics")
     }
-    return response.json();
+    return await response.json();
   } catch (error) {
     console.log("Error loading topics: ", error);
   }
@@ -22,11 +22,9 @@ const TopicsList = async () => {
 
   return (
     <>
-
-      <hr />
+      
       <div>Topics List</div>
       <SearchTopics items={topics} />
- 
     </>
 
   )

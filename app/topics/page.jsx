@@ -1,20 +1,19 @@
-import React from 'react'
-import TopicsList from '../components/TopicsList'
-import { Button } from '@mui/joy';
-
-import TopicsForm from '../components/Forms/TopicsForm';
-import { Container } from '@mui/material';
+import React from "react";
+import TopicsList from "../components/TopicsPage/TopicsList";
+import TopicsForm from "../components/Forms/TopicsForm";
+import { Container } from "@mui/material";
+import TopicFormDialog from "../components/Dialogs/TopicFormDialog";
+import "./topics.css";
 const Topics = () => {
-    return (
-        <Container fixed>
-            <>Topics</>
-            {/* TODO: Create a Modal for the Add topics form */}
-            <TopicsForm />
-            <hr />
-            <div>{<TopicsList />}</div>
-        </Container>
-
-    )
-}
+  return (
+    <Container fixed>
+      <h3>SESSION TOPICS</h3>
+      <TopicFormDialog />
+      <div>
+        <TopicsList />
+      </div>
+    </Container>
+  );
+};
 
 export default Topics;

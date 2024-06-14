@@ -160,7 +160,7 @@ const SearchBar = ({ items, id }) => {
       ),
     },
   ];
-  const filteredItems = items.filter((item) => {
+  const filteredItems = items?.filter((item) => {
     if (searchTerm.title === "" || searchTerm.title == null) {
       return item;
     }
@@ -170,7 +170,7 @@ const SearchBar = ({ items, id }) => {
     return null;
   });
 
-  const rows = filteredItems.map((item, index) => {
+  const rows = filteredItems?.map((item, index) => {
     return {
       id: item._id, // Ensure IDs start from 1
       ids: index + 1, // Ensure IDs start from 1
@@ -196,6 +196,7 @@ const SearchBar = ({ items, id }) => {
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
           rows={rows}
+          row
           columns={columns}
           initialState={{
             pagination: {
