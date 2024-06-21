@@ -37,17 +37,22 @@ const Navbar = () => {
 
             <div onClick={toggleMenu} className={`navbar-links ${isOpen ? 'open' : ''}`}>
                 <Link href="/">Home</Link>
-                {user?.name ? <Link href="/dashboard">Dashboard</Link> : null}
+                {/* {user?.name ? <Link href="/dashboard">Dashboard</Link> : null} */}
                 <Link href="/about">About</Link>
-                <Link href="/products">Products</Link>
+                {/* <Link href="/products">Products</Link> */}
                
                 <Link href="/login">Login/Registar</Link>
-                <Link href="/events">Events</Link>
                 <Link href="/checkin">Check In</Link>
-                <Link href="/topics">Topics</Link>
                 <Link href="/testpage">Test Page</Link>
-                {user?.name ? <button onClick={onSignOut}>Sign out</button> : null}
-
+                {user?.name ? 
+                <>
+                <Link href="/events">Events</Link>
+                <Link href="/topics">Topics</Link>
+                 <button onClick={onSignOut}>Sign out</button>
+                </> 
+                :
+                 <>
+                </>}
 
                 <Link href="/">{user?.name}</Link>
 
