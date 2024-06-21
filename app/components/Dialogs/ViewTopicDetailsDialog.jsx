@@ -14,20 +14,20 @@ import { useRouter } from "next/navigation";
 import TopicDetailsView from "../TopicDetailsView/TopicDetailsView";
 import EditTopicForm from "../Forms/EditTopicForm";
 
-const getTopicById = async (id) => {
-  try {
-    const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
-      cache: "no-store",
-    });
-    if (!res.ok) {
-      throw new Error("Failed to fetch topic");
-    }
+// const getTopicById = async (id) => {
+//   try {
+//     const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
+//       cache: "no-store",
+//     });
+//     if (!res.ok) {
+//       throw new Error("Failed to fetch topic");
+//     }
 
-    return res.json();
-  } catch (error) {
-    console.log(error);
-  }
-};
+//     return res.json();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 const ViewTopicDetailDialog = ({topic}) => {
     
@@ -55,8 +55,10 @@ const ViewTopicDetailDialog = ({topic}) => {
     }))
 }
 const handleSubmit = async () => {
+  console.log(edit)
+  
     try {
-        const response = await fetch(`http://localhost:3000/api/topics/${edit._id}`, {
+        const response = await fetch(`http://localhost:3000/api/topics/${edit.itemId}`, {
             method: "PUT",
             header: { "Content-type": "application/json" },
             body: JSON.stringify(edit)

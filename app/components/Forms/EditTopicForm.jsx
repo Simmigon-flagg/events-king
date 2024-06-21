@@ -17,42 +17,42 @@ const EditTopicForm = ({ edit, handleChange }) => {
             label="Session Title"
             type="text"
             onChange={handleChange}
-            value={edit.title}
+            value={edit?.title}
             name="title"
           />
           <TextField
             label="description"
             type="text"
             onChange={handleChange}
-            value={edit.description}
+            value={edit?.description}
             name="description"
           />
           <TextField
             label="Speaker"
             type="text"
             onChange={handleChange}
-            value={edit.speaker}
+            value={edit?.speaker}
             name="speaker"
           />
           <TextField
             label="Date"
             type="text"
             onChange={handleChange}
-            value={edit.date}
+            value={edit?.date}
             name="date"
           />
           <TextField
             label="Time"
             type="text"
             onChange={handleChange}
-            value={edit.time}
+            value={edit?.time}
             name="time"
           />
           <TextField
             label="location"
             type="text"
             onChange={handleChange}
-            value={edit.location}
+            value={edit?.location}
             name="location"
           />
         </div>

@@ -175,8 +175,8 @@ const SearchBar = ({ items, id }) => {
       itemId: item._id,
       description: item.description,
       host: item.host,
-      // date: item.date,
-      // time: item.time,
+      date: item.date,
+      time: item.time,
       location: item.location,
     };
   });
