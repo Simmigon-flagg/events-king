@@ -112,24 +112,24 @@ const SearchBar = ({ items, id }) => {
     },
     {
       field: "host",
-      headerName: "Host",
+      headerName: "Speaker",
       width: 150,
       editable: true,
     },
 
-    // {
-    //     field: 'date',
-    //     headerName: 'Date',
-    //     width: 150,
-    //     editable: true,
-    // }
-    // ,
-    // {
-    //     field: 'time',
-    //     headerName: 'time',
-    //     width: 150,
-    //     editable: true,
-    // },
+    {
+        field: 'date',
+        headerName: 'Date',
+        width: 150,
+        editable: true,
+    }
+    ,
+    {
+        field: 'time',
+        headerName: 'Time',
+        width: 150,
+        editable: true,
+    },
     {
       field: "topicActions",
       headerName: "Topic Details",
@@ -137,23 +137,6 @@ const SearchBar = ({ items, id }) => {
 
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row}/>
-      ),
-    },
-    {
-      field: "editActions",
-      headerName: "Edit Topic",
-      width: 180,
-
-      renderCell: (params) => (
-        <Link href={`/edittopic/${params.row.itemId}`}>
-          <Button
-            variant="contained"
-
-          //   onClick={() => alert(params.row.itemId)}
-          >
-            Edit
-          </Button>
-        </Link>
       ),
     },
   ];

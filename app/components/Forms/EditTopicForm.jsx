@@ -31,7 +31,7 @@ const EditTopicForm = ({ edit, handleChange }) => {
             label="Speaker"
             type="text"
             onChange={handleChange}
-            value={edit?.speaker}
+            value={edit?.host}
             name="speaker"
           />
           <TextField

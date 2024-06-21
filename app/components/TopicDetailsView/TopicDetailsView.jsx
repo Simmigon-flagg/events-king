@@ -28,8 +28,8 @@ const TopicDetailsView = ({ topic }) => {
           Location:
         </label>
         <div className="view-topic-info-text">{location}</div>
-        <label className="view-topic-label" htmlFor="host">
-          Host:
+        <label className="view-topic-label" htmlFor="speaker">
+          Speaker:
         </label>
         <div className="view-topic-info-text">{host}</div>
         <label className="view-topic-label" htmlFor="description">
