@@ -2,7 +2,7 @@ import React from "react";
 import TopicsList from "../components/TopicsPage/TopicsList";
 import TopicsForm from "../components/Forms/TopicsForm";
 import { Container } from "@mui/material";
-import TopicFormDialog from "../components/Dialogs/TopicFormDialog";
+import AddTopicFormDialog from "../components/Dialogs/AddTopicFormDialog";
 import "./topics.css";
 const Topics = () => {
   return (

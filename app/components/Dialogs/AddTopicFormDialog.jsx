@@ -9,10 +9,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import "./TopicFormDialog.css";
+import "./AddTopicFormDialog.css";
 import { useRouter } from "next/navigation";
 
-const TopicFormDialog = () => {
+const AddTopicFormDialog = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -129,4 +129,4 @@ const TopicFormDialog = () => {
   );
 };
 
-export default TopicFormDialog;
+export default AddTopicFormDialog;

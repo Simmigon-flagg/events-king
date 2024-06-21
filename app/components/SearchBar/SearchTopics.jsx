@@ -8,7 +8,7 @@ import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Input from '@mui/joy/Input';
 import "./search.css"
-import TopicFormDialog from "../Dialogs/TopicFormDialog";
+import AddTopicFormDialog from "../Dialogs/AddTopicFormDialog";
 import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
 
 
@@ -201,7 +201,7 @@ const SearchBar = ({ items, id }) => {
         // sx={{ width: "75%" }}
         />
         <Button variant="contained" onClick={handleDeleteSelected}>DELETE SELECTED</Button>
-        <TopicFormDialog />
+        <AddTopicFormDialog />
       </div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
