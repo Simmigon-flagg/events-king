@@ -12,6 +12,12 @@ const TopicDetailsView = ({ topic }) => {
       <DialogTitle>Session Info</DialogTitle>
       <DialogContent>
         <DialogContentText>Details</DialogContentText>
+
+        <label className="view-topic-label" htmlFor="title">
+          Session Title:
+        </label>
+        <div className="view-topic-info-text">{title}</div>
+
         <label className="view-topic-label" htmlFor="title">
           Session Title:
         </label>
