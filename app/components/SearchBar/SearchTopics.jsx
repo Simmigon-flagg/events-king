@@ -96,39 +96,39 @@ const SearchBar = ({ items, id }) => {
       field: "title",
       headerName: "Title",
       width: 150,
-      editable: true,
+      
     },
     {
       field: "description",
       headerName: "Description",
       width: 150,
-      editable: true,
+    
     },
     {
       field: "location",
       headerName: "Location",
       width: 150,
-      editable: true,
+      
     },
     {
       field: "speaker",
       headerName: "Speaker",
       width: 150,
-      editable: true,
+      
     },
 
     {
         field: 'date',
         headerName: 'Date',
         width: 150,
-        editable: true,
+        
     }
     ,
     {
         field: 'time',
         headerName: 'Time',
         width: 150,
-        editable: true,
+        
     },
     {
       field: "topicActions",

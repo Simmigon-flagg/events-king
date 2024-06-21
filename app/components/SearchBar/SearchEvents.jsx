@@ -63,7 +63,7 @@ const SearchBar = ({ items, id }) => {
             field: 'title',
             headerName: 'Title',
             width: 150,
-            editable: true,
+           
         },
         {
             field: 'description',
@@ -82,7 +82,7 @@ const SearchBar = ({ items, id }) => {
             field: 'host',
             headerName: 'Host',
             width: 150,
-            editable: true,
+           
         }
         ,
         {
