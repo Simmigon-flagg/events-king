@@ -5,7 +5,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 const TopicDetailsView = ({ topic }) => {
-  const { title, date, time, location, host, description } = topic;
+  const { title, date, time, location, speaker, description } = topic;
 
   return (
     <div className="topic-view-dialog-container">
@@ -31,7 +31,7 @@ const TopicDetailsView = ({ topic }) => {
         <label className="view-topic-label" htmlFor="speaker">
           Speaker:
         </label>
-        <div className="view-topic-info-text">{host}</div>
+        <div className="view-topic-info-text">{speaker}</div>
         <label className="view-topic-label" htmlFor="description">
           Description:
         </label>

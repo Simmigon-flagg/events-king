@@ -111,7 +111,7 @@ const SearchBar = ({ items, id }) => {
       editable: true,
     },
     {
-      field: "host",
+      field: "speaker",
       headerName: "Speaker",
       width: 150,
       editable: true,
@@ -157,7 +157,7 @@ const SearchBar = ({ items, id }) => {
       title: item.title,
       itemId: item._id,
       description: item.description,
-      host: item.host,
+      speaker: item.speaker,
       date: item.date,
       time: item.time,
       location: item.location,
