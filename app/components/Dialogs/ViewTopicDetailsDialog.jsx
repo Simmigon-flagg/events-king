@@ -11,6 +11,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import "./AddTopicFormDialog.css";
 import { useRouter } from "next/navigation";
+import TopicDetailsView from "../TopicDetailsView/TopicDetailsView";
+import EditTopicForm from "../Forms/EditTopicForm";
 
 const getTopicById = async (id) => {
   try {
@@ -27,12 +29,13 @@ const getTopicById = async (id) => {
   }
 };
 
-const ViewTopicDetailDialog = ({ topic }) => {
-  const { _id, title, date, time, location, host, description } = topic;
+const ViewTopicDetailDialog = ({topic}) => {
+    
 
-  //   const { topic } =  getTopicById(topicId);
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [edit, setEdit] = useState(topic)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -40,10 +43,41 @@ const ViewTopicDetailDialog = ({ topic }) => {
 
   const handleClose = () => {
     setOpen(false);
+    setIsEditing(false)
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setEdit(prev => ({
+        ...prev,
+        [name]: value
+    }))
+}
+const handleSubmit = async () => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/topics/${edit._id}`, {
+            method: "PUT",
+            header: { "Content-type": "application/json" },
+            body: JSON.stringify(edit)
+
+        })
+        if (!response.ok) {
+            throw new Error("Topic was not updated")
+        }
+        router.refresh();
+        router.push("/topics")
+    } catch (error) {
+        console.log(error);
+    }
+    setIsEditing(false)
+    handleClose()
+   
+   
+}
+
   return (
-    <div className="view-dialog-container">
+    <div>
       <div className="btn-dialog">
         <Button variant="contained" onClick={handleClickOpen}>
           VIEW
@@ -52,6 +86,7 @@ const ViewTopicDetailDialog = ({ topic }) => {
       <Dialog
         open={open}
         onClose={handleClose}
+        className="view-dialog-container"
         PaperProps={{
           component: "form",
           onSubmit: (event) => {
@@ -64,22 +99,11 @@ const ViewTopicDetailDialog = ({ topic }) => {
           },
         }}
       >
-        <DialogTitle>Topic</DialogTitle>
-
-        <DialogContent>
-          <DialogContentText>Details</DialogContentText>
-          <div>ID: {_id}</div>
-          <div>Title: {title}</div>
-          <div>Date: {date}</div>
-          <div>Time: {time}</div>
-          <div>Location: {location}</div>
-          <div>Host: {host}</div>
-          <div>Description: {description}</div>
-        </DialogContent>
-
+        {isEditing ? <EditTopicForm edit={edit} handleChange={handleChange}/>
+        : <TopicDetailsView topic={topic}/>}
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button>edit</Button>
+          {isEditing ? <Button onClick={handleSubmit}>SAVE</Button> : <Button onClick={()=>setIsEditing(true)}>EDIT</Button> }    
         </DialogActions>
       </Dialog>
     </div>

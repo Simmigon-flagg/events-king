@@ -137,14 +137,6 @@ const SearchBar = ({ items, id }) => {
 
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row}/>
-        // <Link href={`/topicdetails/${params.row.itemId}`}>
-        //   <Button
-        //     variant="contained"
-        //   //   onClick={() => alert(params.row.itemId)}
-        //   >
-        //     View
-        //   </Button>
-        // </Link>
       ),
     },
     {

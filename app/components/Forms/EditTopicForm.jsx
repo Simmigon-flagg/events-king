@@ -1,55 +1,64 @@
-"use client"
-import { Button } from '@mui/joy'
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
-const EditTopicForm = ({ item }) => {
+"use client";
 
-    const [edit, setEdit] = useState(item)
-    const router = useRouter();
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setEdit(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
-    const handleSubmit = async () => {
-        try {
-            const response = await fetch(`http://localhost:3000/api/topics/${edit._id}`, {
-                method: "PUT",
-                header: { "Content-type": "application/json" },
-                body: JSON.stringify(edit)
-
-            })
-            if (!response.ok) {
-                throw new Error("Topic was not updated")
-            }
-            router.refresh();
-            router.push("/topics")
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    return (
-        <div>
-            <div>
-                <input type="text" onChange={handleChange} value={edit.title} name="title" placeholder='title' />
-                <input type="text" onChange={handleChange} value={edit.description} name="description" placeholder='description' />
-                <input type="text" onChange={handleChange} value={edit.speaker} name="speaker" placeholder='speaker' />
-                <input type="text" onChange={handleChange} value={edit.date} name="date" placeholder='date' />
-                <input type="text" onChange={handleChange} value={edit.time} name="time" placeholder='time' />
-                <input type="text" onChange={handleChange} value={edit.location} name="location" placeholder='location' />
-            </div>
-            <div style={{ marginTop: 30 }}>
-                <Button style={{ backgroundColor: "green" }} onClick={handleSubmit}>Update Topic</Button>
-            </div>
-            <div>
-                {/* <RemoveBtn /> */}
-                {/* <FaEdit onClick={handleEdit}/> */}
-            </div>
+import React, { useState } from "react";
+import TextField from "@mui/material/TextField";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import "./EditTopicForm.css";
+const EditTopicForm = ({ edit, handleChange }) => {
+  return (
+    <div className="edit-topic-container">
+      <DialogTitle>Edit Session Details</DialogTitle>
+      <DialogContent>
+        <DialogContentText>Details</DialogContentText>
+        <div className="edit-topic-form-container">
+          <TextField
+            label="Session Title"
+            type="text"
+            onChange={handleChange}
+            value={edit.title}
+            name="title"
+          />
+          <TextField
+            label="description"
+            type="text"
+            onChange={handleChange}
+            value={edit.description}
+            name="description"
+          />
+          <TextField
+            label="Speaker"
+            type="text"
+            onChange={handleChange}
+            value={edit.speaker}
+            name="speaker"
+          />
+          <TextField
+            label="Date"
+            type="text"
+            onChange={handleChange}
+            value={edit.date}
+            name="date"
+          />
+          <TextField
+            label="Time"
+            type="text"
+            onChange={handleChange}
+            value={edit.time}
+            name="time"
+          />
+          <TextField
+            label="location"
+            type="text"
+            onChange={handleChange}
+            value={edit.location}
+            name="location"
+          />
         </div>
-    )
-}
+      </DialogContent>
+    </div>
+  );
+};
 
-export default EditTopicForm
+export default EditTopicForm;
