@@ -69,6 +69,7 @@ const EditTopicForm = ({ edit, handleChange }) => {
             <FormLabel>Description</FormLabel>
             <Textarea
               minRows={4}
+              maxRows={5}
               type="text"
               onChange={handleChange}
               value={edit?.description}
