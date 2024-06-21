@@ -9,7 +9,7 @@ const Events = () => {
     <Container fixed>
       <div>Events</div>
   
-      <EventFormDialog />
+      
       {/* <EventsForm /> */}
 
       <EventsList />

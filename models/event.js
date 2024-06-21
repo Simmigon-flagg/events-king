@@ -8,7 +8,8 @@ const eventSchema = new Schema({
     time: String,
     location: String,
     description: String,
-    topics: [{ type: Schema.Types.ObjectId, ref: "Topic", default: [] }] // Topics is optional, default to an empty array
+    topics: [{ type: Schema.Types.ObjectId, ref: "Topic", default: [] }], // Topics is optional, default to an empty array
+    image: { type: Schema.Types.ObjectId, ref: "Image" } // Reference to the Image model
 }, {
     timestamps: true,
 });

@@ -8,7 +8,7 @@ const Topics = () => {
   return (
     <Container fixed>
       <h3>SESSION TOPICS</h3>
-      <TopicFormDialog />
+      
       <div>
         <TopicsList />
       </div>

@@ -7,6 +7,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Box, ButtonBase } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { Button } from '@mui/joy'
+import Input from '@mui/joy/Input';
+import "./search.css"
+import EventFormDialog from '../Dialogs/EventFormDialog'
 
 const SearchBar = ({ items, id }) => {
     const router = useRouter()
@@ -23,7 +26,7 @@ const SearchBar = ({ items, id }) => {
     const handleDeleteSelected = async () => {
         try {
             await Promise.all(ids.map(id => {
-                
+
                 fetch(`/api/events?id=${id}`, { method: 'DELETE' })
             }
             ));
@@ -55,7 +58,7 @@ const SearchBar = ({ items, id }) => {
 
     const columns = [
         { field: 'itemId', headerName: 'ID', width: 30 },
-        { field: 'id', headerName: 'Event Id', width: 90 },
+        // { field: 'id', headerName: 'Event Id', width: 90 },
         {
             field: 'title',
             headerName: 'Title',
@@ -66,13 +69,13 @@ const SearchBar = ({ items, id }) => {
             field: 'description',
             headerName: 'Description',
             width: 150,
-            
+
         }
         ,
         {
             field: 'location',
             headerName: 'Location',
-            width: 150,            
+            width: 150,
         }
         ,
         {
@@ -86,7 +89,7 @@ const SearchBar = ({ items, id }) => {
             field: 'date',
             headerName: 'Date',
             width: 150,
-            
+
         },
         {
             field: "actions",
@@ -140,8 +143,11 @@ const SearchBar = ({ items, id }) => {
 
     return (
         <>
-            <input type='text' name="title" value={searchTerm.title} placeholder='Search' onChange={handleSearch} />
-            <Button onClick={handleDeleteSelected}>Delete Selected</Button>
+            <div className="search-container">
+                <Input type='text' name="title" value={searchTerm.title} placeholder='Search' onChange={handleSearch} />
+                <Button onClick={handleDeleteSelected}>DELETE SELECTED</Button>
+                <EventFormDialog />
+            </div>
 
             <Box sx={{ height: 400, width: '100%' }}>
                 <DataGrid

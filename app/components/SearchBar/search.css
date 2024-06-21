@@ -1,0 +1,45 @@
+/* Base styles for all devices */
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.search {
+    font-family: Arial, sans-serif;
+}
+
+/* Styles for extra small devices (phones) */
+@media only screen and (max-width: 480px) {
+    .search {
+        background-color: rgb(6, 14, 232);
+    }
+}
+
+/* Styles for small devices (phones) */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+    .search {
+        background-color: lightgreen;
+    }
+}
+
+/* Styles for medium devices (tablets) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .search {
+        background-color: lightcoral;
+    }
+}
+
+/* Styles for large devices (desktops) */
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+    .search {
+        background-color: lightgoldenrodyellow;
+    }
+}
+
+/* Styles for extra large devices (large desktops) */
+@media only screen and (min-width: 1201px) {
+    .search {
+        background-color: lightgray;
+    }
+}

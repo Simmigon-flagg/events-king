@@ -6,7 +6,9 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-
+import Input from '@mui/joy/Input';
+import "./search.css"
+import TopicFormDialog from "../Dialogs/TopicFormDialog";
 
 
 const SearchBar = ({ items, id }) => {
@@ -66,11 +68,11 @@ const SearchBar = ({ items, id }) => {
 
   const getIds = (rowIds) => {
     setIds(rowIds);
-    console.log(ids);
+
   };
 
   const handleDeleteSelected = async () => {
-    console.log(ids);
+
     try {
       await Promise.all(
         ids.map((id) => {
@@ -88,7 +90,7 @@ const SearchBar = ({ items, id }) => {
 
   const columns = [
     { field: "ids", headerName: "#", width: 90 },
-    { field: "id", headerName: "Topic ID", width: 30 },
+    // { field: "id", headerName: "Topic ID", width: 30 },
     {
       field: "title",
       headerName: "Title",
@@ -130,12 +132,12 @@ const SearchBar = ({ items, id }) => {
     {
       field: "topicActions",
       headerName: "Topic Details",
-      width: 200,
+      width: 100,
 
       renderCell: (params) => (
         <Link href={`/topicdetails/${params.row.itemId}`}>
           <Button
-
+            variant="contained"
           //   onClick={() => alert(params.row.itemId)}
           >
             View
@@ -146,15 +148,16 @@ const SearchBar = ({ items, id }) => {
     {
       field: "editActions",
       headerName: "Edit Topic",
-      width: 200,
+      width: 180,
 
       renderCell: (params) => (
         <Link href={`/edittopic/${params.row.itemId}`}>
           <Button
+            variant="contained"
 
           //   onClick={() => alert(params.row.itemId)}
           >
-            View
+            Edit
           </Button>
         </Link>
       ),
@@ -185,14 +188,19 @@ const SearchBar = ({ items, id }) => {
   });
   return (
     <>
-      <input
-        type="text"
-        name="title"
-        value={searchTerm.title}
-        placeholder="Search"
-        onChange={handleSearch}
-      />
-      <Button onClick={handleDeleteSelected}>Delete Selected</Button>
+      <div className="search-container">
+
+        <Input
+          type="text"
+          name="title"
+          value={searchTerm.title}
+          placeholder="Search"
+          onChange={handleSearch}
+        // sx={{ width: "75%" }}
+        />
+        <Button variant="contained" onClick={handleDeleteSelected}>DELETE SELECTED</Button>
+        <TopicFormDialog />
+      </div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
           rows={rows}

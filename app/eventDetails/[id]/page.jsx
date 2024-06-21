@@ -59,7 +59,7 @@ const EventDetails = async ({ params }) => {
       <div>EventDetails {event.description}</div>
       <div>Topics at the event {event.topics}</div>
       {eventTopic.map(topic => {
-        return (<div key={topic._id}>
+        return (<div key={topic?._id}>
           {topic?.title}
           {topic?.speaker}
           {topic?.date}

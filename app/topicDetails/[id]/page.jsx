@@ -21,13 +21,13 @@ const TopicsDetails = async ({ params }) => {
   const { topic } = await getTopicById(id);
   return (
     <>
-      <div>topicDetails {topic._id}</div>
-      <div>topicDetails {topic.title}</div>
-      <div>topicDetails {topic.date}</div>
-      <div>topicDetails {topic.time}</div>
-      <div>topicDetails {topic.location}</div>
-      <div>topicDetails {topic.host}</div>
-      <div>topicDetails {topic.description}</div>
+      <div>ID: {topic?._id}</div>
+      <div>Title: {topic?.title}</div>
+      <div>Date: {topic?.date}</div>
+      <div>Time: {topic?.time}</div>
+      <div>Location: {topic?.location}</div>
+      <div>Host: {topic?.host}</div>
+      <div>Description: {topic?.description}</div>
 
     </>
   )

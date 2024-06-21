@@ -95,7 +95,7 @@ const TopicFormDialog = () => {
     <div className="dialog-container">
       <div className="btn-dialog">
         <Button variant="contained" onClick={handleClickOpen}>
-          ADD <AddCircleIcon color="green" />
+          ADD {" "}<AddCircleIcon color="green" />
         </Button>
       </div>
       <Dialog
