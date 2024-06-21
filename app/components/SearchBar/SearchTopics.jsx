@@ -9,6 +9,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import Input from '@mui/joy/Input';
 import "./search.css"
 import TopicFormDialog from "../Dialogs/TopicFormDialog";
+import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
 
 
 const SearchBar = ({ items, id }) => {
@@ -135,14 +136,15 @@ const SearchBar = ({ items, id }) => {
       width: 100,
 
       renderCell: (params) => (
-        <Link href={`/topicdetails/${params.row.itemId}`}>
-          <Button
-            variant="contained"
-          //   onClick={() => alert(params.row.itemId)}
-          >
-            View
-          </Button>
-        </Link>
+        <ViewTopicDetailDialog topic={params.row}/>
+        // <Link href={`/topicdetails/${params.row.itemId}`}>
+        //   <Button
+        //     variant="contained"
+        //   //   onClick={() => alert(params.row.itemId)}
+        //   >
+        //     View
+        //   </Button>
+        // </Link>
       ),
     },
     {
