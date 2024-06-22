@@ -55,7 +55,7 @@ const ViewTopicDetailDialog = ({topic}) => {
     }))
 }
 const handleSubmit = async () => {
-  console.log(edit)
+  
   
     try {
         const response = await fetch(`http://localhost:3000/api/topics/${edit.itemId}`, {
@@ -67,12 +67,12 @@ const handleSubmit = async () => {
         if (!response.ok) {
             throw new Error("Topic was not updated")
         }
-        router.refresh();
-        router.push("/topics")
-    } catch (error) {
+        // router.push("/topics")
+      } catch (error) {
         console.log(error);
-    }
-    setIsEditing(false)
+      }
+      router.refresh();
+      setIsEditing(false)
     handleClose()
    
    
