@@ -19,12 +19,7 @@ const EventsList = async () => {
 
   return (
     <>
-        
-      <hr />
-      <div>Events List</div>
-      
       <SearchEvents items={events}/>
-    
     </>
 
   )

@@ -2,6 +2,8 @@
 import { Box, Button } from '@mui/material'
 import React, { useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
+import Input from '@mui/joy/Input';
+import "./search.css"
 
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -73,12 +75,12 @@ const SearchBar = ({ items, id }) => {
         { field: 'itemId', headerName: 'Item Id', width: 90 },
         {
             field: "addtopic",
-            headerName: "Add Topic",
+            headerName: "Action",
             width: 200,
 
             renderCell: (params) => (
 
-                <Button variant="contained" onClick={() => handleGetId(params.row.itemId)}>Add Topic</Button>
+                <Button variant="contained" onClick={() => handleGetId(params.row.itemId)}>Add</Button>
 
             )
         },
@@ -161,7 +163,7 @@ const SearchBar = ({ items, id }) => {
 
     return (
         <>
-            <input type='text' name="title" value={searchTerm.title} placeholder='Search' onChange={handleSearch} />
+            <Input className="search-session-input" type='text' name="title" value={searchTerm.title} placeholder='Search Session' onChange={handleSearch} />
             
             <Box sx={{ height: 400, width: '100%' }}>
                 <DataGrid

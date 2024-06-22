@@ -22,8 +22,6 @@ const TopicsList = async () => {
 
   return (
     <>
-      
-      <div>Topics List</div>
       <SearchTopics items={topics} />
     </>
 

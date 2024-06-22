@@ -144,7 +144,7 @@ const SearchBar = ({ items, id }) => {
     return (
         <>
             <div className="search-container">
-                <Input type='text' name="title" value={searchTerm.title} placeholder='Search' onChange={handleSearch} />
+                <Input type='text' name="title" value={searchTerm.title} placeholder='Search by Title' onChange={handleSearch} />
                 <Button onClick={handleDeleteSelected}>DELETE SELECTED</Button>
                 <EventFormDialog />
             </div>

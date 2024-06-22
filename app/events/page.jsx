@@ -4,10 +4,11 @@ import { Container } from '@mui/material'
 import EventsForm from '../components/Forms/EventsForm';
 import EventsList from '../components/Events/List';
 import EventFormDialog from '../components/Dialogs/EventFormDialog';
+import PageTitle from '../components/PageTitle/PageTitle';
 const Events = () => {
   return (
     <Container fixed>
-      <div>Events</div>
+      <PageTitle heading="Events" subheading=""/>
   
       
       {/* <EventsForm /> */}

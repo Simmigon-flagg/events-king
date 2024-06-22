@@ -171,7 +171,7 @@ const SearchBar = ({ items, id }) => {
           type="text"
           name="title"
           value={searchTerm.title}
-          placeholder="Search"
+          placeholder="Search by Title"
           onChange={handleSearch}
         // sx={{ width: "75%" }}
         />

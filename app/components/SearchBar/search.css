@@ -9,6 +9,12 @@
     font-family: Arial, sans-serif;
 }
 
+.search-session-input{
+    width: 300px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 /* Styles for extra small devices (phones) */
 @media only screen and (max-width: 480px) {
     .search {
@@ -43,3 +49,4 @@
         background-color: lightgray;
     }
 }
+
