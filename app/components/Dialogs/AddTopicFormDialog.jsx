@@ -11,7 +11,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import "./AddTopicFormDialog.css";
 import { useRouter } from "next/navigation";
 
-const AddTopicFormDialog = () => {
+const AddTopicFormDialog = ({ text }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -94,7 +94,7 @@ const AddTopicFormDialog = () => {
     <div className="dialog-container">
       <div className="btn-dialog">
         <Button variant="contained" onClick={handleClickOpen}>
-          ADD {" "}<AddCircleIcon color="green" />
+          {text} {" "}
         </Button>
       </div>
       <Dialog
@@ -115,7 +115,13 @@ const AddTopicFormDialog = () => {
         <DialogTitle>Session Topic</DialogTitle>
         <DialogContent>
           <DialogContentText>Enter details:</DialogContentText>
-          <TopicsForm formData={formData} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/>
+          <TopicsForm
+            formData={formData}
+            handleChange={handleChange}
+            handleMultiChange={handleMultiChange}
+            handleDateChange={handleDateChange}
+            handleTimeChange={handleTimeChange}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

@@ -72,7 +72,7 @@ const SearchBar = ({ items, id }) => {
     });
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
-        { field: 'itemId', headerName: 'Item Id', width: 90 },
+        // { field: 'itemId', headerName: 'Item Id', width: 90 },
         {
             field: "addtopic",
             headerName: "Action",
@@ -152,7 +152,7 @@ const SearchBar = ({ items, id }) => {
         return {
             id: index + 1, // Ensure IDs start from 1
             title: item.title,
-            itemId: item._id,
+            // itemId: item._id,
             description: item.description,
             host: item.host,
             date: item.date,

@@ -29,7 +29,7 @@ import EditTopicForm from "../Forms/EditTopicForm";
 //   }
 // };
 
-const ViewTopicDetailDialog = ({topic}) => {
+const ViewTopicDetailDialog = ({topic, text}) => {
     
 
   const router = useRouter();
@@ -81,9 +81,10 @@ const handleSubmit = async () => {
   return (
     <div>
       <div className="btn-dialog">
-        <Button variant="contained" onClick={handleClickOpen}>
+       <h4 onClick={handleClickOpen}>{text}</h4> 
+        {/* {<Button variant="contained" onClick={handleClickOpen}>
           VIEW
-        </Button>
+        </Button>} */}
       </div>
       <Dialog
         open={open}

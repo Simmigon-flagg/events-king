@@ -95,25 +95,37 @@ const SearchBar = ({ items, id }) => {
     {
       field: "title",
       headerName: "Title",
-      width: 150,
+      width: 400,
+      renderCell: (params) => (
+        <ViewTopicDetailDialog topic={params.row} text={params.row.title}/>
+      ),
       
     },
-    {
-      field: "description",
-      headerName: "Description",
-      width: 150,
+    // {
+    //   field: "description",
+    //   headerName: "Description",
+    //   width: 150,
+    //   renderCell: (params) => (
+    //     <ViewTopicDetailDialog topic={params.row} text={params.row.description} />
+    //   ),
     
-    },
+    // },
     {
       field: "location",
       headerName: "Location",
       width: 150,
+      renderCell: (params) => (
+        <ViewTopicDetailDialog topic={params.row} text={params.row.location}/>
+      ),
       
     },
     {
       field: "speaker",
       headerName: "Speaker",
       width: 150,
+      renderCell: (params) => (
+        <ViewTopicDetailDialog topic={params.row} text={params.row.speaker}/>
+      ),
       
     },
 
@@ -121,6 +133,9 @@ const SearchBar = ({ items, id }) => {
         field: 'date',
         headerName: 'Date',
         width: 150,
+        renderCell: (params) => (
+          <ViewTopicDetailDialog topic={params.row} text={params.row.date}/>
+        ),
         
     }
     ,
@@ -128,17 +143,20 @@ const SearchBar = ({ items, id }) => {
         field: 'time',
         headerName: 'Time',
         width: 150,
+        renderCell: (params) => (
+          <ViewTopicDetailDialog topic={params.row} text={params.row.time}/>
+        ),
         
     },
-    {
-      field: "topicActions",
-      headerName: "Topic Details",
-      width: 100,
+    // {
+    //   field: "topicActions",
+    //   headerName: "Topic Details",
+    //   width: 100,
 
-      renderCell: (params) => (
-        <ViewTopicDetailDialog topic={params.row}/>
-      ),
-    },
+    //   renderCell: (params) => (
+    //     <ViewTopicDetailDialog topic={params.row} />
+    //   ),
+    // },
   ];
   const filteredItems = items?.filter((item) => {
     if (searchTerm.title === "" || searchTerm.title == null) {
@@ -155,7 +173,6 @@ const SearchBar = ({ items, id }) => {
       id: item._id, // Ensure IDs start from 1
       ids: index + 1, // Ensure IDs start from 1
       title: item.title,
-      itemId: item._id,
       description: item.description,
       speaker: item.speaker,
       date: item.date,
@@ -176,7 +193,7 @@ const SearchBar = ({ items, id }) => {
         // sx={{ width: "75%" }}
         />
         <Button variant="contained" onClick={handleDeleteSelected}>DELETE SELECTED</Button>
-        <AddTopicFormDialog />
+        <AddTopicFormDialog text="ADD "/>
       </div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
@@ -192,7 +209,7 @@ const SearchBar = ({ items, id }) => {
           }}
           pageSizeOptions={[6]}
           checkboxSelection
-          disableRowSelectionOnClick
+          // disableRowSelectionOnClick
           onRowSelectionModelChange={(selectedId) => getIds(selectedId)}
         />
       </Box>

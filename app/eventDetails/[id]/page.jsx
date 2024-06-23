@@ -3,6 +3,7 @@ import SearchBar from "@/app/components/SearchBar/SearchBar";
 import { Container, Button } from "@mui/joy";
 import Link from "next/link";
 import "./EventDetails.css";
+import AddTopicFormDialog from "@/app/components/Dialogs/AddTopicFormDialog";
 
 const getEventById = async (id) => {
   try {
@@ -49,10 +50,9 @@ const EventDetails = async ({ params }) => {
   const { event } = await getEventById(id);
   const eventTopic = await getEventTopics(event, topics);
 
-
   return (
     <Container fixed>
-      <PageTitle heading={event.title} subheading="Event Details"/>
+      <PageTitle heading={event.title} subheading="Event Details" />
       <div>
         <label className="event-info-label">Title:</label>
         <div className="event-info-text">{event.title}</div>
@@ -79,18 +79,18 @@ const EventDetails = async ({ params }) => {
           );
         })}
       </div>
-      <br/>
-    
+      <br />
 
-      <Link href={"/topics"}>
+      {/* <Link href={"/topics"}>
         <Button>Create New Session</Button>
-      </Link>
+      </Link> */}
 
-      <br/>
-      <br/>
-      <h3>OR</h3>
+      <AddTopicFormDialog text="Create New Session" />
+
+      <br />
+      <br />
+      <h4>OR</h4>
       <SearchBar items={topics} id={event._id} />
-
     </Container>
   );
 };
