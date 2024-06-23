@@ -93,10 +93,10 @@ const EventDetails = async ({ params }) => {
         <label className="event-info-label">Sessions:</label>
         <div className="event-info-text">{event.topics}</div>
         <div className="event-info-text">{event.image}</div>
-        <img src={`${image.image.data}`} alt={image.filename}/>
-        <img src={`data:image/png;base64,${image.image.data}`} alt="{image.filename}"/>
+        <img src={`${image?.data}`} alt={image?.filename}/>
+        <img src={`data:image/png;base64,${image?.image.data}`} alt={image?.filename}/>
 
-        <div className="event-info-text">{image.image.filename}</div>
+        <div className="event-info-text">{image?.image.filename}</div>
         {eventTopic.map((topic) => {
           return (
             <div key={topic?._id}>
