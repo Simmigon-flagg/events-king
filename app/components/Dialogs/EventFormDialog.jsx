@@ -32,6 +32,14 @@ const EventFormDialog = () => {
       [name]: value,
     }));
   };
+
+  const handleFileChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      image: e.target.files[0],
+    }));
+  };
+
   const handleMultiChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -117,7 +125,7 @@ const EventFormDialog = () => {
         <DialogTitle>Session Event</DialogTitle>
         <DialogContent>
           <DialogContentText>Enter details:</DialogContentText>
-          <EventsForm formData={formData} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/>
+          <EventsForm formData={formData} handleFileChange={handleFileChange} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/>
           {/* <TopicsForm formData={formData} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/> */}
         </DialogContent>
         <DialogActions>
