@@ -13,7 +13,7 @@ import "./AddTopicFormDialog.css";
 import { useRouter } from "next/navigation";
 import EventsForm from "../Forms/EventsForm";
 
-const EventFormDialog = () => {
+const EventFormDialog = ({text}) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -104,7 +104,7 @@ const EventFormDialog = () => {
     <div className="dialog-container">
       <div className="btn-dialog">
         <Button variant="contained" onClick={handleClickOpen}>
-          ADD <AddCircleIcon color="green" />
+          {text} <AddCircleIcon color="green" />
         </Button>
       </div>
       <Dialog

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import RemoveBtn from "../Buttons/RemoveBtn";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Button } from "@mui/material";
@@ -96,6 +96,11 @@ const SearchBar = ({ items, id }) => {
       field: "title",
       headerName: "Title",
       width: 400,
+      renderHeader: () => (
+        <strong>
+          {'Title'}
+        </strong> ),
+
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row} text={params.row.title} />
       ),
@@ -113,15 +118,23 @@ const SearchBar = ({ items, id }) => {
       field: "location",
       headerName: "Location",
       width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Location'}
+        </strong> ),
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row} text={params.row.location} />
       ),
     },
     {
+      
       field: "speaker",
       headerName: "Speaker",
       width: 150,
-
+      renderHeader: () => (
+        <strong>
+          {'Speaker'}
+        </strong> ),
       renderCell: (params) => (
     
          <ChipAvatar name={params.row.speaker} image={params.row.image}/>
@@ -133,6 +146,10 @@ const SearchBar = ({ items, id }) => {
       field: "date",
       headerName: "Date",
       width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Date'}
+        </strong> ),
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row} text={params.row.date} />
       ),
@@ -141,6 +158,10 @@ const SearchBar = ({ items, id }) => {
       field: "time",
       headerName: "Time",
       width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Time'}
+        </strong> ),
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row} text={params.row.time} />
       ),
@@ -190,15 +211,21 @@ const SearchBar = ({ items, id }) => {
           onChange={handleSearch}
           // sx={{ width: "75%" }}
         />
-        <Button variant="contained" onClick={handleDeleteSelected}>
-          DELETE SELECTED
-        </Button>
-        <AddTopicFormDialog text="ADD " />
+      <Button variant="outlined" onClick={handleDeleteSelected}><FaTrash color="red" /></Button>
+        <AddTopicFormDialog text="NEW SESSION" />
       </div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
           rows={rows}
           row
+          sx={{
+          boxShadow: 3,
+          // border: 1,
+          borderColor: 'primary',
+          '& .MuiDataGrid-cell:hover': {
+            color: 'primary.main',
+          },
+        }}
           columns={columns}
           initialState={{
             pagination: {
