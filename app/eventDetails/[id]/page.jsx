@@ -4,6 +4,7 @@ import { Container, Button } from "@mui/joy";
 import Link from "next/link";
 import "./EventDetails.css";
 import AddTopicFormDialog from "@/app/components/Dialogs/AddTopicFormDialog";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 const getEventById = async (id) => {
   try {
@@ -52,6 +53,12 @@ const EventDetails = async ({ params }) => {
 
   return (
     <Container fixed>
+      <div className="back-arrow">
+        <FaArrowLeftLong />
+        <span className="text"> <Link href={`/events`}>
+        back to Events
+        </Link></span>
+      </div>
       <PageTitle heading={event.title} subheading="Event Details" />
       <div>
         <label className="event-info-label">Title:</label>

@@ -8,3 +8,13 @@
     margin-left: 12px;
     margin-bottom: 10px;
 }
+
+.back-arrow{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 14px;
+    text-decoration: underline;
+    /* margin-bottom: 12px; */
+    margin-top: 12px;
+}
