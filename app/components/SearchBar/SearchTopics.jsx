@@ -23,7 +23,7 @@ const SearchBar = ({ items, id }) => {
 
   const handleSearch = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
+    
     setSearchTerm((prev) => ({
       ...prev,
       [name]: value,

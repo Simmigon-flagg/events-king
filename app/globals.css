@@ -41,7 +41,7 @@ body {
 /* Styles for extra small devices (phones) */
 @media only screen and (max-width: 480px) {
   body {
-    background-color: rgb(6, 14, 232);
+    
   }
 }
 

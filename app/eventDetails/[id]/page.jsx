@@ -5,6 +5,8 @@ import Link from "next/link";
 import "./EventDetails.css";
 import AddTopicFormDialog from "@/app/components/Dialogs/AddTopicFormDialog";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Image from "next/image";
+import ImageComponent from "@/app/components/ImageComponent/ImageComponent";
 
 const getEventById = async (id) => {
   try {
@@ -66,14 +68,12 @@ const EventDetails = async ({ params }) => {
   const { event } = await getEventById(id);
   const eventTopic = await getEventTopics(event, topics);
   const image = await getImageById(event?.image);
-  console.log("Here")
-  console.log(image)
   return (
     <Container fixed>
       <div className="back-arrow">
         <FaArrowLeftLong />
         <span className="text"> <Link href={`/events`}>
-        back to Events
+          back to Events
         </Link></span>
       </div>
       <PageTitle heading={event.title} subheading="Event Details" />
@@ -89,16 +89,8 @@ const EventDetails = async ({ params }) => {
         <label className="event-info-label">Description:</label>
         <div className="event-info-text">{event.description}</div>
         <label className="event-info-label">Sessions:</label>
-        <div className="event-info-text">{event.topics}</div>
-        <img src={`${image?.image.data}`} alt={image?.filename}/>
-        <img src={`data:image/png;base64,${image?.image.data}`} alt="{image.filename}"/>
-
-        <div className="event-info-text">{image?.image.filename}</div>
-
-        <img src={`data:image/jpg;base64, ${image?.image.data}`} />
-        <img src="data:image/png;base64,{image.image.data}" alt="{image.filename}"/>
-        <img src={`${image?.image.data}`} alt="{image.filename}"/>
-
+        <div className="event-info-text">{event.topics}</div>        
+        <ImageComponent image={image?.image} />
 
         {eventTopic.map((topic) => {
           return (

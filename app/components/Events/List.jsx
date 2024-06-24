@@ -18,9 +18,7 @@ const EventsList = async () => {
   const { events } = await getEvents();
 
   return (
-    <>
-      <SearchEvents items={events}/>
-    </>
+    <SearchEvents items={events}/>
 
   )
 }

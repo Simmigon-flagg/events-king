@@ -3,13 +3,13 @@ import Topic from "@/models/topic";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
+    
     const { title, description, speaker, date, time, location } = await request.json();    
     await Topic.create({  title, description, speaker, date, time, location });
     return NextResponse.json({ message: "Topic Created" }, { status: 201 })
 }
 
 export async function GET() {
-
     
     const topics = await Topic.find();
     return NextResponse.json({ topics }, { status: 200 })

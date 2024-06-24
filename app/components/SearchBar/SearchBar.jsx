@@ -54,7 +54,7 @@ const SearchBar = ({ items, id }) => {
             }
 
             const updatedData = await updateRes.json();
-            console.log('Updated Event:', updatedData);
+          
             router.refresh()
 
         } catch (error) {

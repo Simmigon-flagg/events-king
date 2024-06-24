@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
 
     await connectMongoDB();
-    const images = await Image.find();    
+    const images = await Image.find();
     return NextResponse.json({ images }, { status: 200 })
 }
 

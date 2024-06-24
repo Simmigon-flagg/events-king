@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   await connectMongoDB();
   const formData = await request.formData();
-  
+
   const file = formData.get('image');
 
   const eventDetails = {
@@ -21,7 +21,7 @@ export async function POST(request) {
 
   try {
     let savedImage = null;
-    
+
     if (file && file.size > 0) {
       const imageBuffer = Buffer.from(await file.arrayBuffer());
       const newImage = new Image({
@@ -29,7 +29,7 @@ export async function POST(request) {
         contentType: file.type,
         data: imageBuffer
       });
-      
+
       savedImage = await newImage.save();
     }
 
@@ -49,14 +49,14 @@ export async function POST(request) {
 export async function GET() {
 
   await connectMongoDB();
-    const events = await Event.find();
-    return NextResponse.json({ events }, { status: 200 })
+  const events = await Event.find();
+  return NextResponse.json({ events }, { status: 200 })
 }
 
 export async function DELETE(request) {
-    const id = request.nextUrl.searchParams.get("id");
-    await connectMongoDB();
-    await Event.findByIdAndDelete(id);
-    return NextResponse.json({ message: "Delete Event" }, { status: 200 })
+  const id = request.nextUrl.searchParams.get("id");
+  await connectMongoDB();
+  await Event.findByIdAndDelete(id);
+  return NextResponse.json({ message: "Delete Event" }, { status: 200 })
 }
 

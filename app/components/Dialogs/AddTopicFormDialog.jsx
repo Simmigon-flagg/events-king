@@ -21,6 +21,7 @@ const AddTopicFormDialog = ({ text }) => {
     date: null,
     time: null,
     location: "",
+    image: null
   });
 
   const handleChange = (e) => {
@@ -79,6 +80,7 @@ const AddTopicFormDialog = ({ text }) => {
           date: null,
           time: null,
           location: "",
+          image: null
         });
         router.refresh();
       } else {
@@ -106,8 +108,7 @@ const AddTopicFormDialog = ({ text }) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
+            const email = formJson.email;            
             handleClose();
           },
         }}
