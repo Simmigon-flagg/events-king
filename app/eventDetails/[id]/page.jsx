@@ -65,8 +65,9 @@ const EventDetails = async ({ params }) => {
   const { id } = params;
   const { event } = await getEventById(id);
   const eventTopic = await getEventTopics(event, topics);
-  const picture = await getImageById(event?.image);
-  console.log(picture)
+  const image = await getImageById(event?.image);
+  console.log("Here")
+  console.log(image)
   return (
     <Container fixed>
       <div className="back-arrow">
@@ -89,8 +90,15 @@ const EventDetails = async ({ params }) => {
         <div className="event-info-text">{event.description}</div>
         <label className="event-info-label">Sessions:</label>
         <div className="event-info-text">{event.topics}</div>
-        <img src={`data:image/png;base64, ${picture?.image?.data}`} />
-        {/* <img src="data:image/png;base64,{image.image.data}" alt="{image.filename}"/> */}
+        <img src={`${image?.image.data}`} alt={image?.filename}/>
+        <img src={`data:image/png;base64,${image?.image.data}`} alt="{image.filename}"/>
+
+        <div className="event-info-text">{image?.image.filename}</div>
+
+        <img src={`data:image/jpg;base64, ${image?.image.data}`} />
+        <img src="data:image/png;base64,{image.image.data}" alt="{image.filename}"/>
+        <img src={`${image?.image.data}`} alt="{image.filename}"/>
+
 
         {eventTopic.map((topic) => {
           return (
