@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import TextField from "@mui/material/TextField"
 
-const EventsForm = ({ formData, handleChange, handleMultiChange,handleDateChange,handleTimeChange}) => {
+const EventsForm = ({ formData, handleChange, handleMultiChange,handleDateChange,handleTimeChange, handleFileChange}) => {
   
   // const router = useRouter()
   // const [formData, setFormData] = useState({
@@ -79,7 +79,7 @@ const EventsForm = ({ formData, handleChange, handleMultiChange,handleDateChange
   // }
   return (
     <div className="container-topic-forms">
-    <div className="form-box">
+    <form className="form-box">
       {/* All MUI controlled input or text field options here: https://mui.com/material-ui/react-text-field/ */}
 
       <TextField
@@ -107,7 +107,8 @@ const EventsForm = ({ formData, handleChange, handleMultiChange,handleDateChange
         value={formData.location}
         onChange={handleChange}
       />
-
+     <input type="file" name="image" onChange={handleFileChange} />
+      
       <div className="wrapper-dateTime-picker">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
@@ -140,7 +141,7 @@ const EventsForm = ({ formData, handleChange, handleMultiChange,handleDateChange
         value={formData.description}
         onChange={handleMultiChange}
       />
-    </div>
+    </form>
     {/* <div style={{ marginTop: 30 }}>
       <Button variant="contained" size="large" onClick={handleSubmit}>
         Add Topic

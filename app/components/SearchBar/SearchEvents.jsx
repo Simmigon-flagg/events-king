@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import RemoveBtn from "../Buttons/RemoveBtn";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Box, ButtonBase } from "@mui/material";
@@ -62,6 +62,10 @@ const SearchBar = ({ items, id }) => {
       field: "title",
       headerName: "Title",
       width: 200,
+      renderHeader: () => (
+        <strong>
+          {'Title'}
+        </strong> ),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
          {params.row.title}
@@ -72,6 +76,10 @@ const SearchBar = ({ items, id }) => {
       field: "description",
       headerName: "Description",
       width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Description'}
+        </strong> ),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
          {params.row.description}
@@ -84,6 +92,10 @@ const SearchBar = ({ items, id }) => {
       field: "location",
       headerName: "Location",
       width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Location'}
+        </strong> ),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
          {params.row.location}
@@ -94,6 +106,10 @@ const SearchBar = ({ items, id }) => {
       field: "host",
       headerName: "Host",
       width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Host'}
+        </strong> ),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
          {params.row.host}
@@ -104,6 +120,10 @@ const SearchBar = ({ items, id }) => {
       field: "date",
       headerName: "Date",
       width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Date'}
+        </strong> ),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
          {params.row.date}
@@ -115,7 +135,10 @@ const SearchBar = ({ items, id }) => {
       field: "editActions",
       headerName: "Edit Topic",
       width: 90,
-
+      renderHeader: () => (
+        <strong>
+          {'Edit Topic'}
+        </strong> ),
       renderCell: (params) => (
         <Link href={`/editevent/${params.row.edit}`}>
           <Button>Edit</Button>
@@ -148,14 +171,23 @@ const SearchBar = ({ items, id }) => {
           placeholder="Search by Title"
           onChange={handleSearch}
         />
-        <Button onClick={handleDeleteSelected}>DELETE SELECTED</Button>
-        <EventFormDialog />
+        <Button variant="outlined" onClick={handleDeleteSelected}><FaTrash color="red" /></Button>
+        <EventFormDialog text="NEW EVENT"/>
       </div>
 
       <Box sx={{ height: 400, width: "100%" }}>
+
         <DataGrid
           rows={rows}
           columns={columns}
+          sx={{
+            boxShadow: 3,
+            // border: 1,
+            borderColor: 'primary',
+            '& .MuiDataGrid-cell:hover': {
+              color: 'primary.main',
+            },
+          }}
           initialState={{
             pagination: {
               paginationModel: {

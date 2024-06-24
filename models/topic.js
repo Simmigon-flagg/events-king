@@ -6,7 +6,8 @@ const topicSchema = new Schema({
     speaker: String,
     date: String,
     time: String,
-    location: String
+    location: String,
+    image: { type: Schema.Types.ObjectId, ref: "Image" } // Reference to the Image model
 }, {
     timestamps: true,
 }
