@@ -34,13 +34,6 @@ const EventFormDialog = ({text}) => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      image: e.target.files[0],
-    }));
-  };
-
   const handleMultiChange = (e) => {
     setFormData((prev) => ({
       ...prev,

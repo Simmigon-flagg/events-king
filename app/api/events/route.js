@@ -6,8 +6,9 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   await connectMongoDB();
   const formData = await request.formData();
+  
   const file = formData.get('image');
-  console.log(file)
+
   const eventDetails = {
     title: formData.get('title'),
     host: formData.get('host'),
@@ -18,25 +19,28 @@ export async function POST(request) {
     topics: formData.getAll('topics')
   };
 
-  const imageBuffer = Buffer.from(await file.arrayBuffer());
-  console.log(imageBuffer)
-  const newImage = new Image({
-    filename: file.name,
-    contentType: file.type,
-    data: imageBuffer
-  });
-
   try {
-    const savedImage = await newImage.save();
+    let savedImage = null;
+    
+    if (file && file.size > 0) {
+      const imageBuffer = Buffer.from(await file.arrayBuffer());
+      const newImage = new Image({
+        filename: file.name,
+        contentType: file.type,
+        data: imageBuffer
+      });
+      
+      savedImage = await newImage.save();
+    }
 
     const newEvent = new Event({
       ...eventDetails,
-      image: savedImage._id
+      image: savedImage ? savedImage._id : null
     });
 
     const savedEvent = await newEvent.save();
 
-    return NextResponse.json({savedEvent}, { status: 201 });
+    return NextResponse.json({ savedEvent }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
