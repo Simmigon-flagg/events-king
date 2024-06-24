@@ -79,7 +79,7 @@ const EventsForm = ({ formData, handleFileChange, handleChange, handleMultiChang
   // }
   return (
     <div className="container-topic-forms">
-    <div className="form-box">
+    <form className="form-box">
       {/* All MUI controlled input or text field options here: https://mui.com/material-ui/react-text-field/ */}
 
       <TextField
@@ -140,7 +140,7 @@ const EventsForm = ({ formData, handleFileChange, handleChange, handleMultiChang
         value={formData.description}
         onChange={handleMultiChange}
       />
-    </div>
+    </form>
     {/* <div style={{ marginTop: 30 }}>
       <Button variant="contained" size="large" onClick={handleSubmit}>
         Add Topic

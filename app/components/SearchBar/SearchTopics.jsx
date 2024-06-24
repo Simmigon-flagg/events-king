@@ -1,16 +1,18 @@
 "use client";
 import Link from "next/link";
 import RemoveBtn from "../Buttons/RemoveBtn";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import Input from '@mui/joy/Input';
-import "./search.css"
+import Input from "@mui/joy/Input";
+import "./search.css";
 import AddTopicFormDialog from "../Dialogs/AddTopicFormDialog";
 import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
-
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import ChipAvatar from "../Chips/ChipAvatar";
 
 const SearchBar = ({ items, id }) => {
   const router = useRouter();
@@ -69,11 +71,9 @@ const SearchBar = ({ items, id }) => {
 
   const getIds = (rowIds) => {
     setIds(rowIds);
-
   };
 
   const handleDeleteSelected = async () => {
-
     try {
       await Promise.all(
         ids.map((id) => {
@@ -96,10 +96,14 @@ const SearchBar = ({ items, id }) => {
       field: "title",
       headerName: "Title",
       width: 400,
+      renderHeader: () => (
+        <strong>
+          {'Title'}
+        </strong> ),
+
       renderCell: (params) => (
-        <ViewTopicDetailDialog topic={params.row} text={params.row.title}/>
+        <ViewTopicDetailDialog topic={params.row} text={params.row.title} />
       ),
-      
     },
     // {
     //   field: "description",
@@ -108,45 +112,59 @@ const SearchBar = ({ items, id }) => {
     //   renderCell: (params) => (
     //     <ViewTopicDetailDialog topic={params.row} text={params.row.description} />
     //   ),
-    
+
     // },
     {
       field: "location",
       headerName: "Location",
       width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Location'}
+        </strong> ),
       renderCell: (params) => (
-        <ViewTopicDetailDialog topic={params.row} text={params.row.location}/>
+        <ViewTopicDetailDialog topic={params.row} text={params.row.location} />
       ),
-      
     },
     {
+      
       field: "speaker",
       headerName: "Speaker",
       width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Speaker'}
+        </strong> ),
       renderCell: (params) => (
-        <ViewTopicDetailDialog topic={params.row} text={params.row.speaker}/>
+    
+         <ChipAvatar name={params.row.speaker} image={params.row.image}/>
+        
       ),
-      
     },
 
     {
-        field: 'date',
-        headerName: 'Date',
-        width: 150,
-        renderCell: (params) => (
-          <ViewTopicDetailDialog topic={params.row} text={params.row.date}/>
-        ),
-        
-    }
-    ,
+      field: "date",
+      headerName: "Date",
+      width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Date'}
+        </strong> ),
+      renderCell: (params) => (
+        <ViewTopicDetailDialog topic={params.row} text={params.row.date} />
+      ),
+    },
     {
-        field: 'time',
-        headerName: 'Time',
-        width: 150,
-        renderCell: (params) => (
-          <ViewTopicDetailDialog topic={params.row} text={params.row.time}/>
-        ),
-        
+      field: "time",
+      headerName: "Time",
+      width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Time'}
+        </strong> ),
+      renderCell: (params) => (
+        <ViewTopicDetailDialog topic={params.row} text={params.row.time} />
+      ),
     },
     // {
     //   field: "topicActions",
@@ -175,30 +193,39 @@ const SearchBar = ({ items, id }) => {
       title: item.title,
       description: item.description,
       speaker: item.speaker,
+      image: item.image,
       date: item.date,
       time: item.time,
       location: item.location,
+
     };
   });
   return (
     <>
       <div className="search-container">
-
         <Input
           type="text"
           name="title"
           value={searchTerm.title}
           placeholder="Search by Title"
           onChange={handleSearch}
-        // sx={{ width: "75%" }}
+          // sx={{ width: "75%" }}
         />
-        <Button variant="contained" onClick={handleDeleteSelected}>DELETE SELECTED</Button>
-        <AddTopicFormDialog text="ADD "/>
+      <Button variant="outlined" onClick={handleDeleteSelected}><FaTrash color="red" /></Button>
+        <AddTopicFormDialog text="NEW SESSION" />
       </div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
           rows={rows}
           row
+          sx={{
+          boxShadow: 3,
+          // border: 1,
+          borderColor: 'primary',
+          '& .MuiDataGrid-cell:hover': {
+            color: 'primary.main',
+          },
+        }}
           columns={columns}
           initialState={{
             pagination: {

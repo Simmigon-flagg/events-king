@@ -69,6 +69,6 @@ body {
 /* Styles for extra large devices (large desktops) */
 @media only screen and (min-width: 1201px) {
   body {
-    background-color: lightgray;
+    background-color: white;
   }
 }
