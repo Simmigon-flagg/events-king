@@ -21,6 +21,21 @@ const getEventById = async (id) => {
   }
 };
 
+const getImageById = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/images/${id}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      throw new Error("Failed to fetch topic");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getTopics = async () => {
   try {
     const response = await fetch("http://localhost:3000/api/topics", {
@@ -50,7 +65,8 @@ const EventDetails = async ({ params }) => {
   const { id } = params;
   const { event } = await getEventById(id);
   const eventTopic = await getEventTopics(event, topics);
-
+  const picture = await getImageById(event?.image);
+  console.log(picture)
   return (
     <Container fixed>
       <div className="back-arrow">
@@ -73,6 +89,9 @@ const EventDetails = async ({ params }) => {
         <div className="event-info-text">{event.description}</div>
         <label className="event-info-label">Sessions:</label>
         <div className="event-info-text">{event.topics}</div>
+        <img src={`data:image/png;base64, ${picture?.image?.data}`} />
+        {/* <img src="data:image/png;base64,{image.image.data}" alt="{image.filename}"/> */}
+
         {eventTopic.map((topic) => {
           return (
             <div key={topic?._id}>

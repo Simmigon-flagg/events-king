@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 import TextField from "@mui/material/TextField"
 
-const EventsForm = ({ formData, handleChange, handleMultiChange,handleDateChange,handleTimeChange}) => {
+const EventsForm = ({ formData, handleFileChange, handleChange, handleMultiChange,handleDateChange,handleTimeChange}) => {
   
   // const router = useRouter()
   // const [formData, setFormData] = useState({
@@ -107,7 +107,7 @@ const EventsForm = ({ formData, handleChange, handleMultiChange,handleDateChange
         value={formData.location}
         onChange={handleChange}
       />
-
+  <input type="file" name="image" onChange={handleFileChange} />
       <div className="wrapper-dateTime-picker">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>

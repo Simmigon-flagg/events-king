@@ -23,6 +23,7 @@ const EventFormDialog = () => {
     date: null,
     time: null,
     location: "",
+    image: null
   });
 
   const handleChange = (e) => {
@@ -53,6 +54,13 @@ const EventFormDialog = () => {
     }));
   };
 
+  const handleFileChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      image: e.target.files[0],
+    }));
+  }; 
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -63,24 +71,31 @@ const EventFormDialog = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Empty text boxes needs handling
-    // alert(JSON.stringify(formData));
+    const data = new FormData();
+    Object.keys(formData).forEach(key => {
+      if (key === "topics") {
+        formData[key].forEach(topic => data.append(key, topic));
+      } else {
+        data.append(key, formData[key]);
+      }
+    });
+
     try {
-      const response = await fetch("http://localhost:3000/api/events", {
+      const response = await fetch("/api/events", {
         method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: data,
       });
+
       if (response.ok) {
         setFormData({
           title: "",
-          description: "",
           host: "",
-          date: null,
-          time: null,
+          date: "",
+          time: "",
           location: "",
+          description: "",
+          topics: [],
+          image: null
         });
         router.refresh();
       } else {
@@ -117,7 +132,7 @@ const EventFormDialog = () => {
         <DialogTitle>Session Event</DialogTitle>
         <DialogContent>
           <DialogContentText>Enter details:</DialogContentText>
-          <EventsForm formData={formData} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/>
+          <EventsForm formData={formData} handleFileChange={handleFileChange} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/>
           {/* <TopicsForm formData={formData} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/> */}
         </DialogContent>
         <DialogActions>

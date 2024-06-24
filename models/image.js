@@ -1,9 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
-const ImageSchema = new mongoose.Schema({
-  filename: { type: String, required: true },
-  path: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
+const imageSchema = new Schema({
+  filename: String,
+  contentType: String,
+  data: Buffer
+}, {
+  timestamps: true,
 });
 
-export default mongoose.models.Image || mongoose.model('Image', ImageSchema);
+const Image = mongoose.models.Image || mongoose.model("Image", imageSchema);
+
+export default Image;
