@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar"
 import Footer from "./components/Footer/Footer"
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@/context/ThemeContext';
+import Footer2 from "./components/Footer/Footer2";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,8 +23,8 @@ export default function RootLayout({ children }) {
           <CssBaseline />
             <Navbar />                
                   {children}                      
-            <Footer />
-  
+            <Footer2 />
+            
         </body>
       </ThemeProvider>
     </html>

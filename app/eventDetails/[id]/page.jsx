@@ -22,10 +22,6 @@ const getEventById = async (id) => {
 };
 
 const getImageById = async (id) => {
-<<<<<<< HEAD
-=======
-  console.log(id)
->>>>>>> ec2bee88cf8b4d6e1c5ea762030d4e7419689e4b
   try {
     const res = await fetch(`http://localhost:3000/api/images/${id}`, {
       cache: "no-store",
