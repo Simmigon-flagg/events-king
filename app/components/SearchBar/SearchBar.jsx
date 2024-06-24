@@ -24,7 +24,7 @@ const SearchBar = ({ items, id }) => {
     };
 
     const handleGetId = async (topic_Id) => {
-
+        
         try {
             // Fetch the existing event
             const res = await fetch(`http://localhost:3000/api/events/${id}`, {
@@ -39,7 +39,7 @@ const SearchBar = ({ items, id }) => {
             const { topics } = event
             // Add the new topic ID to the existing topics array
             const updatedTopics = [...topics, topic_Id];
-        
+           
             // Update the event with the new topics array
             const updateRes = await fetch(`http://localhost:3000/api/events/${id}`, {
                 method: 'PUT',
@@ -53,7 +53,8 @@ const SearchBar = ({ items, id }) => {
                 throw new Error('Failed to update event');
             }
 
-            const updatedData = await updateRes.json();
+            await updateRes.json();
+           
           
             router.refresh()
 
@@ -134,11 +135,7 @@ const SearchBar = ({ items, id }) => {
                 <Link
                     href={`/topicdetails/${params.row.itemId}`}
                 >
-                    <Button
-
-
-                    //   onClick={() => alert(params.row.itemId)}
-                    >
+                    <Button>
                         View
                     </Button>
                 </Link>
@@ -152,7 +149,7 @@ const SearchBar = ({ items, id }) => {
         return {
             id: index + 1, // Ensure IDs start from 1
             title: item.title,
-            // itemId: item._id,
+            itemId: item._id,
             description: item.description,
             host: item.host,
             date: item.date,
@@ -186,7 +183,3 @@ const SearchBar = ({ items, id }) => {
 };
 
 export default SearchBar;
-                // <div key={item._id}>
-                //     <div>{item.title} </div>
-                //     <button onClick={() => handleGetId(item._id, id)}>Add Topic {item._id}</button>
-                // </div>
