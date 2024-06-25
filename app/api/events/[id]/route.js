@@ -8,7 +8,7 @@ export async function PUT(request, { params }) {
     
     await connectMongoDB();
     await Event.findByIdAndUpdate(id, editedEvent);
-    return NextResponse.json({ message: "Event Updated" }, { status: 200 })
+    return NextResponse.json({ editedEvent }, { status: 200 })
 }
 
 export async function GET(request, { params }) {

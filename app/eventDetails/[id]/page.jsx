@@ -61,7 +61,6 @@ const getEventTopics = (event, topics) => {
 
 const deleteTopicById = (event, topicId) => {
 
-  console.log(topicId)
   const updatedEvent = event.topics.filter(id => id !== topicId)
   console.log(updatedEvent)
   return;
@@ -79,6 +78,10 @@ const deleteTopicById = (event, topicId) => {
   // }
 };
 
+const handleDelete = (id) => {
+  console.log(id)
+}
+
 const EventDetails = async ({ params }) => {
   const { topics } = await getTopics();
   const { id } = params;
@@ -93,7 +96,7 @@ const EventDetails = async ({ params }) => {
           back to Events
         </Link></span>
       </div>
-      <PageTitle heading={event.title} subheading="Event Details" />
+      <PageTitle heading={event.title} subheading={`Event Details ${event._id}`} />
       <div key={event._id}>
         <label className="event-info-label">Title:</label>
         <div className="event-info-text">{event.title}</div>
@@ -107,8 +110,9 @@ const EventDetails = async ({ params }) => {
         <div className="event-info-text">{event.description}</div>
         <label className="event-info-label">Sessions:</label>
         <div className="event-info-text">{event.topics}</div>
+      
         <ImageComponent image={image?.image} />
-        <EventTopicsList eventTopic={eventTopic}  />
+        <EventTopicsList event={event} eventTopic={eventTopic}  />
   
       </div>
       <br />

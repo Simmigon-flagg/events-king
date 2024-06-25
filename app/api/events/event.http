@@ -29,7 +29,7 @@ content-type: application/json
 GET http://localhost:3000/api/events HTTP/1.1
 
 ### Find by Id
-GET http://localhost:3000/api/events/6679c7d3ed03189f78e029ef HTTP/1.1
+GET http://localhost:3000/api/events/667addd125fada7c9cbe17c3 HTTP/1.1
 
 ###
 PUT http://localhost:3000/api/events/665287411f6bb03a581b70b7 HTTP/1.1
