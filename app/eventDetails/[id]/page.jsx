@@ -7,6 +7,7 @@ import AddTopicFormDialog from "@/app/components/Dialogs/AddTopicFormDialog";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 import ImageComponent from "@/app/components/ImageComponent/ImageComponent";
+import EventTopicsList from "@/app/components/EventTopicsList/EventTopicsList";
 
 const getEventById = async (id) => {
   try {
@@ -58,6 +59,25 @@ const getEventTopics = (event, topics) => {
   );
 };
 
+const deleteTopicById = (event, topicId) => {
+
+  console.log(topicId)
+  const updatedEvent = event.topics.filter(id => id !== topicId)
+  console.log(updatedEvent)
+  return;
+  // try {
+  //   const res = await fetch(`http://localhost:3000/api/events/${id}`, {
+  //     cache: "no-store",
+  //   });
+  //   if (!res.ok) {
+  //     throw new Error("Failed to fetch topic");
+  //   }
+
+  //   return res.json();
+  // } catch (error) {
+  //   console.log(error);
+  // }
+};
 
 const EventDetails = async ({ params }) => {
   const { topics } = await getTopics();
@@ -74,7 +94,7 @@ const EventDetails = async ({ params }) => {
         </Link></span>
       </div>
       <PageTitle heading={event.title} subheading="Event Details" />
-      <div>
+      <div key={event._id}>
         <label className="event-info-label">Title:</label>
         <div className="event-info-text">{event.title}</div>
         <label className="event-info-label">Date:</label>
@@ -86,21 +106,10 @@ const EventDetails = async ({ params }) => {
         <label className="event-info-label">Description:</label>
         <div className="event-info-text">{event.description}</div>
         <label className="event-info-label">Sessions:</label>
-        <div className="event-info-text">{event.topics}</div>        
+        <div className="event-info-text">{event.topics}</div>
         <ImageComponent image={image?.image} />
-
-        {eventTopic.map((topic) => {
-          return (
-            <div key={topic?._id}>
-              {topic?.title}
-              {topic?.speaker}
-              {topic?.date}
-              {topic?.time}
-              {topic?.location}
-              {topic?.description}
-            </div>
-          );
-        })}
+        <EventTopicsList eventTopic={eventTopic}  />
+  
       </div>
       <br />
 

@@ -77,7 +77,7 @@ const SearchBar = ({ items, id }) => {
     try {
       await Promise.all(
         ids.map((id) => {
-          console.log(id);
+         
           fetch(`/api/topics?id=${id}`, { method: "DELETE" });
         })
       );
