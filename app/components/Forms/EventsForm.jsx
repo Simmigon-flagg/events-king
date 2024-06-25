@@ -108,10 +108,10 @@ const EventsForm = ({ formData, handleFileChange, handleChange, handleMultiChang
         />
         <TextField
           id="topics-form-input"
-          label="Speaker"
+          label="Host"
           type="text"
-          name="speaker"
-          value={formData.speaker}
+          name="host"
+          value={formData.host}
           onChange={handleChange}
         />
 
@@ -183,6 +183,7 @@ const EventsForm = ({ formData, handleFileChange, handleChange, handleMultiChang
         <TextField
           id="topics-form-input"
           label="Description"
+          name="description"
           multiline
           rows={4}
           value={formData.description}
