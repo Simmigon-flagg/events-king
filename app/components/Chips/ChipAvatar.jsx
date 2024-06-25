@@ -8,7 +8,8 @@ const ChipAvatar = ({name, image}) => {
     <Stack direction="row" spacing={1}>
       <Chip
         color="primary"
-        avatar={<Avatar alt={name} src={image} />}
+        size="small"
+        avatar={<Avatar size="sm" alt={name}  src="/broken-image.jpg"/>}
         label={name}
         variant="outlined"
         

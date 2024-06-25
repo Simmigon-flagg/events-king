@@ -44,7 +44,8 @@ const EventTopicsList = ({ event, eventTopic }) => {
             {/* <button
                 onClick={() => handleDeleteTopic(topic._id)}>Delete
             </button> */}
-           <br ></br>
+         
+         
         </div>))
     return (
         <>

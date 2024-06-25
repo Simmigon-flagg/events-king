@@ -25,30 +25,34 @@ const EventTopicsCard = ({
       orientation="horizontal"
       sx={{
         width: 800,
-        height: 80,
-        "&:hover": {
-          boxShadow: "md",
-          borderColor: "neutral.outlinedHoverBorder",
-        },
+        height: 70,
+        // boxShadow: "md",
+        // "&:hover": {
+        //   boxShadow: "md",
+        //   borderColor: "neutral.outlinedHoverBorder",
+        // },
       }}
     >
-      <AspectRatio ratio="1" sx={{ width: 30 }}>
-        {/* <img
-          src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
-          srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
-          loading="lazy"
-          alt=""
-        /> */}
-      </AspectRatio>
+      <CardOverflow
+        variant="solid"
+        color="success"
+        sx={{
+          flex: "0 0 20px",
+          //   display: 'flex',
+          //   flexDirection: 'column',
+          //   justifyContent: 'center',
+          //   px: 'var(--Card-padding)',
+        }}
+      ></CardOverflow>
+
       <CardContent>
         <div className="card-one-line">
           <Typography level="title-sm" id="card-description">
             <div className="card-column-items">
-             <strong>
-                {title}
-                </strong> 
+              <strong>{title}</strong>
               <span className="span-one-line">
-                Speaker: <ChipAvatar name={speaker} />
+                <p text-xs>Speaker:</p>
+                <ChipAvatar name={speaker} />
               </span>
             </div>
           </Typography>
@@ -60,13 +64,13 @@ const EventTopicsCard = ({
           >
             <div className="card-column-items">
               <span>Date: {date}</span>
-              <span>Time {time}</span>
+              <span>Time: {time}</span>
             </div>
           </Typography>
         </div>
       </CardContent>
       <CardOverflow
-        variant="soft"
+        variant="plain"
         color="danger"
         sx={{
           px: 0.1,
