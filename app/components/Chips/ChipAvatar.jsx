@@ -7,10 +7,10 @@ const ChipAvatar = ({name, image}) => {
   return (
     <Stack direction="row" spacing={1}>
       <Chip
-        color="success"
+        color="primary"
         avatar={<Avatar alt={name} src={image} />}
         label={name}
-        // variant="outlined"
+        variant="outlined"
         
       />
     </Stack>
