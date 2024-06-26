@@ -71,6 +71,7 @@ const EventDetails = async ({ params }) => {
         event_id={event?._id}
         eventTopic={eventTopic}
         title={topic?.title}
+        description={topic?.description}
         speaker={topic?.speaker}
         date={topic?.date}
         time={topic?.time}
@@ -86,7 +87,7 @@ const EventDetails = async ({ params }) => {
           back to Events
         </Link></span>
       </div>
-      <PageTitle heading={event.title} subheading={`Event Details ${event._id}`} />
+      <PageTitle heading={event.title} subheading={`Event Details`} />
       <div key={event._id}>
         <label className="event-info-label">Title:</label>
         <div className="event-info-text">{event.title}</div>

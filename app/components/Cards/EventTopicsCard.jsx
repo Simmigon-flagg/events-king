@@ -14,19 +14,20 @@ import { FaTrash } from "react-icons/fa";
 import "./Cards.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Popover } from "@mui/material";
 
 const EventTopicsCard = ({
   event_id,
   eventTopic,
   title,
   speaker,
+  description,
   date,
   time,
   
   topic_Id,
 }) => {    
   const router = useRouter()
-
   const handleDeleteTopic  = async (topic_id) => {
       const removedTopic = await eventTopic.filter((topic) => topic._id !== topic_id)
      
@@ -45,16 +46,43 @@ const EventTopicsCard = ({
           }
 
           const updatedEvent = await response.json();
-          console.log(updatedEvent)  
+          
           router.refresh()
 
       } catch (error) {
           console.error('Error updating event topics:', error);
       }
   }
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
   return (
+    <>
+ 
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+      >
+        <Typography sx={{ p: 2 }}>  <strong>{description}</strong></Typography>
+      </Popover>
     <Card
-      
+     
       variant="outlined"
       orientation="horizontal"
       sx={{
@@ -79,7 +107,9 @@ const EventTopicsCard = ({
         }}
       ></CardOverflow>
 
-      <CardContent>
+      <CardContent
+       onMouseEnter={handleClick}
+      >
         <div className="card-one-line">
           <Typography level="title-sm" id="card-description">
             <div className="card-column-items">
@@ -126,6 +156,7 @@ const EventTopicsCard = ({
         </Button>
       </CardOverflow>
     </Card>
+    </>
   );
 };
 

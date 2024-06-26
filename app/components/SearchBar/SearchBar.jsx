@@ -22,10 +22,7 @@ const SearchBar = ({ items, id }) => {
             [name]: value
         }));
     };
-    const refresh = () => {
-        router.refresh()
-        console.log("refresh")
-    }
+
     const handleGetId = async (topic_Id) => {
         let found = null;
         
@@ -68,7 +65,7 @@ const SearchBar = ({ items, id }) => {
             // await updateRes.json();
             
             
-            refresh()
+            router.refresh()
             
         } catch (error) {
             console.error('Error updating event:', error);
