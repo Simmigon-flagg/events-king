@@ -20,7 +20,7 @@ const ImageComponent = ({ image }) => {
             <Image src={base64String} alt={image.filename} width={500} height={0}/>
 
         </Paper>
-      ) : (
+      ) : (        
         <p>Loading image...</p>
       )}
     </div>

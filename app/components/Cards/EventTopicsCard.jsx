@@ -1,3 +1,4 @@
+"use client"
 import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Link from "@mui/joy/Link";
@@ -9,23 +10,55 @@ import Typography from "@mui/joy/Typography";
 import ChipAvatar from "../Chips/ChipAvatar";
 import { Button } from "@mui/joy";
 import { FaTrash } from "react-icons/fa";
+
 import "./Cards.css";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const EventTopicsCard = ({
+  event_id,
+  eventTopic,
   title,
   speaker,
   date,
   time,
-  handleDeleteTopic,
-  topicId,
-}) => {
+  
+  topic_Id,
+}) => {    
+  const router = useRouter()
+
+  const handleDeleteTopic  = async (topic_id) => {
+      const removedTopic = await eventTopic.filter((topic) => topic._id !== topic_id)
+     
+      try {
+  
+          const response = await fetch(`/api/events/${event_id}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ topics: removedTopic }),
+          });
+
+          if (!response.ok) {
+              throw new Error('Failed to update event topics');
+          }
+
+          const updatedEvent = await response.json();
+          console.log(updatedEvent)  
+          router.refresh()
+
+      } catch (error) {
+          console.error('Error updating event topics:', error);
+      }
+  }
   return (
     <Card
       variant="outlined"
       orientation="horizontal"
       sx={{
         width: 800,
-        height: 70,
+        height: 70
         // boxShadow: "md",
         // "&:hover": {
         //   boxShadow: "md",
@@ -86,7 +119,7 @@ const EventTopicsCard = ({
       >
         <Button
           color="neutral-light"
-          onClick={() => handleDeleteTopic(topicId)}
+          onClick={() => handleDeleteTopic(topic_Id)}
         >
           {/* <FaTrash color="red"/> */} X
         </Button>

@@ -5,9 +5,9 @@ import Link from "next/link";
 import "./EventDetails.css";
 import AddTopicFormDialog from "@/app/components/Dialogs/AddTopicFormDialog";
 import { FaArrowLeftLong } from "react-icons/fa6";
-
 import ImageComponent from "@/app/components/ImageComponent/ImageComponent";
 import EventTopicsList from "@/app/components/EventTopicsList/EventTopicsList";
+import EventTopicsCard from "@/app/components/Cards/EventTopicsCard";
 
 const getEventById = async (id) => {
   try {
@@ -59,34 +59,23 @@ const getEventTopics = (event, topics) => {
   );
 };
 
-const deleteTopicById = (event, topicId) => {
-
-  const updatedEvent = event.topics.filter(id => id !== topicId)
-  console.log(updatedEvent)
-  return;
-  // try {
-  //   const res = await fetch(`http://localhost:3000/api/events/${id}`, {
-  //     cache: "no-store",
-  //   });
-  //   if (!res.ok) {
-  //     throw new Error("Failed to fetch topic");
-  //   }
-
-  //   return res.json();
-  // } catch (error) {
-  //   console.log(error);
-  // }
-};
-
-const handleDelete = (id) => {
-  console.log(id)
-}
-
 const EventDetails = async ({ params }) => {
   const { topics } = await getTopics();
   const { id } = params;
   const { event } = await getEventById(id);
   const eventTopic = await getEventTopics(event, topics);
+  const view = eventTopic?.map((topic) => (
+    <div style={{marginTop: 10}} key={topic?._id}>
+      <EventTopicsCard
+        event_id={event?._id}
+        eventTopic={eventTopic}
+        title={topic?.title}
+        speaker={topic?.speaker}
+        date={topic?.date}
+        time={topic?.time}
+        topic_Id={topic._id} />
+    </div>))
+
   const image = await getImageById(event?.image);
   return (
     <Container fixed>
@@ -109,11 +98,11 @@ const EventDetails = async ({ params }) => {
         <label className="event-info-label">Description:</label>
         <div className="event-info-text">{event.description}</div>
         <label className="event-info-label">Sessions:</label>
-        <div className="event-info-text">{event.topics}</div>
-      
         <ImageComponent image={image?.image} />
-        <EventTopicsList event={event} eventTopic={eventTopic}  />
-  
+
+        {view}
+
+
       </div>
       <br />
 
@@ -122,7 +111,7 @@ const EventDetails = async ({ params }) => {
       <br />
       <br />
       <h4>OR</h4>
-      <SearchBar items={topics} id={event._id} />
+      <SearchBar items={topics} id={event?._id} />
     </Container>
   );
 };

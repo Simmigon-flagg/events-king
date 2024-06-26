@@ -22,8 +22,12 @@ const SearchBar = ({ items, id }) => {
             [name]: value
         }));
     };
-
+    const refresh = () => {
+        router.refresh()
+        console.log("refresh")
+    }
     const handleGetId = async (topic_Id) => {
+        let found = null;
         
         try {
             // Fetch the existing event
@@ -33,13 +37,21 @@ const SearchBar = ({ items, id }) => {
                     'Content-Type': 'application/json'
                 }
             });
-
+            
             const data = await res.json();
             const { event } = data;
             const { topics } = event
+            found = topics.find(id => id === topic_Id)
+      
             // Add the new topic ID to the existing topics array
+            // router.refresh(`http://localhost:3000/eventdetails/${id}`)
+            if(found) {
+                
+                return
+            }
+            
             const updatedTopics = [...topics, topic_Id];
-           
+            
             // Update the event with the new topics array
             const updateRes = await fetch(`http://localhost:3000/api/events/${id}`, {
                 method: 'PUT',
@@ -48,19 +60,20 @@ const SearchBar = ({ items, id }) => {
                 },
                 body: JSON.stringify({ topics: updatedTopics })
             });
-
+            
             if (!updateRes.ok) {
                 throw new Error('Failed to update event');
             }
-
-            await updateRes.json();
-           
-          
-            router.refresh()
-
+            
+            // await updateRes.json();
+            
+            
+            refresh()
+            
         } catch (error) {
             console.error('Error updating event:', error);
         }
+
     };
     const filteredItems = items.filter(item => {
         if (searchTerm.title === "" || searchTerm.title == null) {
@@ -69,6 +82,7 @@ const SearchBar = ({ items, id }) => {
         if (item.title.toLowerCase().includes(searchTerm.title.toLowerCase())) {
             return item;
         }
+        
         return null;
     });
     const columns = [
@@ -175,7 +189,7 @@ const SearchBar = ({ items, id }) => {
                     }}
                     pageSizeOptions={[6]}
                     checkboxSelection
-                    disableRowSelectionOnClick
+                    disableRowSelectionOnClick={true}
                 />
             </Box>
         </>
