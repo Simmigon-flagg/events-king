@@ -108,11 +108,11 @@ const EventDetails = async ({ params }) => {
       <br />
 
       <AddTopicFormDialog text="Create New Session" />
-       <BrowseSessionDialog text="ADD SESSION"/>
+       <BrowseSessionDialog text="ADD SESSION" topics={topics} event={event}/>
       <br />
       <br />
       <h4>OR</h4>
-      <SearchBar items={topics} id={event?._id} />
+    
     </Container>
   );
 };

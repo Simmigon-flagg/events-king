@@ -139,23 +139,23 @@ const SearchBar = ({ items, id }) => {
             width: 150,
            
         },
-        {
-            field: "actions",
-            headerName: "Actions",
-            width: 200,
+        // {
+        //     field: "actions",
+        //     headerName: "Actions",
+        //     width: 200,
 
-            renderCell: (params) => (
+        //     renderCell: (params) => (
 
-                <Link
-                    href={`/topicdetails/${params.row.itemId}`}
-                >
-                    <Button>
-                        View
-                    </Button>
-                </Link>
+        //         <Link
+        //             href={`/topicdetails/${params.row.itemId}`}
+        //         >
+        //             <Button>
+        //                 View
+        //             </Button>
+        //         </Link>
 
-            )
-        },
+        //     )
+        // },
       
     ];
 
@@ -174,7 +174,7 @@ const SearchBar = ({ items, id }) => {
 
     return (
         <>
-            <Input className="search-session-input" type='text' name="title" value={searchTerm.title} placeholder='Search Session' onChange={handleSearch} />
+            <Input className="search-session-input" type='text' name="title" value={searchTerm.title} placeholder='Search Title' onChange={handleSearch} />
             
             <Box sx={{ height: 400, width: '100%' }}>
                 <DataGrid

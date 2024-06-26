@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import SearchTopics from '../SearchBar/SearchTopics'
 import SearchBar from "../SearchBar/SearchBar";
 
-const BrowseSessionDialog = ({ text }) => {
+const BrowseSessionDialog = ({ text, topics, event }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -119,6 +119,7 @@ const getEventTopics = (event, topics) => {
       </div>
       <Dialog
         open={open}
+        maxWidth={100}
         onClose={handleClose}
         className="view-dialog-container"
         PaperProps={{
@@ -136,18 +137,20 @@ const getEventTopics = (event, topics) => {
         <DialogTitle>Session Topic</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Hello
+            
             {/* CONTENT MUST GO HERE */}
             {/* <TopicsList /> */}
             {/* <SearchTopics /> */}
             {/* <SearchBar /> Hello */}
             {/* {()=>alert("")} */}
+
+            <SearchBar items={topics} id={event?._id} />
           </DialogContentText>
         </DialogContent>
 
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
+          <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>
