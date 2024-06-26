@@ -54,6 +54,7 @@ const EventTopicsCard = ({
   }
   return (
     <Card
+      
       variant="outlined"
       orientation="horizontal"
       sx={{

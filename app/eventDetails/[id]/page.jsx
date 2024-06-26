@@ -66,7 +66,7 @@ const EventDetails = async ({ params }) => {
   const { event } = await getEventById(id);
   const eventTopic = await getEventTopics(event, topics);
   const view = eventTopic?.map((topic) => (
-    <div style={{marginTop: 10}} key={topic?._id}>
+    <div style={{ marginTop: 10 }} key={topic?._id}>
       <EventTopicsCard
         event_id={event?._id}
         eventTopic={eventTopic}
@@ -99,20 +99,17 @@ const EventDetails = async ({ params }) => {
         <label className="event-info-label">Description:</label>
         <div className="event-info-text">{event.description}</div>
         <label className="event-info-label">Sessions:</label>
+
+        <AddTopicFormDialog text="Create New Session" event_id={event?._id} eventTopic={eventTopic} />
+        <BrowseSessionDialog text="ADD SESSION" topics={topics} event={event} />
+        <br />
+        <br />
+        <h4>OR</h4>
         <ImageComponent image={image?.image} />
-
         {view}
-
-
       </div>
       <br />
 
-      <AddTopicFormDialog text="Create New Session" />
-       <BrowseSessionDialog text="ADD SESSION" topics={topics} event={event}/>
-      <br />
-      <br />
-      <h4>OR</h4>
-    
     </Container>
   );
 };

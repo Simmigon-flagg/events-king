@@ -11,7 +11,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useRouter } from "next/navigation";
 import "./Dialog.css";
 
-const AddTopicFormDialog = ({ text }) => {
+const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -59,7 +59,31 @@ const AddTopicFormDialog = ({ text }) => {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleDeleteTopic = async (topic_id) => {
+    // const removedTopic = await eventTopic.filter((topic) => topic._id !== topic_id)
 
+    try {
+
+      const response = await fetch(`/api/events/${event_id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ topics: [topic_id, ...eventTopic] }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update event topics');
+      }
+
+      // const updatedEvent = await response.json();
+      // console.log(updatedEvent)  
+      router.refresh()
+
+    } catch (error) {
+      console.error('Error updating event topics:', error);
+    }
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     // TODO: Empty text boxes needs handling
@@ -82,7 +106,10 @@ const AddTopicFormDialog = ({ text }) => {
           location: "",
           image: null
         });
-        router.refresh();
+        const { topic } = await response.json()
+
+        handleDeleteTopic(topic?._id)
+
       } else {
         throw new Error("Failed to create a topic");
       }
@@ -108,7 +135,7 @@ const AddTopicFormDialog = ({ text }) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;            
+            const email = formJson.email;
             handleClose();
           },
         }}
