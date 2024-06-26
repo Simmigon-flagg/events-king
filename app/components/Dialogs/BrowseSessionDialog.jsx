@@ -136,10 +136,12 @@ const getEventTopics = (event, topics) => {
         <DialogTitle>Session Topic</DialogTitle>
         <DialogContent>
           <DialogContentText>
+            Hello
             {/* CONTENT MUST GO HERE */}
             {/* <TopicsList /> */}
             {/* <SearchTopics /> */}
-            {/* <SearchBar items={topics}  /> */} Hello
+            {/* <SearchBar /> Hello */}
+            {/* {()=>alert("")} */}
           </DialogContentText>
         </DialogContent>
 

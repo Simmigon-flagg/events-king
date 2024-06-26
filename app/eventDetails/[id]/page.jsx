@@ -8,6 +8,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import ImageComponent from "@/app/components/ImageComponent/ImageComponent";
 import EventTopicsList from "@/app/components/EventTopicsList/EventTopicsList";
 import EventTopicsCard from "@/app/components/Cards/EventTopicsCard";
+import BrowseSessionDialog from "@/app/components/Dialogs/BrowseSessionDialog";
 
 const getEventById = async (id) => {
   try {
@@ -107,7 +108,7 @@ const EventDetails = async ({ params }) => {
       <br />
 
       <AddTopicFormDialog text="Create New Session" />
-
+       <BrowseSessionDialog text="ADD SESSION"/>
       <br />
       <br />
       <h4>OR</h4>
