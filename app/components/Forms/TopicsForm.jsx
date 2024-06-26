@@ -7,7 +7,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
-import "./TopicsForm.css";
+import './Form.css';
 
 const TopicsForm = ({ formData, handleChange, handleMultiChange, handleDateChange, handleTimeChange }) => {
 

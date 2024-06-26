@@ -1,0 +1,20 @@
+h4 {
+    color: blue; /* Replace 'blue' with any color you prefer */
+    text-decoration: underline;
+}
+
+.view-dialog-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.dialog-container{
+    display: flex;
+    
+}
+
+.btn-dialog{
+    justify-self: flex-end;
+}

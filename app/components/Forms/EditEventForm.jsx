@@ -1,51 +1,83 @@
-"use client"
-import { Button } from '@mui/joy'
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
-const EditEventForm = ({ item }) => {
+"use client";
+import { Button, FormLabel, Input, Textarea } from "@mui/joy";
 
-    const [edit, setEdit] = useState(item)
-    const router = useRouter();
-    const handleChange = (e) => {
-        const { name, value } = e.target;
 
-        setEdit(prev => ({
-            ...prev,
-            [name]: value
-        }))
-    }
-    const handleSubmit = async () => {
-        try {
-            const response = await fetch(`http://localhost:3000/api/events/${edit._id}`, {
-                method: "PUT",
-                header: { "Content-type": "application/json" },
-                body: JSON.stringify(edit)
+import './Form.css';
 
-            })
-            if (!response.ok) {
-                throw new Error("Event was not updated")
-            }
-            router.refresh();
-            router.push("/events")
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    return (
-        <div>
-            <div>
-                <input type="text" onChange={handleChange} value={edit.title} name="title" placeholder='title' />
-                <input type="text" onChange={handleChange} value={edit.description} name="description" placeholder='description' />
-                <input type="text" onChange={handleChange} value={edit.host} name="host" placeholder='host' />
-                <input type="text" onChange={handleChange} value={edit.date} name="date" placeholder='date' />
-                <input type="text" onChange={handleChange} value={edit.time} name="time" placeholder='time' />
-                <input type="text" onChange={handleChange} value={edit.location} name="location" placeholder='location' />
-            </div>
-            <div style={{ marginTop: 30 }}>
-                <Button style={{ backgroundColor: "green" }} onClick={handleSubmit}>Update Event</Button>
-            </div>
-        </div>
-    )
-}
 
-export default EditEventForm
+const EditEventForm = ({ edit, handleChange }) => {
+
+  return (
+    <div className="edit-form-container">
+      <div className="input-field">
+        <FormLabel>Session Title</FormLabel>
+        <Input
+          type="text"
+          onChange={handleChange}
+          value={edit?.title}
+          name="title"
+        />
+      </div>
+      {/* <input
+          type="text"
+          onChange={handleChange}
+          value={edit.title}
+          name="title"
+          placeholder="title" 
+        />*/}
+
+      <div className="input-field">
+        <FormLabel>Host</FormLabel>
+        <Input
+          type="text"
+          onChange={handleChange}
+          value={edit?.host}
+          name="host"
+        />
+      </div>
+  
+      <div className="input-field">
+        <FormLabel>Date</FormLabel>
+        <Input
+          type="text"
+          onChange={handleChange}
+          value={edit?.date}
+          name="date"
+        />
+      </div>
+
+      <div className="input-field">
+        <FormLabel>Time</FormLabel>
+        <Input
+          type="text"
+          onChange={handleChange}
+          value={edit?.time}
+          name="time"
+        />
+      </div>
+
+      <div className="input-field">
+        <FormLabel>Location</FormLabel>
+        <Input
+          type="text"
+          onChange={handleChange}
+          value={edit?.location}
+          name="location"
+        />
+      </div>
+      <div className="input-field">
+        <FormLabel>Description</FormLabel>
+        <Textarea
+          minRows={4}
+          maxRows={5}
+          type="text"
+          onChange={handleChange}
+          value={edit?.description}
+          name="description"
+        />
+      </div>
+    </div>
+  );
+};
+
+export default EditEventForm;

@@ -8,8 +8,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import "./AddTopicFormDialog.css";
 import { useRouter } from "next/navigation";
+import "./Dialog.css";
 
 const AddTopicFormDialog = ({ text }) => {
   const router = useRouter();
