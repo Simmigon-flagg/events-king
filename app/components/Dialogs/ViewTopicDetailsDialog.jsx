@@ -1,41 +1,21 @@
 "use client";
 import React, { useState } from "react";
-import TopicsForm from "../Forms/TopicsForm";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import "./AddTopicFormDialog.css";
 import { useRouter } from "next/navigation";
 import TopicDetailsView from "../TopicDetailsView/TopicDetailsView";
 import EditTopicForm from "../Forms/EditTopicForm";
-
-// const getTopicById = async (id) => {
-//   try {
-//     const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
-//       cache: "no-store",
-//     });
-//     if (!res.ok) {
-//       throw new Error("Failed to fetch topic");
-//     }
-
-//     return res.json();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+import "./Dialog.css"
 
 const ViewTopicDetailDialog = ({ topic, text }) => {
-
-
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [edit, setEdit] = useState(topic)
+  const [edit, setEdit] = useState(topic);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,39 +23,38 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
 
   const handleClose = () => {
     setOpen(false);
-    setIsEditing(false)
+    setIsEditing(false);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value)
-    setEdit(prev => ({
+    console.log(name, value);
+    setEdit((prev) => ({
       ...prev,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
   const handleSubmit = async () => {
-    console.log(edit)
     try {
-      const response = await fetch(`http://localhost:3000/api/topics/${edit.id}`, {
-        method: "PUT",
-        header: { "Content-type": "application/json" },
-        body: JSON.stringify(edit)
-
-      })
+      const response = await fetch(
+        `http://localhost:3000/api/topics/${edit.id}`,
+        {
+          method: "PUT",
+          header: { "Content-type": "application/json" },
+          body: JSON.stringify(edit),
+        }
+      );
       if (!response.ok) {
-        throw new Error("Topic was not updated")
+        throw new Error("Topic was not updated");
       }
       // router.push("/topics")
     } catch (error) {
       console.log(error);
     }
     router.refresh();
-    setIsEditing(false)
-    handleClose()
-
-
-  }
+    setIsEditing(false);
+    handleClose();
+  };
   // AI Business Conference 2024
   // Event Details 666b39e0cda4eb60783a65ff
   // Title:
@@ -112,11 +91,24 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
           },
         }}
       >
-        {isEditing ? <EditTopicForm edit={edit} handleChange={handleChange} />
-          : <TopicDetailsView topic={topic} />}
+        
+          <DialogTitle>Edit Session Details</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Details</DialogContentText>
+            {isEditing ? (
+              <EditTopicForm edit={edit} handleChange={handleChange} />
+            ) : (
+              <TopicDetailsView topic={topic} />
+            )}
+          </DialogContent>
+ 
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          {isEditing ? <Button onClick={handleSubmit}>SAVE</Button> : <Button onClick={() => setIsEditing(true)}>EDIT</Button>}
+          {isEditing ? (
+            <Button onClick={handleSubmit}>SAVE</Button>
+          ) : (
+            <Button onClick={() => setIsEditing(true)}>EDIT</Button>
+          )}
         </DialogActions>
       </Dialog>
     </div>

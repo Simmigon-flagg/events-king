@@ -10,6 +10,7 @@ import { Button } from "@mui/joy";
 import Input from "@mui/joy/Input";
 import "./search.css";
 import EventFormDialog from "../Dialogs/EventFormDialog";
+import EditEventDetailsDialog from "../Dialogs/EditEventDetailsDialog";
 
 const SearchBar = ({ items, id }) => {
   const router = useRouter();
@@ -140,9 +141,12 @@ const SearchBar = ({ items, id }) => {
           {'Edit Topic'}
         </strong> ),
       renderCell: (params) => (
-        <Link href={`/editevent/${params.row.edit}`}>
-          <Button>Edit</Button>
-        </Link>
+
+        <EditEventDetailsDialog event={params.row} text="EDIT" />
+
+        // <Link href={`/editevent/${params.row.edit}`}>
+        //   <Button>Edit</Button>
+        // </Link>
       ),
     },
   ];

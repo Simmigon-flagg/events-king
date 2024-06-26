@@ -1,4 +1,4 @@
-.edit-topic-form-container{
+.edit-form-container{
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -10,9 +10,26 @@
     
 }
 .input-field{
-    
+    /* TBA */
 }
 
+
+
+.container-topic-forms{
+    
+    background-color: white;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px;
+
+}
+
+.form-box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
 .wrapper-dateTime-picker{
     display: flex;
     gap: 20px;

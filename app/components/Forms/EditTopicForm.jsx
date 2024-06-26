@@ -1,20 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import Input from "@mui/joy/Input";
 import FormLabel from "@mui/joy/FormLabel";
 import Textarea from "@mui/joy/Textarea";
-import "./EditTopicForm.css";
+import './Form.css';
+
 const EditTopicForm = ({ edit, handleChange }) => {
   return (
-    <div className="edit-topic-container">
-      <DialogTitle>Edit Session Details</DialogTitle>
-      <DialogContent>
-        <DialogContentText>Details</DialogContentText>
+    
         <div className="edit-topic-form-container">
           <div className="input-field">
             <FormLabel>Session Title</FormLabel>
@@ -77,8 +70,7 @@ const EditTopicForm = ({ edit, handleChange }) => {
             />
           </div>
         </div>
-      </DialogContent>
-    </div>
+  
   );
 };
 
