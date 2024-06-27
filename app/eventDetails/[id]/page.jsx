@@ -10,7 +10,6 @@ import EventTopicsList from "@/app/components/EventTopicsList/EventTopicsList";
 import EventTopicsCard from "@/app/components/Cards/EventTopicsCard";
 import BrowseSessionDialog from "@/app/components/Dialogs/BrowseSessionDialog";
 
-
 const getEventById = async (id) => {
   try {
     const res = await fetch(`http://localhost:3000/api/events/${id}`, {
@@ -110,25 +109,21 @@ const EventDetails = async ({ params }) => {
         <br />
         <br />
         <div className="btn-grp-session">
-         
-            <AddTopicFormDialog
-              text="Create New"
-              event_id={event?._id}
-              eventTopic={eventTopic}
-            />
-         
-            <BrowseSessionDialog
-              text="Add Existing"
-              topics={topics}
-              event={event}
-            />
-          
-        </div>
-      
+          <AddTopicFormDialog
+            text="Create New"
+            event_id={event?._id}
+            eventTopic={eventTopic}
+          />
 
-        {view}
+          <BrowseSessionDialog
+            text="Add Existing"
+            topics={topics}
+            event={event}
+          />
+        </div>
+
+        <div className="added-sessions">{view?.length > 0 ? view :  "No session added yet."}</div>
       </div>
-      <br />
     </Container>
   );
 };
