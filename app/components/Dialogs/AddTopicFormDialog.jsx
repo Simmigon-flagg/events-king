@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import TopicsForm from "../Forms/TopicsForm";
-import Button from "@mui/material/Button";
+import { Button, Tooltip } from "@mui/joy";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -21,7 +21,7 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
     date: null,
     time: null,
     location: "",
-    image: null
+    image: null,
   });
 
   const handleChange = (e) => {
@@ -63,27 +63,25 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
     // const removedTopic = await eventTopic.filter((topic) => topic._id !== topic_id)
 
     try {
-
       const response = await fetch(`/api/events/${event_id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ topics: [topic_id, ...eventTopic] }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update event topics');
+        throw new Error("Failed to update event topics");
       }
 
       // const updatedEvent = await response.json();
-      // console.log(updatedEvent)  
-      router.refresh()
-
+      // console.log(updatedEvent)
+      router.refresh();
     } catch (error) {
-      console.error('Error updating event topics:', error);
+      console.error("Error updating event topics:", error);
     }
-  }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     // TODO: Empty text boxes needs handling
@@ -104,12 +102,11 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
           date: null,
           time: null,
           location: "",
-          image: null
+          image: null,
         });
-        const { topic } = await response.json()
+        const { topic } = await response.json();
 
-        handleDeleteTopic(topic?._id)
-
+        handleDeleteTopic(topic?._id);
       } else {
         throw new Error("Failed to create a topic");
       }
@@ -122,9 +119,11 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
   return (
     <div className="dialog-container">
       <div className="btn-dialog">
-        <Button variant="contained" onClick={handleClickOpen}>
-          {text} {" "} <AddCircleIcon />
-        </Button>
+        <Tooltip title="Create a brand new topic." variant="solid" size="lg" placement="top-end">
+          <Button className="btn" variant="solid" onClick={handleClickOpen}>
+            {text}{" "}
+          </Button>
+        </Tooltip>
       </div>
       <Dialog
         open={open}

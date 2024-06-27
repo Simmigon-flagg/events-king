@@ -10,6 +10,7 @@ import EventTopicsList from "@/app/components/EventTopicsList/EventTopicsList";
 import EventTopicsCard from "@/app/components/Cards/EventTopicsCard";
 import BrowseSessionDialog from "@/app/components/Dialogs/BrowseSessionDialog";
 
+
 const getEventById = async (id) => {
   try {
     const res = await fetch(`http://localhost:3000/api/events/${id}`, {
@@ -76,17 +77,20 @@ const EventDetails = async ({ params }) => {
         speaker={topic?.speaker}
         date={topic?.date}
         time={topic?.time}
-        topic_Id={topic._id} />
-    </div>))
+        topic_Id={topic._id}
+      />
+    </div>
+  ));
 
   const image = await getImageById(event?.image);
   return (
     <Container fixed>
       <div className="back-arrow">
         <FaArrowLeftLong />
-        <span className="text"> <Link href={`/events`}>
-          back to Events
-        </Link></span>
+        <span className="text">
+          {" "}
+          <Link href={`/events`}>back to Events</Link>
+        </span>
       </div>
       <PageTitle heading={event.title} subheading={`Event Details`} />
       <div key={event._id}>
@@ -100,18 +104,31 @@ const EventDetails = async ({ params }) => {
         <div className="event-info-text">{event.host}</div>
         <label className="event-info-label">Description:</label>
         <div className="event-info-text">{event.description}</div>
-        <label className="event-info-label">Sessions:</label>
-
-        <AddTopicFormDialog text="Create New Session" event_id={event?._id} eventTopic={eventTopic} />
-        <BrowseSessionDialog text="ADD SESSION" topics={topics} event={event} />
-        <br />
-        <br />
-        <h4>OR</h4>
         <ImageComponent image={image?.image} />
+        <br />
+        <label className="event-info-label">Sessions:</label>
+        <br />
+        <br />
+        <div className="btn-grp-session">
+         
+            <AddTopicFormDialog
+              text="Create New"
+              event_id={event?._id}
+              eventTopic={eventTopic}
+            />
+         
+            <BrowseSessionDialog
+              text="Add Existing"
+              topics={topics}
+              event={event}
+            />
+          
+        </div>
+      
+
         {view}
       </div>
       <br />
-
     </Container>
   );
 };

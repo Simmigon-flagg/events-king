@@ -15,3 +15,13 @@
 .btn-dialog{
     justify-self: flex-end;
 }
+
+.btn{ 
+    width: 150px;
+     height: 30px; 
+     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* background-color: var(--joy-palette-primary-main); */
+}
+

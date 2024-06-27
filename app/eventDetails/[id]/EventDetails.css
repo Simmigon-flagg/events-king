@@ -18,3 +18,9 @@
     /* margin-bottom: 12px; */
     margin-top: 12px;
 }
+
+.btn-grp-session{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
