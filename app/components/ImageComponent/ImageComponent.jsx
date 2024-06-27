@@ -15,14 +15,24 @@ const ImageComponent = ({ image }) => {
 
   return (
     <div>
-      {base64String ? (
-          <Paper elevation={10} style={{width: 500}}>
-            <Image src={base64String} alt={image.filename} width={500} height={0}/>
+      {image !== undefined ?
 
-        </Paper>
-      ) : (        
-        <p>Loading image...</p>
-      )}
+        <>        {base64String ? (
+          <Paper elevation={10} style={{ width: 500 }}>
+            <Image src={base64String} alt={image.filename} width={500} height={0} />
+
+          </Paper>
+        ) : (
+          <p>Loading image...</p>
+        )}</>
+
+
+        :
+        <p>No image</p>
+
+      }
+
+
     </div>
   );
 };

@@ -79,6 +79,7 @@ const BrowseSessionDialog = ({ text, topics, event }) => {
   };
 
   const getImageById = async (id) => {
+   if(id){
     try {
       const res = await fetch(`http://localhost:3000/api/images/${id}`, {
         cache: "no-store",
@@ -91,6 +92,7 @@ const BrowseSessionDialog = ({ text, topics, event }) => {
     } catch (error) {
       console.log(error);
     }
+   }
   };
 
   const getTopics = async () => {

@@ -1,15 +1,14 @@
 "use client"
-import { Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import Input from '@mui/joy/Input';
 import "./search.css"
-
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+
 const SearchBar = ({ items, id }) => {
 
-    const [ids, setIds] = useState([]);;
+    const [ids, setIds] = useState([]);
 
     const getIds = (rowIds) => {
         setIds(rowIds);

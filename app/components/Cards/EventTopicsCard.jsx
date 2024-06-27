@@ -111,7 +111,7 @@ const EventTopicsCard = ({
           <Typography level="title-sm" id="card-description">
             <div className="card-column-items">
               <strong>
-                <p text-xs>{description.substring(0, 10) + "..."}</p>
+                <p text-xs>{description?.substring(0, 10) + "..."}</p>
               </strong>
             </div>
           </Typography>

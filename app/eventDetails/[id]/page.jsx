@@ -76,12 +76,15 @@ const EventDetails = async ({ params }) => {
         speaker={topic?.speaker}
         date={topic?.date}
         time={topic?.time}
-        topic_Id={topic._id}
+        topic_Id={topic?._id}
       />
     </div>
   ));
+  let image = null
+  if(event?.image){
+    const image = await getImageById(event?.image);
 
-  const image = await getImageById(event?.image);
+  }
   return (
     <Container fixed>
       <div className="back-arrow">
