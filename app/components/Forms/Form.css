@@ -13,8 +13,6 @@
     /* TBA */
 }
 
-
-
 .container-topic-forms{
     
     background-color: white;
@@ -30,9 +28,16 @@
     gap: 10px;
     
 }
-.wrapper-dateTime-picker{
+.wrapper-inline{
     display: flex;
+    justify-content: space-between;
     gap: 20px;
     margin-bottom: 5px;
+
     
+}
+
+.customDateTimePicker{
+    width:100px; 
+    height:30px;
 }

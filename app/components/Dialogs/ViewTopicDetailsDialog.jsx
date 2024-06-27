@@ -34,6 +34,20 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
       [name]: value,
     }));
   };
+
+  const handleDateChange = (date) => {
+    setEdit((prev) => ({
+      ...prev,
+      date: date ? date.format("YYYY-MM-DD") : null,
+    }));
+  };
+
+  const handleTimeChange = (time) => {
+    setEdit((prev) => ({
+      ...prev,
+      time: time ? time.format("HH:mm") : null,
+    }));
+  };
   const handleSubmit = async () => {
     try {
       const response = await fetch(
@@ -92,11 +106,11 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
         }}
       >
         
-          <DialogTitle>Edit Session Details</DialogTitle>
+          <DialogTitle>{topic.title}</DialogTitle>
           <DialogContent>
             <DialogContentText>Details</DialogContentText>
             {isEditing ? (
-              <EditTopicForm edit={edit} handleChange={handleChange} />
+              <EditTopicForm edit={edit} handleChange={handleChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange} />
             ) : (
               <TopicDetailsView topic={topic} />
             )}

@@ -33,6 +33,20 @@ const EditEventDetailsDialog = ({ event, text }) => {
       [name]: value,
     }));
   };
+
+  const handleDateChange = (date) => {
+    setEdit((prev) => ({
+      ...prev,
+      date: date ? date.format("YYYY-MM-DD") : null,
+    }));
+  };
+
+  const handleTimeChange = (time) => {
+    setEdit((prev) => ({
+      ...prev,
+      time: time ? time.format("HH:mm") : null,
+    }));
+  };
   const handleSubmit = async () => {
     console.log("EDIT EVENTS!!!!!")
     try {
@@ -80,12 +94,12 @@ const EditEventDetailsDialog = ({ event, text }) => {
           },
         }}
       >
-        <DialogTitle>Event Title Here</DialogTitle>
+        <DialogTitle>{event.title}</DialogTitle>
         <DialogContent>
           <DialogContentText>Details</DialogContentText>
 
 
-          <EditEventForm edit={edit} handleChange={handleChange}/>
+          <EditEventForm edit={edit} handleChange={handleChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/>
 
         </DialogContent>
         <DialogActions>
