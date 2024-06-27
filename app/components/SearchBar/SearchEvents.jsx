@@ -175,7 +175,7 @@ const SearchBar = ({ items, id }) => {
           placeholder="Search by Title"
           onChange={handleSearch}
         />
-        <Button variant="outlined" onClick={handleDeleteSelected}><FaTrash color="red" /></Button>
+         <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length===0}><FaTrash  style={{ color: ids.length === 0 ? 'lightGray' : 'red' }}/></Button>
         <EventFormDialog text="NEW EVENT"/>
       </div>
 

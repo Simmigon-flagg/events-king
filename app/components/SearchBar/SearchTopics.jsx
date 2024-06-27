@@ -1,17 +1,14 @@
 "use client";
-import Link from "next/link";
-import RemoveBtn from "../Buttons/RemoveBtn";
+
 import { FaEdit, FaTrash } from "react-icons/fa";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Box, Button } from "@mui/material";
+import { Box, Button } from "@mui/joy";
 import { DataGrid } from "@mui/x-data-grid";
 import Input from "@mui/joy/Input";
 import "./search.css";
 import AddTopicFormDialog from "../Dialogs/AddTopicFormDialog";
 import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
 import ChipAvatar from "../Chips/ChipAvatar";
 
 const SearchBar = ({ items, id }) => {
@@ -211,7 +208,7 @@ const SearchBar = ({ items, id }) => {
           onChange={handleSearch}
           // sx={{ width: "75%" }}
         />
-      <Button variant="outlined" onClick={handleDeleteSelected}><FaTrash color="red" /></Button>
+      <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length===0}><FaTrash  style={{ color: ids.length === 0 ? 'lightGray' : 'red' }}/></Button>
         <AddTopicFormDialog text="NEW SESSION" />
       </div>
       <Box sx={{ height: 400, width: "100%" }}>
