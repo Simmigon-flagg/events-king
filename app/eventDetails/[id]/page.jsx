@@ -68,6 +68,7 @@ const EventDetails = async ({ params }) => {
   const view = eventTopic?.map((topic) => (
     <div style={{ marginTop: 10 }} key={topic?._id}>
       <EventTopicsCard
+        topic={topic}
         event_id={event?._id}
         eventTopic={eventTopic}
         title={topic?.title}

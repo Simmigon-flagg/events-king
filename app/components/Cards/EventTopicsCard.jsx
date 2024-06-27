@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Link from "@mui/joy/Link";
@@ -15,6 +15,7 @@ import "./Cards.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Popover } from "@mui/material";
+import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
 
 const EventTopicsCard = ({
   event_id,
@@ -25,45 +26,52 @@ const EventTopicsCard = ({
   date,
   time,
   topic_Id,
-}) => {    
-  const router = useRouter()
-  const handleDeleteTopic  = async (topic_id) => {
-      const removedTopic = await eventTopic.filter((topic) => topic._id !== topic_id)
-     
-      try {
-  
-          const response = await fetch(`/api/events/${event_id}`, {
-              method: 'PUT',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ topics: removedTopic }),
-          });
+  topic,
+}) => {
+  const router = useRouter();
+  const [showDialog, setShowDialog] = useState(true);
 
-          if (!response.ok) {
-              throw new Error('Failed to update event topics');
-          }
+  const handleDialogOnClick = () => {
+    setShowDialog(true);
+  };
 
-          const updatedEvent = await response.json();
-          
-          router.refresh()
+  const handleCloseDialog = () => {
+    setShowDialog(false);
+  };
 
-      } catch (error) {
-          console.error('Error updating event topics:', error);
+  const handleDeleteTopic = async (topic_id) => {
+    const removedTopic = await eventTopic.filter(
+      (topic) => topic._id !== topic_id
+    );
+
+    try {
+      const response = await fetch(`/api/events/${event_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ topics: removedTopic }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update event topics");
       }
-  }
 
-  
+      const updatedEvent = await response.json();
+
+      router.refresh();
+    } catch (error) {
+      console.error("Error updating event topics:", error);
+    }
+  };
+
   return (
-   
-          
     <Card
-     
       variant="outlined"
       orientation="horizontal"
       sx={{
         width: 800,
-        height: 70
+        height: 70,
         // boxShadow: "md",
         // "&:hover": {
         //   boxShadow: "md",
@@ -83,22 +91,28 @@ const EventTopicsCard = ({
         }}
       ></CardOverflow>
 
-      <CardContent
-
-      >
+      <CardContent>
         <div className="card-one-line">
           <Typography level="title-sm" id="card-description">
             <div className="card-column-items">
-              <strong>{title}</strong>
-              <span className="span-one-line">
-                <p text-xs>Speaker:</p>
-                <ChipAvatar name={speaker} />
-              </span>
+              <p onClick={handleDialogOnClick}></p>
+              {showDialog && (
+                <ViewTopicDetailDialog
+                  topic={topic}
+                  text={title}
+                  onClose={handleCloseDialog}
+                />
+              )}
+
+              {/* <p text-xs>Speaker:</p> */}
+              {/* <ChipAvatar name={speaker} /> */}
             </div>
           </Typography>
           <Typography level="title-sm" id="card-description">
             <div className="card-column-items">
-              <strong><p text-xs>{description.substring(0,10) + "..."}</p></strong>
+              <strong>
+                <p text-xs>{description.substring(0, 10) + "..."}</p>
+              </strong>
             </div>
           </Typography>
           <Typography
@@ -136,7 +150,6 @@ const EventTopicsCard = ({
         </Button>
       </CardOverflow>
     </Card>
-    
   );
 };
 
