@@ -35,6 +35,12 @@ const BrowseSessionDialog = ({ text, topics, event }) => {
       [name]: value,
     }));
   };
+  const handleAdd = async (ids) => {  
+        
+    router.refresh();
+    setIsEditing(false);
+    handleClose();
+  };
   const handleSubmit = async () => {
     try {
       const response = await fetch(
@@ -156,7 +162,7 @@ const BrowseSessionDialog = ({ text, topics, event }) => {
 
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleAdd}>Add</Button>
         </DialogActions>
       </Dialog>
     </div>

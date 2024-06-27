@@ -22,8 +22,11 @@ const SearchBar = ({ items, id }) => {
 
   const getIds = (rowIds) => {
     setIds(rowIds);
+    console.log()
+    console.log("ids:-",rowIds)
   };
   const handleDeleteSelected = async () => {
+   
     try {
       await Promise.all(
         ids.map((id) => {
