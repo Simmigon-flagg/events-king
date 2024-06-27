@@ -24,7 +24,6 @@ const EventTopicsCard = ({
   description,
   date,
   time,
-  
   topic_Id,
 }) => {    
   const router = useRouter()
@@ -54,33 +53,10 @@ const EventTopicsCard = ({
       }
   }
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  
   return (
-    <>
- 
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-      >
-        <Typography sx={{ p: 2 }}>  <strong>{description}</strong></Typography>
-      </Popover>
+   
+          
     <Card
      
       variant="outlined"
@@ -108,7 +84,7 @@ const EventTopicsCard = ({
       ></CardOverflow>
 
       <CardContent
-       onMouseEnter={handleClick}
+
       >
         <div className="card-one-line">
           <Typography level="title-sm" id="card-description">
@@ -120,7 +96,11 @@ const EventTopicsCard = ({
               </span>
             </div>
           </Typography>
-
+          <Typography level="title-sm" id="card-description">
+            <div className="card-column-items">
+              <strong><p text-xs>{description.substring(0,10) + "..."}</p></strong>
+            </div>
+          </Typography>
           <Typography
             level="body-sm"
             aria-describedby="card-description"
@@ -156,7 +136,7 @@ const EventTopicsCard = ({
         </Button>
       </CardOverflow>
     </Card>
-    </>
+    
   );
 };
 
