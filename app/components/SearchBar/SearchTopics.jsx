@@ -186,6 +186,7 @@ const SearchBar = ({ items, id }) => {
   const rows = filteredItems?.map((item, index) => {
     return {
       id: item._id, // Ensure IDs start from 1
+      _id: item._id, // Ensure IDs start from 1
       ids: index + 1, // Ensure IDs start from 1
       title: item.title,
       description: item.description,

@@ -9,6 +9,7 @@ import ImageComponent from "@/app/components/ImageComponent/ImageComponent";
 import EventTopicsList from "@/app/components/EventTopicsList/EventTopicsList";
 import EventTopicsCard from "@/app/components/Cards/EventTopicsCard";
 import BrowseSessionDialog from "@/app/components/Dialogs/BrowseSessionDialog";
+import AddImage from "@/app/components/AddImage/AddImage";
 
 const getEventById = async (id) => {
   try {
@@ -55,7 +56,7 @@ const getTopics = async () => {
 };
 // Getting topics related to the event
 const getEventTopics = (event, topics) => {
-  return event.topics.map((eventTopicId) =>
+  return event?.topics.map((eventTopicId) =>
     topics.find((topic) => topic._id === eventTopicId)
   );
 };
@@ -82,7 +83,7 @@ const EventDetails = async ({ params }) => {
   ));
   let image = null
   if(event?.image){
-    const image = await getImageById(event?.image);
+     image = await getImageById(event?.image);
 
   }
   return (
@@ -94,19 +95,21 @@ const EventDetails = async ({ params }) => {
           <Link href={`/events`}>back to Events</Link>
         </span>
       </div>
-      <PageTitle heading={event.title} subheading={`Event Details`} />
-      <div key={event._id}>
+      <PageTitle heading={event?.title} subheading={`Event Details`} />
+      <div key={event?._id}>
         <label className="event-info-label">Title:</label>
-        <div className="event-info-text">{event.title}</div>
+        <div className="event-info-text">{event?.title}</div>
         <label className="event-info-label">Date:</label>
-        <div className="event-info-text">{event.date}</div>
+        <div className="event-info-text">{event?.date}</div>
         <label className="event-info-label">Location:</label>
-        <div className="event-info-text">{event.location}</div>
+        <div className="event-info-text">{event?.location}</div>
         <label className="event-info-label">Host:</label>
-        <div className="event-info-text">{event.host}</div>
+        <div className="event-info-text">{event?.host}</div>
         <label className="event-info-label">Description:</label>
-        <div className="event-info-text">{event.description}</div>
-        <ImageComponent image={image?.image} />
+        <div className="event-info-text">{event?.description}</div>
+        { image ? <ImageComponent image={image?.image} /> : <AddImage />}
+        
+        
         <br />
         <label className="event-info-label">Sessions:</label>
         <br />

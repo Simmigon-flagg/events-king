@@ -49,9 +49,10 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
     }));
   };
   const handleSubmit = async () => {
+  
     try {
       const response = await fetch(
-        `http://localhost:3000/api/topics/${edit.id}`,
+        `http://localhost:3000/api/topics/${edit._id}`, // Works on detail page
         {
           method: "PUT",
           header: { "Content-type": "application/json" },
