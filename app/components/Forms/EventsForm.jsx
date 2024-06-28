@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 // import Button from "@mui/material/Button";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -8,12 +8,12 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
-import TextField from "@mui/material/TextField"
-import Button from '@mui/joy/Button';
-import SvgIcon from '@mui/joy/SvgIcon';
-import { styled } from '@mui/joy';
+import TextField from "@mui/material/TextField";
+import Button from "@mui/joy/Button";
+import SvgIcon from "@mui/joy/SvgIcon";
+import { styled } from "@mui/joy";
 
-const VisuallyHiddenInput = styled('input')`
+const VisuallyHiddenInput = styled("input")`
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
@@ -25,11 +25,16 @@ const VisuallyHiddenInput = styled('input')`
   width: 1px;
 `;
 
-
-const EventsForm = ({ formData, handleFileChange, handleChange, handleMultiChange, handleDateChange, handleTimeChange }) => {
-
+const EventsForm = ({
+  formData,
+  handleFileChange,
+  handleChange,
+  handleMultiChange,
+  handleDateChange,
+  handleTimeChange,
+}) => {
   return (
-    <div className="container-topic-forms">
+    <div className="form-container">
       <div className="form-box">
         {/* All MUI controlled input or text field options here: https://mui.com/material-ui/react-text-field/ */}
 
@@ -40,26 +45,55 @@ const EventsForm = ({ formData, handleFileChange, handleChange, handleMultiChang
           name="title"
           value={formData.title}
           onChange={handleChange}
+          sx={{marginBottom:'10px'}}
         />
-        <TextField
-          id="topics-form-input"
-          label="Host"
-          type="text"
-          name="host"
-          value={formData.host}
-          onChange={handleChange}
-        />
+        <div className="wrapper-inline">
+          <TextField
+            id="topics-form-input"
+            label="Host"
+            type="text"
+            name="host"
+            value={formData.host}
+            onChange={handleChange}
+            sx={{width:'230px'}}
+          />
 
-        <TextField
-          id="topics-form-input"
-          label="Location"
-          type="text"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-        />
- 
+          <TextField
+            id="topics-form-input"
+            label="Location"
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            sx={{width:'230px'}}
+          />
+        </div>
+
+        <div className="wrapper-inline">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <DatePicker
+                id="topics-form-input"
+                label="Date"
+                value={formData.date ? dayjs(formData.date) : null}
+                onChange={handleDateChange}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["TimePicker"]}>
+              <TimePicker
+                id="topics-form-input"
+                label="Time"
+                value={formData.time ? dayjs(formData.time, "HH:mm") : null}
+                onChange={handleTimeChange}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+        </div>
         <Button
+         sx={{marginBottom:'10px'}}
           onChange={handleFileChange}
           name="image"
           component="label"
@@ -85,35 +119,15 @@ const EventsForm = ({ formData, handleFileChange, handleChange, handleMultiChang
             </SvgIcon>
           }
         >
-          {formData?.image?.name ? (<>{formData?.image?.name}</>) : (<>Upload a Image</>)}
+          {formData?.image?.name ? (
+            <>{formData?.image?.name}</>
+          ) : (
+            <>Upload a Image</>
+          )}
 
           <VisuallyHiddenInput type="file" />
         </Button>
 
-
-        <div className="wrapper-dateTime-picker">
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["DatePicker"]}>
-              <DatePicker
-                id="topics-form-input"
-                label="Date"
-                value={formData.date ? dayjs(formData.date) : null}
-                onChange={handleDateChange}
-              />
-            </DemoContainer>
-          </LocalizationProvider>
-
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["TimePicker"]}>
-              <TimePicker
-                id="topics-form-input"
-                label="Time"
-                value={formData.time ? dayjs(formData.time, "HH:mm") : null}
-                onChange={handleTimeChange}
-              />
-            </DemoContainer>
-          </LocalizationProvider>
-        </div>
 
         <TextField
           id="topics-form-input"
@@ -125,10 +139,8 @@ const EventsForm = ({ formData, handleFileChange, handleChange, handleMultiChang
           onChange={handleMultiChange}
         />
       </div>
-  
     </div>
+  );
+};
 
-  )
-}
-
-export default EventsForm
+export default EventsForm;

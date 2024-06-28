@@ -18,7 +18,7 @@ const EditTopicForm = ({
   handleTimeChange,
 }) => {
   return (
-    <div className="edit-form-container">
+    <div className="form-container">
       <div className="input-field">
         <FormLabel>Session Title</FormLabel>
         <Input

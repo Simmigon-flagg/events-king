@@ -119,9 +119,14 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
   return (
     <div className="dialog-container">
       <div className="btn-dialog">
-        <Tooltip title="Create a brand new topic." variant="solid" size="lg" placement="top-end">
-          <Button className="btn" variant="solid" onClick={handleClickOpen}>
-            {text}{" "}
+        <Tooltip
+          title="Create a brand new topic."
+          variant="solid"
+          size="lg"
+          placement="top-end"
+        >
+          <Button variant="solid" onClick={handleClickOpen}>
+            {text} <AddCircleIcon color="green" />
           </Button>
         </Tooltip>
       </div>
@@ -139,16 +144,17 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
           },
         }}
       >
-        <DialogTitle>Session Topic</DialogTitle>
+        <DialogTitle>New Session</DialogTitle>
         <DialogContent>
-          <DialogContentText>Enter details:</DialogContentText>
-          <TopicsForm
-            formData={formData}
-            handleChange={handleChange}
-            handleMultiChange={handleMultiChange}
-            handleDateChange={handleDateChange}
-            handleTimeChange={handleTimeChange}
-          />
+          <DialogContentText>
+            <TopicsForm
+              formData={formData}
+              handleChange={handleChange}
+              handleMultiChange={handleMultiChange}
+              handleDateChange={handleDateChange}
+              handleTimeChange={handleTimeChange}
+            />
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

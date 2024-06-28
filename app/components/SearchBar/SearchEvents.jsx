@@ -179,7 +179,7 @@ const SearchBar = ({ items, id }) => {
           onChange={handleSearch}
         />
          <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length===0}><FaTrash  style={{ color: ids.length === 0 ? 'lightGray' : 'red' }}/></Button>
-        <EventFormDialog text="NEW EVENT"/>
+        <EventFormDialog text="NEW"/>
       </div>
 
       <Box sx={{ height: 400, width: "100%" }}>

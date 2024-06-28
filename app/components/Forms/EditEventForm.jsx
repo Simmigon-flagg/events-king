@@ -18,7 +18,7 @@ const EditEventForm = ({
   handleTimeChange,
 }) => {
   return (
-    <div className="edit-form-container">
+    <div className="form-container">
       <div className="input-field">
         <FormLabel>Title</FormLabel>
         <Input
@@ -28,13 +28,7 @@ const EditEventForm = ({
           name="title"
         />
       </div>
-      {/* <input
-          type="text"
-          onChange={handleChange}
-          value={edit.title}
-          name="title"
-          placeholder="title" 
-        />*/}
+     
 
       <div className="wrapper-inline">
         <div className="input-field">
