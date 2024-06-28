@@ -42,6 +42,7 @@ export async function PUT(request) {
      
   
       await Event.findByIdAndUpdate(_id, updatedEvent);
+      return NextResponse.json({ message: "Added Image" }, { status: 200 });
     } catch (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
