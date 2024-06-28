@@ -10,6 +10,9 @@ import { useRouter } from "next/navigation";
 import TopicDetailsView from "../TopicDetailsView/TopicDetailsView";
 import EditTopicForm from "../Forms/EditTopicForm";
 import "./Dialog.css"
+import { Box } from "@mui/joy";
+import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Image from "next/image";
 
 const ViewTopicDetailDialog = ({ topic, text }) => {
   const router = useRouter();
@@ -106,10 +109,11 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
           },
         }}
       >
+       <Image src={Border} alt="oranglebluebackground" className="border-image"/>
         
-          <DialogTitle>{topic?.title}</DialogTitle>
+          <DialogTitle><span style={{textDecoration:"underline", fontSize:"25px"}}><strong>{topic.title}</strong></span> </DialogTitle>
           <DialogContent>
-            <DialogContentText>Details</DialogContentText>
+            <DialogContentText>Event: Atlanta Tech Con 2025</DialogContentText>
             {isEditing ? (
               <EditTopicForm edit={edit} handleChange={handleChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange} />
             ) : (

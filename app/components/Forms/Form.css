@@ -1,4 +1,4 @@
-.edit-form-container{
+.form-container{
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -41,3 +41,16 @@
     width:100px; 
     height:30px;
 }
+
+/* .cols-2 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  } */
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns of equal width */
+    gap: 16px; /* Space between grid items */
+    margin-bottom: 16px;
+  }

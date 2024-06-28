@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: center;
     padding: 10px;
-    min-width: 500px;
-    min-height: 500px;
+    min-width: 400px;
+    min-height: 350px;
     
 }
 
@@ -14,5 +14,5 @@
 
 .view-topic-info-text{
     margin-left: 10px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }

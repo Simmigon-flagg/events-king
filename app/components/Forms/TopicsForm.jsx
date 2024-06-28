@@ -7,15 +7,18 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
-import './Form.css';
+import "./Form.css";
 
-const TopicsForm = ({ formData, handleChange, handleMultiChange, handleDateChange, handleTimeChange }) => {
-
+const TopicsForm = ({
+  formData,
+  handleChange,
+  handleMultiChange,
+  handleDateChange,
+  handleTimeChange,
+}) => {
   return (
-    <div className="container-topic-forms">
+    <div className="form-container">
       <div className="form-box">
-        {/* All MUI controlled input or text field options here: https://mui.com/material-ui/react-text-field/ */}
-
         <TextField
           id="topics-form-input"
           label="Session Title"
@@ -23,26 +26,32 @@ const TopicsForm = ({ formData, handleChange, handleMultiChange, handleDateChang
           name="title"
           value={formData.title}
           onChange={handleChange}
-        />
-        <TextField
-          id="topics-form-input"
-          label="Speaker"
-          type="text"
-          name="speaker"
-          value={formData.speaker}
-          onChange={handleChange}
+          sx={{marginBottom:'10px'}}
         />
 
-        <TextField
-          id="topics-form-input"
-          label="Location"
-          type="text"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-        />
+        <div className="wrapper-inline">
+          <TextField
+            id="topics-form-input"
+            label="Speaker"
+            type="text"
+            name="speaker"
+            value={formData.speaker}
+            onChange={handleChange}
+            sx={{width:'230px'}}
+          />
 
-        <div className="wrapper-dateTime-picker">
+          <TextField
+            id="topics-form-input"
+            label="Location"
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            sx={{width:'230px'}}
+          />
+        </div>
+
+        <div className="wrapper-inline">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
               <DatePicker

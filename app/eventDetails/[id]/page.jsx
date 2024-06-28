@@ -83,8 +83,7 @@ const EventDetails = async ({ params }) => {
   ));
   let image = null
   if(event?.image){
-     image = await getImageById(event?.image);
-
+     image = await getImageById(event?.image);    
   }
   return (
     <Container fixed>

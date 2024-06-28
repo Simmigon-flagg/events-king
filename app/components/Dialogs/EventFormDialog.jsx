@@ -12,8 +12,10 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import "./Dialog.css";
 import { useRouter } from "next/navigation";
 import EventsForm from "../Forms/EventsForm";
+import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Image from "next/image";
 
-const EventFormDialog = ({text}) => {
+const EventFormDialog = ({ text }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ const EventFormDialog = ({text}) => {
     date: null,
     time: null,
     location: "",
-    image: null
+    image: null,
   });
 
   const handleChange = (e) => {
@@ -60,7 +62,7 @@ const EventFormDialog = ({text}) => {
       ...prev,
       image: e.target.files[0],
     }));
-  }; 
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -73,9 +75,9 @@ const EventFormDialog = ({text}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    Object.keys(formData).forEach(key => {
+    Object.keys(formData).forEach((key) => {
       if (key === "topics") {
-        formData[key].forEach(topic => data.append(key, topic));
+        formData[key].forEach((topic) => data.append(key, topic));
       } else {
         data.append(key, formData[key]);
       }
@@ -96,7 +98,7 @@ const EventFormDialog = ({text}) => {
           location: "",
           description: "",
           topics: [],
-          image: null
+          image: null,
         });
         router.refresh();
       } else {
@@ -124,15 +126,24 @@ const EventFormDialog = ({text}) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;            
+            const email = formJson.email;
             handleClose();
           },
         }}
       >
-        <DialogTitle>Session Event</DialogTitle>
+         <Image src={Border} alt="oranglebluebackground" className="border-image"/>
+        <DialogTitle>New Event</DialogTitle>
         <DialogContent>
-          <DialogContentText>Enter details:</DialogContentText>
-          <EventsForm formData={formData} handleFileChange={handleFileChange} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/>
+          <DialogContentText>
+            <EventsForm
+              formData={formData}
+              handleFileChange={handleFileChange}
+              handleChange={handleChange}
+              handleMultiChange={handleMultiChange}
+              handleDateChange={handleDateChange}
+              handleTimeChange={handleTimeChange}
+            />
+          </DialogContentText>
           {/* <TopicsForm formData={formData} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/> */}
         </DialogContent>
         <DialogActions>

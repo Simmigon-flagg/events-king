@@ -10,6 +10,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useRouter } from "next/navigation";
 import "./Dialog.css";
+import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Image from "next/image";
 
 const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
   const router = useRouter();
@@ -119,9 +121,14 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
   return (
     <div className="dialog-container">
       <div className="btn-dialog">
-        <Tooltip title="Create a brand new topic." variant="solid" size="lg" placement="top-end">
-          <Button className="btn" variant="solid" onClick={handleClickOpen}>
-            {text}{" "}
+        <Tooltip
+          title="Create a brand new topic."
+          variant="solid"
+          size="lg"
+          placement="top-end"
+        >
+          <Button variant="solid" onClick={handleClickOpen}>
+            {text} <AddCircleIcon color="green" />
           </Button>
         </Tooltip>
       </div>
@@ -139,16 +146,18 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
           },
         }}
       >
-        <DialogTitle>Session Topic</DialogTitle>
+          <Image src={Border} alt="oranglebluebackground" className="border-image"/>
+        <DialogTitle>New Session</DialogTitle>
         <DialogContent>
-          <DialogContentText>Enter details:</DialogContentText>
-          <TopicsForm
-            formData={formData}
-            handleChange={handleChange}
-            handleMultiChange={handleMultiChange}
-            handleDateChange={handleDateChange}
-            handleTimeChange={handleTimeChange}
-          />
+          <DialogContentText>
+            <TopicsForm
+              formData={formData}
+              handleChange={handleChange}
+              handleMultiChange={handleMultiChange}
+              handleDateChange={handleDateChange}
+              handleTimeChange={handleTimeChange}
+            />
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
