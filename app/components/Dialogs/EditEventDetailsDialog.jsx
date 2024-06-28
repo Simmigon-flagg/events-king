@@ -9,6 +9,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import EditEventForm from "../Forms/EditEventForm";
 import { useRouter } from "next/navigation";
 import "./Dialog.css"
+import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Image from "next/image";
 
 
 const EditEventDetailsDialog = ({ event, text }) => {

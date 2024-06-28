@@ -11,6 +11,8 @@ import { Button, Tooltip } from "@mui/joy";
 import SearchTopics from "../SearchBar/SearchTopics";
 import SearchBar from "../SearchBar/SearchBar";
 import { AddCircleOutline } from "@mui/icons-material";
+import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Image from "next/image";
 
 const BrowseSessionDialog = ({ text, topics, event }) => {
   const router = useRouter();
@@ -149,6 +151,7 @@ const BrowseSessionDialog = ({ text, topics, event }) => {
           },
         }}
       >
+        <Image src={Border} alt="oranglebluebackground" className="border-image"/>
         <DialogTitle>Session Topic</DialogTitle>
         <DialogContent>
           <DialogContentText>

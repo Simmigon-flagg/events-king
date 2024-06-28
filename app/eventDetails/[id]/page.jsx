@@ -82,7 +82,7 @@ const EventDetails = async ({ params }) => {
   ));
   let image = null
   if(event?.image){
-    const image = await getImageById(event?.image);
+    image = await getImageById(event?.image);
 
   }
   return (

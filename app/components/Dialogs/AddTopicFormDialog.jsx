@@ -10,6 +10,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useRouter } from "next/navigation";
 import "./Dialog.css";
+import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Image from "next/image";
 
 const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
   const router = useRouter();
@@ -144,6 +146,7 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
           },
         }}
       >
+          <Image src={Border} alt="oranglebluebackground" className="border-image"/>
         <DialogTitle>New Session</DialogTitle>
         <DialogContent>
           <DialogContentText>

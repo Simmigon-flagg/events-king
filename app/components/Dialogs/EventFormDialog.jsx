@@ -12,6 +12,8 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import "./Dialog.css";
 import { useRouter } from "next/navigation";
 import EventsForm from "../Forms/EventsForm";
+import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Image from "next/image";
 
 const EventFormDialog = ({ text }) => {
   const router = useRouter();
@@ -129,6 +131,7 @@ const EventFormDialog = ({ text }) => {
           },
         }}
       >
+         <Image src={Border} alt="oranglebluebackground" className="border-image"/>
         <DialogTitle>New Event</DialogTitle>
         <DialogContent>
           <DialogContentText>
