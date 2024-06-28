@@ -107,7 +107,7 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
         }}
       >
         
-          <DialogTitle>{topic.title}</DialogTitle>
+          <DialogTitle>{topic?.title}</DialogTitle>
           <DialogContent>
             <DialogContentText>Details</DialogContentText>
             {isEditing ? (

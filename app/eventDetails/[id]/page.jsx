@@ -107,7 +107,7 @@ const EventDetails = async ({ params }) => {
         <div className="event-info-text">{event?.host}</div>
         <label className="event-info-label">Description:</label>
         <div className="event-info-text">{event?.description}</div>
-        { image ? <ImageComponent image={image?.image} /> : <AddImage />}
+        { image ? <ImageComponent image={image?.image} /> : <AddImage event={event}/>}
         
         
         <br />
