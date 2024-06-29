@@ -15,11 +15,10 @@ const RemoveBtn = ({ id }) => {
     }
   }
 
-  // const { handleDelete } = useContext(TopicsContext)
   return (
     <button onClick={removeTopic}>
 
-      <FaTrash className='text-red-500 text-4xl' /**onClick={handleDelete} */ />
+      <FaTrash className='text-red-500 text-4xl' />
     </button>
   )
 }

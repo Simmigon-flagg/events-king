@@ -8,7 +8,7 @@ export async function POST(request) {
         await connectMongoDB();
 
         const exists = await User.findOne({ $or: [{ name }, { email }] }).select("_id");
-        
+
         if (!exists) {
             const hashedPassword = await bcrypt.hash(password, 10);
             await User.create({ name, email, password: hashedPassword })
@@ -16,10 +16,8 @@ export async function POST(request) {
         }
         return NextResponse.json({ message: "Invalid User name of password" }, { status: 500 })
 
-
-
     } catch (error) {
-        
+
         return NextResponse.json({
             message: "An error happened while signing up the user"
         }, { status: 500 })

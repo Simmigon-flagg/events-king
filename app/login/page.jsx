@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import "./Login.css"
 import Sheet from '@mui/joy/Sheet';
-import CssBaseline from '@mui/joy/CssBaseline';
 import Typography from '@mui/joy/Typography';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -10,11 +9,10 @@ import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import { signIn } from "next-auth/react"
-import { useRouter } from 'next/navigation';
 import { Container } from '@mui/material';
+
 const Login = () => {
   const [formData, setFormData] = useState({ email: "da@email.com", password: "admin123" });
-  const router = useRouter()
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -29,7 +27,7 @@ const Login = () => {
       email: formData.email,
       password: formData.password,
       redirect: true,
-      callbackUrl: "/events" // Optional: Specify the callback URL
+      callbackUrl: "/events"
 
     })
 
@@ -67,22 +65,20 @@ const Login = () => {
             <FormControl>
               <FormLabel>Email</FormLabel>
               <Input
-                // html input attribute
+
                 onChange={handleChange}
                 name="email"
                 type="email"
                 value={formData.email}
-                // value={"simmigon@gmail.com"}
                 placeholder="johndoe@email.com"
               />
             </FormControl>
             <FormControl>
               <FormLabel>Password</FormLabel>
               <Input
-                // html input attribute
+
                 onChange={handleChange}
                 value={formData.password}
-                // value={"123456"}
                 name="password"
                 type="password"
                 placeholder="password"
@@ -98,7 +94,6 @@ const Login = () => {
             </Typography>
           </Sheet>
         </main>
-
       </div>
     </Container>
   )

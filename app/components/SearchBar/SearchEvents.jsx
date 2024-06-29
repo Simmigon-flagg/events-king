@@ -1,10 +1,9 @@
 "use client";
 import Link from "next/link";
-import RemoveBtn from "../Buttons/RemoveBtn";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Box, ButtonBase } from "@mui/material";
+import { Box } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/joy";
 import Input from "@mui/joy/Input";
@@ -23,10 +22,10 @@ const SearchBar = ({ items, id }) => {
   const getIds = (rowIds) => {
     setIds(rowIds);
     console.log()
-    console.log("ids:-",rowIds)
+    console.log("ids:-", rowIds)
   };
   const handleDeleteSelected = async () => {
-   
+
     try {
       await Promise.all(
         ids.map((id) => {
@@ -61,7 +60,6 @@ const SearchBar = ({ items, id }) => {
 
   const columns = [
     { field: "ids", headerName: "#", width: 90 },
-    // { field: 'id', headerName: 'Event Id', width: 90 },
     {
       field: "title",
       headerName: "Title",
@@ -69,10 +67,10 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Title'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
-         {params.row.title}
+          {params.row.title}
         </Link>
       ),
     },
@@ -83,14 +81,12 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Description'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
-         {params.row.description}
+          {params.row.description}
         </Link>
       ),
-
-      
     },
     {
       field: "location",
@@ -99,10 +95,10 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Location'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
-         {params.row.location}
+          {params.row.location}
         </Link>
       ),
     },
@@ -113,10 +109,10 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Host'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
-         {params.row.host}
+          {params.row.host}
         </Link>
       ),
     },
@@ -127,14 +123,14 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Date'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
         <Link href={`/eventdetails/${params.row.id}`}>
-         {params.row.date}
+          {params.row.date}
         </Link>
       ),
     },
-    
+
     {
       field: "editActions",
       headerName: "Edit Topic",
@@ -142,14 +138,9 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Edit Topic'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
-
         <EditEventDetailsDialog event={params.row} text="EDIT" />
-
-        // <Link href={`/editevent/${params.row.edit}`}>
-        //   <Button>Edit</Button>
-        // </Link>
       ),
     },
   ];
@@ -178,8 +169,8 @@ const SearchBar = ({ items, id }) => {
           placeholder="Search by Title"
           onChange={handleSearch}
         />
-         <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length===0}><FaTrash  style={{ color: ids.length === 0 ? 'lightGray' : 'red' }}/></Button>
-        <EventFormDialog text="NEW"/>
+        <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length === 0}><FaTrash style={{ color: ids.length === 0 ? 'lightGray' : 'red' }} /></Button>
+        <EventFormDialog text="NEW" />
       </div>
 
       <Box sx={{ height: 400, width: "100%" }}>
@@ -203,7 +194,7 @@ const SearchBar = ({ items, id }) => {
             },
           }}
           pageSizeOptions={[6]}
-          checkboxSelection 
+          checkboxSelection
           disableSelectionOnClick
           onRowSelectionModelChange={(selectedId) => getIds(selectedId)}
         />

@@ -1,4 +1,4 @@
-import React, from 'react'
+import React from 'react'
 import "./Skeleton.css"
 import AspectRatio from '@mui/joy/AspectRatio';
 import Stack from '@mui/joy/Stack';
@@ -35,7 +35,7 @@ const SkeletonComponent = ({ loading, setLoading }) => {
                         {loading ? 'Stop' : 'Start'} loading
                     </Button>
                 </Card>
-            </Stack>                
+            </Stack>
         </>
     )
 }

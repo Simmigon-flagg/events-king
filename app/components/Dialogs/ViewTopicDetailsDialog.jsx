@@ -55,7 +55,7 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
   
     try {
       const response = await fetch(
-        `http://localhost:3000/api/topics/${edit._id}`, // Works on detail page
+        `http://localhost:3000/api/topics/${edit._id}`,
         {
           method: "PUT",
           header: { "Content-type": "application/json" },
@@ -65,7 +65,7 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
       if (!response.ok) {
         throw new Error("Topic was not updated");
       }
-      // router.push("/topics")
+  
     } catch (error) {
       console.log(error);
     }
@@ -73,25 +73,12 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
     setIsEditing(false);
     handleClose();
   };
-  // AI Business Conference 2024
-  // Event Details 666b39e0cda4eb60783a65ff
-  // Title:
-  // AI Business Conference 2024
-  // Date:
-  // 2024-06-30
-  // Location:
-  // Atlanta, GA
-  // Host:
-  // Merriam Lexington
-  // Description:
-  // AI is now the epicenter of the global AI ecosystem and the industry’s only must-attend annual event. Discover the latest applications, the state of generative AI, and best practices shaping the future of artificial intelligence. Enjoy dedicated content & unbeatable networking for both business & technical leaders from every major industry and job function, from leading enterprises, AI startups, investors, government organizations, and media. Together, we’re building the future of responsible human-machine collaboration.
+
   return (
     <div>
       <div className="btn-dialog">
         <h4 onClick={handleClickOpen}>{text}</h4>
-        {/* {<Button variant="contained" onClick={handleClickOpen}>
-          VIEW
-        </Button>} */}
+
       </div>
       <Dialog
         open={open}

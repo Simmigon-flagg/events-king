@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function PUT(request, { params }) {
     const { id } = params;
     const editedEvent = await request.json();
-    
+
     await connectMongoDB();
     await Event.findByIdAndUpdate(id, editedEvent);
     return NextResponse.json({ editedEvent }, { status: 200 })

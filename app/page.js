@@ -5,7 +5,6 @@ import { Container } from '@mui/material'
 const Home = () => {
   return (
     <Container fixed>
-
       <Hero />
     </Container>
   )

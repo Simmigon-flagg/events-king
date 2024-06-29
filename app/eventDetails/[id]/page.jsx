@@ -1,12 +1,10 @@
 import PageTitle from "@/app/components/PageTitle/PageTitle";
-import SearchBar from "@/app/components/SearchBar/SearchBar";
 import { Container } from "@mui/joy";
 import Link from "next/link";
 import "./EventDetails.css";
 import AddTopicFormDialog from "@/app/components/Dialogs/AddTopicFormDialog";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import ImageComponent from "@/app/components/ImageComponent/ImageComponent";
-import EventTopicsList from "@/app/components/EventTopicsList/EventTopicsList";
 import EventTopicsCard from "@/app/components/Cards/EventTopicsCard";
 import BrowseSessionDialog from "@/app/components/Dialogs/BrowseSessionDialog";
 import AddImage from "@/app/components/AddImage/AddImage";
@@ -82,8 +80,8 @@ const EventDetails = async ({ params }) => {
     </div>
   ));
   let image = null
-  if(event?.image){
-     image = await getImageById(event?.image);    
+  if (event?.image) {
+    image = await getImageById(event?.image);
   }
   return (
     <Container fixed>
@@ -106,9 +104,9 @@ const EventDetails = async ({ params }) => {
         <div className="event-info-text">{event?.host}</div>
         <label className="event-info-label">Description:</label>
         <div className="event-info-text">{event?.description}</div>
-        { image ? <ImageComponent image={image?.image} /> : <AddImage event={event}/>}
-        
-        
+        {image ? <ImageComponent image={image?.image} /> : <AddImage event={event} />}
+
+
         <br />
         <label className="event-info-label">Sessions:</label>
         <br />
@@ -127,7 +125,7 @@ const EventDetails = async ({ params }) => {
           />
         </div>
 
-        <div className="added-sessions">{view?.length > 0 ? view :  "No session added yet."}</div>
+        <div className="added-sessions">{view?.length > 0 ? view : "No session added yet."}</div>
       </div>
     </Container>
   );

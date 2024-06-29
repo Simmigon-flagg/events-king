@@ -19,7 +19,7 @@ const SearchBar = ({ items, id }) => {
     useEffect((rowIds) => {
         getIds(rowIds)
 
-    },[ids])
+    }, [ids])
 
     const handleAddTopicToEvent = async () => {
 
@@ -35,10 +35,7 @@ const SearchBar = ({ items, id }) => {
             const data = await res.json();
             const { event } = data;
             const { topics } = event;
-            // Add the new topic ID to the existing topics array
             const updatedTopics = [...new Set([...topics, ...ids])];
-
-            // Update the event with the new topics array
             const updateRes = await fetch(
                 `http://localhost:3000/api/events/${id}`,
                 {
@@ -79,7 +76,7 @@ const SearchBar = ({ items, id }) => {
         let found = null;
 
         try {
-            // Fetch the existing event
+
             const res = await fetch(`http://localhost:3000/api/events/${id}`, {
                 method: 'GET',
                 headers: {
@@ -91,17 +88,12 @@ const SearchBar = ({ items, id }) => {
             const { event } = data;
             const { topics } = event
             found = topics.find(id => id === topic_Id)
-
-            // Add the new topic ID to the existing topics array
-            // router.refresh(`http://localhost:3000/eventdetails/${id}`)
             if (found) {
 
                 return
             }
 
             const updatedTopics = [...topics, topic_Id];
-
-            // Update the event with the new topics array
             const updateRes = await fetch(`http://localhost:3000/api/events/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -113,9 +105,6 @@ const SearchBar = ({ items, id }) => {
             if (!updateRes.ok) {
                 throw new Error('Failed to update event');
             }
-
-            // await updateRes.json();
-
 
             router.refresh()
 
@@ -137,9 +126,8 @@ const SearchBar = ({ items, id }) => {
     });
 
     const columns = [
-        // { field: 'id', headerName: 'ID', width: 90 },
         { field: 'rowNumber', headerName: '#', width: 90 },
-    
+
         {
             field: 'title',
             headerName: 'Title',
@@ -180,24 +168,6 @@ const SearchBar = ({ items, id }) => {
             width: 150,
 
         },
-        // {
-        //     field: "actions",
-        //     headerName: "Actions",
-        //     width: 200,
-
-        //     renderCell: (params) => (
-
-        //         <Link
-        //             href={`/topicdetails/${params.row.itemId}`}
-        //         >
-        //             <Button>
-        //                 View
-        //             </Button>
-        //         </Link>
-
-        //     )
-        // },
-
     ];
 
     const rows = filteredItems.map((item, index) => {
@@ -231,7 +201,6 @@ const SearchBar = ({ items, id }) => {
                     }}
                     pageSizeOptions={[6]}
                     checkboxSelection
-                    // disableRowSelectionOnClick={true}
                     onRowSelectionModelChange={(selectedId) => getIds(selectedId)}
                 />
             </Box>

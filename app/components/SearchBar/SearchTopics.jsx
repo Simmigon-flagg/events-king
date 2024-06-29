@@ -1,6 +1,5 @@
 "use client";
-
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Box, Button } from "@mui/joy";
@@ -20,7 +19,7 @@ const SearchBar = ({ items, id }) => {
 
   const handleSearch = (e) => {
     const { name, value } = e.target;
-    
+
     setSearchTerm((prev) => ({
       ...prev,
       [name]: value,
@@ -40,10 +39,8 @@ const SearchBar = ({ items, id }) => {
       const data = await res.json();
       const { event } = data;
       const { topics } = event;
-      // Add the new topic ID to the existing topics array
       const updatedTopics = [...topics, topic_Id];
 
-      // Update the event with the new topics array
       const updateRes = await fetch(
         `http://localhost:3000/api/events/${eventId}`,
         {
@@ -74,7 +71,7 @@ const SearchBar = ({ items, id }) => {
     try {
       await Promise.all(
         ids.map((id) => {
-         
+
           fetch(`/api/topics?id=${id}`, { method: "DELETE" });
         })
       );
@@ -88,7 +85,6 @@ const SearchBar = ({ items, id }) => {
 
   const columns = [
     { field: "ids", headerName: "#", width: 90 },
-    // { field: "id", headerName: "Topic ID", width: 30 },
     {
       field: "title",
       headerName: "Title",
@@ -96,21 +92,13 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Title'}
-        </strong> ),
+        </strong>),
 
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row} text={params.row.title} />
       ),
     },
-    // {
-    //   field: "description",
-    //   headerName: "Description",
-    //   width: 150,
-    //   renderCell: (params) => (
-    //     <ViewTopicDetailDialog topic={params.row} text={params.row.description} />
-    //   ),
 
-    // },
     {
       field: "location",
       headerName: "Location",
@@ -118,24 +106,22 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Location'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row} text={params.row.location} />
       ),
     },
     {
-      
+
       field: "speaker",
       headerName: "Speaker",
       width: 150,
       renderHeader: () => (
         <strong>
           {'Speaker'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
-    
-         <ChipAvatar name={params.row.speaker} image={params.row.image}/>
-        
+        <ChipAvatar name={params.row.speaker} image={params.row.image} />
       ),
     },
 
@@ -146,7 +132,7 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Date'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row} text={params.row.date} />
       ),
@@ -158,20 +144,12 @@ const SearchBar = ({ items, id }) => {
       renderHeader: () => (
         <strong>
           {'Time'}
-        </strong> ),
+        </strong>),
       renderCell: (params) => (
         <ViewTopicDetailDialog topic={params.row} text={params.row.time} />
       ),
     },
-    // {
-    //   field: "topicActions",
-    //   headerName: "Topic Details",
-    //   width: 100,
 
-    //   renderCell: (params) => (
-    //     <ViewTopicDetailDialog topic={params.row} />
-    //   ),
-    // },
   ];
   const filteredItems = items?.filter((item) => {
     if (searchTerm.title === "" || searchTerm.title == null) {
@@ -207,9 +185,8 @@ const SearchBar = ({ items, id }) => {
           value={searchTerm.title}
           placeholder="Search by Title"
           onChange={handleSearch}
-          // sx={{ width: "75%" }}
         />
-      <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length===0}><FaTrash  style={{ color: ids.length === 0 ? 'lightGray' : 'red' }}/></Button>
+        <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length === 0}><FaTrash style={{ color: ids.length === 0 ? 'lightGray' : 'red' }} /></Button>
         <AddTopicFormDialog text="NEW" />
       </div>
       <Box sx={{ height: 400, width: "100%" }}>
@@ -217,13 +194,12 @@ const SearchBar = ({ items, id }) => {
           rows={rows}
           row
           sx={{
-          boxShadow: 3,
-          // border: 1,
-          borderColor: 'primary',
-          '& .MuiDataGrid-cell:hover': {
-            color: 'primary.main',
-          },
-        }}
+            boxShadow: 3,
+            borderColor: 'primary',
+            '& .MuiDataGrid-cell:hover': {
+              color: 'primary.main',
+            },
+          }}
           columns={columns}
           initialState={{
             pagination: {
@@ -234,7 +210,6 @@ const SearchBar = ({ items, id }) => {
           }}
           pageSizeOptions={[6]}
           checkboxSelection
-          // disableRowSelectionOnClick
           onRowSelectionModelChange={(selectedId) => getIds(selectedId)}
         />
       </Box>

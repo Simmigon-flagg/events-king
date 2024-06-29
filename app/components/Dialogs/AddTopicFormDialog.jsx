@@ -10,7 +10,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useRouter } from "next/navigation";
 import "./Dialog.css";
-import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Border from "@/public/image/graphics/orangeblue.jpg"
 import Image from "next/image";
 
 const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
@@ -62,7 +62,6 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
     setOpen(false);
   };
   const handleDeleteTopic = async (topic_id) => {
-    // const removedTopic = await eventTopic.filter((topic) => topic._id !== topic_id)
 
     try {
       const response = await fetch(`/api/events/${event_id}`, {
@@ -77,8 +76,6 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
         throw new Error("Failed to update event topics");
       }
 
-      // const updatedEvent = await response.json();
-      // console.log(updatedEvent)
       router.refresh();
     } catch (error) {
       console.error("Error updating event topics:", error);
@@ -86,8 +83,7 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Empty text boxes needs handling
-    // alert(JSON.stringify(formData));
+
     try {
       const response = await fetch("http://localhost:3000/api/topics", {
         method: "POST",
@@ -139,14 +135,11 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
           component: "form",
           onSubmit: (event) => {
             event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
             handleClose();
           },
         }}
       >
-          <Image src={Border} alt="oranglebluebackground" className="border-image"/>
+        <Image src={Border} alt="oranglebluebackground" className="border-image" />
         <DialogTitle>New Session</DialogTitle>
         <DialogContent>
           <DialogContentText>

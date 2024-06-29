@@ -5,7 +5,7 @@ import { FaQuoteRight } from 'react-icons/fa';
 import data from '@/public/data';
 import "./Carousel.css"
 const Carousel = () => {
-    const [people, setPeople] = useState(data);
+    const [people] = useState(data);
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -32,7 +32,6 @@ const Carousel = () => {
                 {
                     people.map((person, personIndex) => {
                         const { id, image, name, title, quote } = person;
-                        //more stuff coming up for css
                         let position = 'nextSlide';
                         if (personIndex === index) {
                             position = 'activeSlide';

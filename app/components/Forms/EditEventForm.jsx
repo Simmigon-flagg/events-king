@@ -28,7 +28,7 @@ const EditEventForm = ({
           name="title"
         />
       </div>
-     
+
 
       <div className="wrapper-inline">
         <div className="input-field">
@@ -38,7 +38,7 @@ const EditEventForm = ({
             onChange={handleChange}
             value={edit?.host}
             name="host"
-            sx={{width:'230px'}}
+            sx={{ width: '230px' }}
           />
         </div>
 
@@ -49,7 +49,7 @@ const EditEventForm = ({
             onChange={handleChange}
             value={edit?.location}
             name="location"
-            sx={{width:'230px'}}
+            sx={{ width: '230px' }}
           />
         </div>
       </div>
@@ -58,8 +58,6 @@ const EditEventForm = ({
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
-              // className="customDatePicker"
-
               id="topics-form-input"
               value={edit?.date ? dayjs(edit?.date) : null}
               onChange={handleDateChange}
@@ -78,7 +76,6 @@ const EditEventForm = ({
         </LocalizationProvider>
       </div>
 
- 
       <div className="input-field">
         <FormLabel>Description</FormLabel>
         <Textarea

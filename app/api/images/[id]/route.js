@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function PUT(request, { params }) {
     const { id } = params;
     const editedPicture = await request.json();
-    
+
     await connectMongoDB();
     await Image.findByIdAndUpdate(id, editedPicture);
     return NextResponse.json({ message: "Image Updated" }, { status: 200 })

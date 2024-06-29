@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 // import Button from "@mui/material/Button";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -7,7 +7,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import dayjs from "dayjs";
-import { useRouter } from "next/navigation";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/joy/Button";
 import SvgIcon from "@mui/joy/SvgIcon";
@@ -36,7 +35,6 @@ const EventsForm = ({
   return (
     <div className="form-container">
       <div className="form-box">
-        {/* All MUI controlled input or text field options here: https://mui.com/material-ui/react-text-field/ */}
 
         <TextField
           id="topics-form-input"
@@ -45,7 +43,7 @@ const EventsForm = ({
           name="title"
           value={formData.title}
           onChange={handleChange}
-          sx={{marginBottom:'10px'}}
+          sx={{ marginBottom: '10px' }}
         />
         <div className="wrapper-inline">
           <TextField
@@ -55,7 +53,7 @@ const EventsForm = ({
             name="host"
             value={formData.host}
             onChange={handleChange}
-            sx={{width:'230px'}}
+            sx={{ width: '230px' }}
           />
 
           <TextField
@@ -65,7 +63,7 @@ const EventsForm = ({
             name="location"
             value={formData.location}
             onChange={handleChange}
-            sx={{width:'230px'}}
+            sx={{ width: '230px' }}
           />
         </div>
 
@@ -93,7 +91,7 @@ const EventsForm = ({
           </LocalizationProvider>
         </div>
         <Button
-         sx={{marginBottom:'10px'}}
+          sx={{ marginBottom: '10px' }}
           onChange={handleFileChange}
           name="image"
           component="label"
@@ -127,7 +125,6 @@ const EventsForm = ({
 
           <VisuallyHiddenInput type="file" />
         </Button>
-
 
         <TextField
           id="topics-form-input"

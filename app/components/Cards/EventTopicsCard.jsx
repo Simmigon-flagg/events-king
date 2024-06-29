@@ -1,27 +1,19 @@
 "use client";
 import * as React from "react";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Link from "@mui/joy/Link";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
-import Chip from "@mui/joy/Chip";
 import Typography from "@mui/joy/Typography";
-import ChipAvatar from "../Chips/ChipAvatar";
 import { Button } from "@mui/joy";
-import { FaTrash } from "react-icons/fa";
-
-import "./Cards.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Popover } from "@mui/material";
 import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
+import "./Cards.css";
 
 const EventTopicsCard = ({
   event_id,
   eventTopic,
   title,
-  speaker,
   description,
   date,
   time,
@@ -57,7 +49,7 @@ const EventTopicsCard = ({
         throw new Error("Failed to update event topics");
       }
 
-      const updatedEvent = await response.json();
+      await response.json();
 
       router.refresh();
     } catch (error) {
@@ -71,23 +63,14 @@ const EventTopicsCard = ({
       orientation="horizontal"
       sx={{
         width: 800,
-        height: 70,
-        // boxShadow: "md",
-        // "&:hover": {
-        //   boxShadow: "md",
-        //   borderColor: "neutral.outlinedHoverBorder",
-        // },
+        height: 70
       }}
     >
       <CardOverflow
         variant="solid"
         color="success"
         sx={{
-          flex: "0 0 20px",
-          //   display: 'flex',
-          //   flexDirection: 'column',
-          //   justifyContent: 'center',
-          //   px: 'var(--Card-padding)',
+          flex: "0 0 20px"
         }}
       ></CardOverflow>
 
@@ -103,9 +86,6 @@ const EventTopicsCard = ({
                   onClose={handleCloseDialog}
                 />
               )}
-
-              {/* <p text-xs>Speaker:</p> */}
-              {/* <ChipAvatar name={speaker} /> */}
             </div>
           </Typography>
           <Typography level="title-sm" id="card-description">
@@ -132,7 +112,6 @@ const EventTopicsCard = ({
         color="danger"
         sx={{
           px: 0.1,
-          //   writingMode: 'vertical-rl',
           justifyContent: "center",
           fontSize: "xs",
           fontWeight: "xl",
@@ -145,8 +124,7 @@ const EventTopicsCard = ({
         <Button
           color="neutral-light"
           onClick={() => handleDeleteTopic(topic_Id)}
-        >
-          {/* <FaTrash color="red"/> */} X
+        > X
         </Button>
       </CardOverflow>
     </Card>

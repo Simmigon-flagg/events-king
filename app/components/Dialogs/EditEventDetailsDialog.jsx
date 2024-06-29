@@ -9,9 +9,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import EditEventForm from "../Forms/EditEventForm";
 import { useRouter } from "next/navigation";
 import "./Dialog.css"
-import Border from "@/public/image/graphics/orangeblue.jpg" 
-import Image from "next/image";
-
 
 const EditEventDetailsDialog = ({ event, text }) => {
   const router = useRouter();
@@ -75,7 +72,7 @@ const EditEventDetailsDialog = ({ event, text }) => {
   return (
     <div>
       <div className="btn-dialog">
-        {/* <h4 onClick={handleClickOpen}>{text}</h4> */}
+
         {<Button size="sm" variant="outlined" onClick={handleClickOpen}>
             {text}
           </Button>}
@@ -99,15 +96,12 @@ const EditEventDetailsDialog = ({ event, text }) => {
         <DialogTitle>{event.title}</DialogTitle>
         <DialogContent>
           <DialogContentText>Details</DialogContentText>
-
-
           <EditEventForm edit={edit} handleChange={handleChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/>
 
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleSubmit}>Save</Button>
-          {/* {isEditing ? <Button onClick={handleSubmit}>SAVE</Button> : <Button onClick={() => setIsEditing(true)}>EDIT</Button>} */}
         </DialogActions>
       </Dialog>
     </div>

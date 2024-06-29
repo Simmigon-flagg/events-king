@@ -1,8 +1,5 @@
 import React from "react";
 import "./TopicDetailsView.css";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 
 const TopicDetailsView = ({ topic }) => {
   const { title, date, time, location, speaker, description } = topic;

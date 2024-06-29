@@ -1,9 +1,9 @@
 "use client"
-import { Input } from '@mui/joy';
 import React, { useState } from 'react'
 import Button from '@mui/joy/Button';
 import SvgIcon from '@mui/joy/SvgIcon';
 import { styled } from '@mui/joy';
+import { useRouter } from 'next/navigation';
 
 const VisuallyHiddenInput = styled('input')`
   clip: rect(0 0 0 0);
@@ -19,7 +19,7 @@ const VisuallyHiddenInput = styled('input')`
 
 const AddImage = ({ event }) => {
     const [image, setImage] = useState(event);
-
+    const router = useRouter()
     const handleFileChange = (e) => {
         setImage((prev) => ({
             ...prev,
@@ -28,7 +28,7 @@ const AddImage = ({ event }) => {
     };
     const handleSubmitImage = async (e) => {
         e.preventDefault();
-       
+
         const data = new FormData();
         Object.keys(image).forEach(key => {
             if (key === "topics") {
@@ -44,19 +44,7 @@ const AddImage = ({ event }) => {
                 body: data,
             });
 
-            if (response.ok) {
-                // setImage({
-                //   title: "",
-                //   host: "",
-                //   date: "",
-                //   time: "",
-                //   location: "",
-                //   description: "",
-                //   topics: [],
-                //   image: null
-                // });
-        
-            } else {
+            if (!response.ok) {
                 throw new Error("Failed to create a event");
             }
         } catch (error) {
@@ -66,15 +54,12 @@ const AddImage = ({ event }) => {
     };
     return (
         <div>
-
             <Button
                 onChange={handleFileChange}
                 name="image"
                 component="label"
                 role={undefined}
-                tabIndex={-1}
-                // variant="outlined"
-                // variant="contained"
+                tabIndex={-1}       
                 color="neutral"
                 startDecorator={
                     <SvgIcon>
@@ -100,11 +85,9 @@ const AddImage = ({ event }) => {
             <div><h3>{image?.image?.name}</h3>
                 <Button
                     onClick={handleSubmitImage}
-
-
                     startDecorator={
                         <SvgIcon>
-
+                            {/* If images are needed */}
                         </SvgIcon>
                     }
                 >

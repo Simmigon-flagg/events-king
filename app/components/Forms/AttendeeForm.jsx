@@ -8,7 +8,7 @@ const Form = () => {
   const { id, firstName, lastName, email } = formData;
   return (
     <section className="form-section-4">
-      <div>{isEditing ? id: null}</div>
+      <div>{isEditing ? id : null}</div>
       <form className="form-4" onSubmit={handleSubmit}>
         <input
           type="text"

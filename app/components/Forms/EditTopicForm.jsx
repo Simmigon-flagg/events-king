@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, FormLabel, Input, Textarea } from "@mui/joy";
+import { FormLabel, Input, Textarea } from "@mui/joy";
 import "./Form.css";
 import {
   DatePicker,
@@ -37,7 +37,7 @@ const EditTopicForm = ({
             onChange={handleChange}
             value={edit?.speaker}
             name="speaker"
-            sx={{width:'230px'}}
+            sx={{ width: '230px' }}
           />
         </div>
 
@@ -48,7 +48,7 @@ const EditTopicForm = ({
             onChange={handleChange}
             value={edit?.location}
             name="location"
-            sx={{width:'230px'}}
+            sx={{ width: '230px' }}
           />
         </div>
       </div>

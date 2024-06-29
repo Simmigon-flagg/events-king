@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -26,7 +26,7 @@ const TopicsForm = ({
           name="title"
           value={formData.title}
           onChange={handleChange}
-          sx={{marginBottom:'10px'}}
+          sx={{ marginBottom: '10px' }}
         />
 
         <div className="wrapper-inline">
@@ -37,7 +37,7 @@ const TopicsForm = ({
             name="speaker"
             value={formData.speaker}
             onChange={handleChange}
-            sx={{width:'230px'}}
+            sx={{ width: '230px' }}
           />
 
           <TextField
@@ -47,7 +47,7 @@ const TopicsForm = ({
             name="location"
             value={formData.location}
             onChange={handleChange}
-            sx={{width:'230px'}}
+            sx={{ width: '230px' }}
           />
         </div>
 

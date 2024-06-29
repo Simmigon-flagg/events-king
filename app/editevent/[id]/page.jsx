@@ -9,8 +9,6 @@ const getEventById = async (id) => {
     if (!res.ok) {
       throw new Error("Failed to fetch events");
     }
-
-
     return res.json();
   } catch (error) {
     console.log(error);
@@ -24,7 +22,6 @@ const EditEvent = async ({ params }) => {
 
   return (
     <Container fixed>
-
       <EditEventForm item={event} />
     </Container>
   )

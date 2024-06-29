@@ -8,18 +8,18 @@ const Products = () => {
   return (
     <Container fixed>
 
-    <div style={{}}> <h1>Products</h1>
+      <div style={{}}> <h1>Products</h1>
 
-      <div className='products'>
-        <Skeleton loading={loading} setLoading={setLoading} />
-  
-        <Skeleton loading={loading} setLoading={setLoading} />
-     
-        <Skeleton loading={loading} setLoading={setLoading} />
-     
-        <Skeleton loading={loading} setLoading={setLoading} />
+        <div className='products'>
+          <Skeleton loading={loading} setLoading={setLoading} />
+
+          <Skeleton loading={loading} setLoading={setLoading} />
+
+          <Skeleton loading={loading} setLoading={setLoading} />
+
+          <Skeleton loading={loading} setLoading={setLoading} />
+        </div>
       </div>
-    </div>
     </Container>
   )
 }

@@ -1,8 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import TopicsForm from "../Forms/TopicsForm";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -143,8 +141,7 @@ const EventFormDialog = ({ text }) => {
               handleDateChange={handleDateChange}
               handleTimeChange={handleTimeChange}
             />
-          </DialogContentText>
-          {/* <TopicsForm formData={formData} handleChange={handleChange} handleMultiChange={handleMultiChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/> */}
+          </DialogContentText>          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
