@@ -2,6 +2,7 @@
 import { Paper } from '@mui/material';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import SkeletonComponent from '../Skeleton/Skeleton';
 
 const ImageComponent = ({ image }) => {
   const [base64String, setBase64String] = useState('');
@@ -20,11 +21,11 @@ const ImageComponent = ({ image }) => {
         <>
           {base64String ? (
             <Paper elevation={10} style={{ width: 500 }}>
-              <Image src={base64String} alt={image.filename} width={500} height={0} />
+              <Image loading="lazy" src={base64String} alt={image.filename} width={500} height={0} />
 
             </Paper>
           ) : (
-            <p>Loading image...</p>
+            <SkeletonComponent />
           )}</>
         :
         <p>No image</p>

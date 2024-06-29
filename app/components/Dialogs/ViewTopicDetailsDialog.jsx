@@ -9,10 +9,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useRouter } from "next/navigation";
 import TopicDetailsView from "../TopicDetailsView/TopicDetailsView";
 import EditTopicForm from "../Forms/EditTopicForm";
-import "./Dialog.css"
-import { Box } from "@mui/joy";
 import Border from "@/public/image/graphics/orangeblue.jpg" 
 import Image from "next/image";
+import "./Dialog.css"
 
 const ViewTopicDetailDialog = ({ topic, text }) => {
   const router = useRouter();
@@ -55,7 +54,7 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
   
     try {
       const response = await fetch(
-        `http://localhost:3000/api/topics/${edit._id}`,
+        `http://localhost:3000/api/topics/${edit?._id}`,
         {
           method: "PUT",
           header: { "Content-type": "application/json" },
@@ -98,7 +97,7 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
       >
        <Image src={Border} alt="oranglebluebackground" className="border-image"/>
         
-          <DialogTitle><span style={{textDecoration:"underline", fontSize:"25px"}}><strong>{topic.title}</strong></span> </DialogTitle>
+          <DialogTitle><span style={{textDecoration:"underline", fontSize:"25px"}}><strong>{topic?.title}</strong></span> </DialogTitle>
           <DialogContent>
             <DialogContentText>Event: Atlanta Tech Con 2025</DialogContentText>
             {isEditing ? (
