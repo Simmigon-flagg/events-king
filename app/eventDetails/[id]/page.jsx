@@ -8,6 +8,8 @@ import ImageComponent from "@/app/components/ImageComponent/ImageComponent";
 import EventTopicsCard from "@/app/components/Cards/EventTopicsCard";
 import BrowseSessionDialog from "@/app/components/Dialogs/BrowseSessionDialog";
 import AddImage from "@/app/components/AddImage/AddImage";
+import DateTime from "@/lib/dateTime";
+
 
 const getEventById = async (id) => {
   try {
@@ -96,8 +98,9 @@ const EventDetails = async ({ params }) => {
       <div key={event?._id}>
         <label className="event-info-label">Title:</label>
         <div className="event-info-text">{event?.title}</div>
-        <label className="event-info-label">Date:</label>
-        <div className="event-info-text">{event?.date}</div>
+        <label className="event-info-label">Date:</label>        
+        
+        <div className="event-info-text">{DateTime(event?.date,event?.time)} </div>
         <label className="event-info-label">Location:</label>
         <div className="event-info-text">{event?.location}</div>
         <label className="event-info-label">Host:</label>

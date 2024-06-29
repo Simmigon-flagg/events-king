@@ -10,6 +10,7 @@ import Input from "@mui/joy/Input";
 import "./search.css";
 import EventFormDialog from "../Dialogs/EventFormDialog";
 import EditEventDetailsDialog from "../Dialogs/EditEventDetailsDialog";
+import Dates from "@/lib/Dates";
 
 const SearchBar = ({ items, id }) => {
   const router = useRouter();
@@ -102,6 +103,7 @@ const SearchBar = ({ items, id }) => {
         </Link>
       ),
     },
+   
     {
       field: "host",
       headerName: "Host",
@@ -116,6 +118,8 @@ const SearchBar = ({ items, id }) => {
         </Link>
       ),
     },
+
+
     {
       field: "date",
       headerName: "Date",
@@ -125,8 +129,8 @@ const SearchBar = ({ items, id }) => {
           {'Date'}
         </strong>),
       renderCell: (params) => (
-        <Link href={`/eventdetails/${params.row.id}`}>
-          {params.row.date}
+        <Link href={`/eventdetails/${params.row.id}`}>         
+         {Dates(params.row.date, params.row.time)}
         </Link>
       ),
     },

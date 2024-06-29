@@ -9,6 +9,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
 import "./Cards.css";
+import Times from "@/lib/Times";
+import Dates from "@/lib/Dates";
 
 const EventTopicsCard = ({
   event_id,
@@ -101,8 +103,8 @@ const EventTopicsCard = ({
             mb={1}
           >
             <div className="card-column-items">
-              <span>Date: {date}</span>
-              <span>Time: {time}</span>
+              <span>Date: {Dates(date,time)} </span>
+              <span>Time: {Times(date,time)}</span>
             </div>
           </Typography>
         </div>

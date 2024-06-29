@@ -1,9 +1,10 @@
 "use client"
-import {  Container, Grid, Popover } from '@mui/material'
+import { Container, Grid, Paper, Popover } from '@mui/material'
 import React, { useContext } from 'react'
 import "./Testpage.css"
 import { ThemeContext } from '@/context/ThemeContext';
-import { Button, Typography } from '@mui/joy';
+import { Box, Button, Typography } from '@mui/joy';
+
 
 const TestPage = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -22,7 +23,15 @@ const TestPage = () => {
 
   return (
     <Container fixed>
-    <Button aria-describedby={id} variant="contained" onMouseOver={handleClick}>
+      <Box>
+        <Paper>
+
+        </Paper>
+      </Box>
+
+
+
+      <Button aria-describedby={id} variant="contained" onMouseOver={handleClick}>
         Open Popover
       </Button>
       <Popover
@@ -37,16 +46,16 @@ const TestPage = () => {
       >
         <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
       </Popover>
-    <Grid className='testpage'>
-      <div className={`app ${theme}`}>
-        <header className="app-header">
-          <h1>Welcome to React Dark Mode</h1>
-          <button onClick={toggleTheme}>
-            Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
-          </button>
-        </header>
-      </div>
-    </Grid>
+      <Grid className='testpage'>
+        <div className={`app ${theme}`}>
+          <header className="app-header">
+            <h1>Welcome to React Dark Mode</h1>
+            <button onClick={toggleTheme}>
+              Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+            </button>
+          </header>
+        </div>
+      </Grid>
     </Container>
   )
 }

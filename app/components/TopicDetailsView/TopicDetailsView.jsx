@@ -1,5 +1,7 @@
 import React from "react";
 import "./TopicDetailsView.css";
+import DateTimeZone from "../DateTimeZone/DateTimeZone";
+import DateTime from "@/lib/DateAndTime";
 
 const TopicDetailsView = ({ topic }) => {
   const { title, date, time, location, speaker, description } = topic;
@@ -28,13 +30,21 @@ const TopicDetailsView = ({ topic }) => {
           <label className="view-topic-label" htmlFor="date">
             Date:
           </label>
-          <div className="view-topic-info-text">{date}</div>
+          <div className="view-topic-info-text">
+            
+            
+            {DateTime(date, time).split("at")[0]}
+            </div>
         </div>
         <div className="grid-item">
           <label className="view-topic-label" htmlFor="time">
             Time:
           </label>
-          <div className="view-topic-info-text">{time}</div>
+          <div className="view-topic-info-text">
+            
+            {DateTime(date, time).split("at")[1]}
+            
+            </div>
         </div>
       </div>
 

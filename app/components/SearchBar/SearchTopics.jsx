@@ -9,6 +9,9 @@ import "./search.css";
 import AddTopicFormDialog from "../Dialogs/AddTopicFormDialog";
 import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
 import ChipAvatar from "../Chips/ChipAvatar";
+import Dates from "@/lib/Dates";
+import Times from "@/lib/Times";
+
 
 const SearchBar = ({ items, id }) => {
   const router = useRouter();
@@ -129,14 +132,15 @@ const SearchBar = ({ items, id }) => {
       field: "date",
       headerName: "Date",
       width: 150,
-      renderHeader: () => (
-        <strong>
-          {'Date'}
-        </strong>),
       renderCell: (params) => (
-        <ViewTopicDetailDialog topic={params.row} text={params.row.date} />
+        <>
+          {Dates(params.row.date, params.row.time)}
+        </>
+
       ),
     },
+
+    
     {
       field: "time",
       headerName: "Time",
@@ -146,7 +150,10 @@ const SearchBar = ({ items, id }) => {
           {'Time'}
         </strong>),
       renderCell: (params) => (
-        <ViewTopicDetailDialog topic={params.row} text={params.row.time} />
+        <>
+          {Times(params.row.date, params.row.time)}
+        </>
+
       ),
     },
 

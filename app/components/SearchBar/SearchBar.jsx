@@ -5,6 +5,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import Input from '@mui/joy/Input';
 import "./search.css"
 import { useRouter } from 'next/navigation';
+import Dates from '@/lib/Dates';
+import Times from '@/lib/Times';
 
 const SearchBar = ({ items, id }) => {
 
@@ -149,8 +151,8 @@ const SearchBar = ({ items, id }) => {
         }
         ,
         {
-            field: 'host',
-            headerName: 'Host',
+            field: 'speaker',
+            headerName: 'Speaker',
             width: 150,
 
         }
@@ -177,9 +179,9 @@ const SearchBar = ({ items, id }) => {
             title: item.title,
             itemId: item._id,
             description: item.description,
-            host: item.host,
-            date: item.date,
-            time: item.time,
+            speaker: item.speaker,
+            date: Dates(item.date,item.time),
+            time: Times(item.date,item.time),
             location: item.location
         };
     });
