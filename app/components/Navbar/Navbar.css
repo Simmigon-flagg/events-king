@@ -3,16 +3,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
   padding: 1rem;
   background-color: #333;
   color: #fff;
   position: relative;
+  height: 50px;
 }
 
 .navbar-logo {
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
   margin: 0 20px;
 }
+
 
 .navbar-links {
   display: flex;
