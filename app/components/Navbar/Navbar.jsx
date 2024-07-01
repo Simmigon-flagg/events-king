@@ -45,6 +45,7 @@ const Navbar = () => {
                 <Link href="/testpage">Test Page</Link>
                 {user?.name ?
                     <>
+                        <Link href="/speakers">Speakers</Link>
                         <Link href="/events">Events</Link>
                         <Link href="/topics">Topics</Link>
                         <button onClick={onSignOut}>Sign out</button>

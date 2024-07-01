@@ -5,7 +5,12 @@ const speakerSchema = new Schema({
     firstname: String,
     lastname: String,
     email: String,            
-    description: String,
+    title: String,
+    phone: String,    
+    aboutme: String,
+    company: String,
+    description: String,    
+    presentation: String,
     topics: [{ type: Schema.Types.ObjectId, ref: "Topic", default: [] }], // Topics is optional, default to an empty array
     image: { type: Schema.Types.ObjectId, ref: "Image" } // Reference to the Image model
 }, {

@@ -2,37 +2,32 @@ POST http://localhost:3000/api/speakers HTTP/1.1
 content-type: application/json
 
 {
-    "firstname": "Test",
+    "firstname": "Speaker 2 TEST",
     "lastname": "String",
-    "email": "String",            
-    "description": "String"
-}
-
-###
-POST http://localhost:3000/api/speakers HTTP/1.1
-content-type: application/json
-
-{
-    "firstname": "String",
-    "lastname": "String",
-    "email": "String",            
-    "description": "String"
+    "email": "String",
+    "title": "String",
+    "company": "String",
+    "phone": "String",
+    "session": "String",
+    "presentation": "String",
+    "aboutme": "String",
+    "photo": "image"
 }
 
 ### get all speakers
 GET http://localhost:3000/api/speakers HTTP/1.1
 
 ### Find by Id
-GET http://localhost:3000/api/speakers/6681c39df6870d170140983d HTTP/1.1
+GET http://localhost:3000/api/speakers/6682f02e09748d3822e17a52 HTTP/1.1
 
 ###
 PUT http://localhost:3000/api/speakers HTTP/1.1
 content-type: application/json
 
 {
-    "_id":"6681c39df6870d170140983d",
-    "firstname": "sim"
+    "_id":"6682be2309748d3822e17767",
+    "firstname": "CRUD UPDATE"
 }
 
 ###
-DELETE  http://localhost:3000/api/speakers?id=6681ae58cb5f3f436633a708 HTTP/1.1
+DELETE  http://localhost:3000/api/speakers?id=6682be8509748d3822e17770 HTTP/1.1
