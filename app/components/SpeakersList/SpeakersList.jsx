@@ -15,16 +15,13 @@ const getSpeakers = async () => {
 }
 
 const SpeakersList = async () => {
-    const speakersData = await getSpeakers();
-    // <Speakers speakers={speakersData.speakers}/>
+    const speakersData = await getSpeakers();    
     return (
         <div>
-            SpeakersList
-            {/* {JSON.stringify(speakersData)} */}
-            {speakersData.speakers.map(speaker => 
+            SpeakersList            
+            {speakersData?.speakers?.map(speaker => 
                 <Speaker key={speaker?._id} speaker={speaker} />)}
         </div>
     )
 }
-
 export default SpeakersList

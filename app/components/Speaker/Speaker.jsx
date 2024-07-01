@@ -8,14 +8,15 @@ const Speaker = ({ speaker }) => {
   const [create, setCreate] = useState(null)
 
   const handleChange = (e) => {
-    const { name, value } = e.target;    
+    const { name, value } = e.target;
     setData(prev => ({
       ...prev,
       [name]: value
     }))
   }
+
   const handleCreateChange = (e) => {
-    const { name, value } = e.target;    
+    const { name, value } = e.target;
     setCreate(prev => ({
       ...prev,
       [name]: value
@@ -52,6 +53,7 @@ const Speaker = ({ speaker }) => {
     router.refresh();
 
   }
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -66,49 +68,49 @@ const Speaker = ({ speaker }) => {
       if (!response.ok) {
         throw new Error("Speaker was not updated");
       }
-      
+
     } catch (error) {
       console.log(error);
     }
     router.refresh();
-    setCreate(null)      
+    setCreate(null)
   }
   return (
     <>
       <div>Speaker</div>
-      <p>{data._id}</p>
+      <p>{data?._id}</p>
       <div style={{ display: "flex", gap: 10 }}>
-        <p>{data.firstname}</p>
-        <p>{data.lastname}</p>
-        <p>{data.email}</p>
-        <p>{data.title}</p>
-        <p>{data.phone}</p>
-        <p>{data.aboutme}</p>
-        <p>{data.company}</p>
-        <p>{data.presentation}</p>
-        <p>{data.topics.map(topic => <>{topic}</>)}</p>
+        <p>{data?.firstname}</p>
+        <p>{data?.lastname}</p>
+        <p>{data?.email}</p>
+        <p>{data?.title}</p>
+        <p>{data?.phone}</p>
+        <p>{data?.aboutme}</p>
+        <p>{data?.company}</p>
+        <p>{data?.presentation}</p>
+        <p>{data?.topics.map(topic => <>{topic}</>)}</p>
         <button onClick={handleDelete}>Delete</button>
       </div>
       <hr />
       <div>
         <form>
 
-          <input type="text" name="firstname" onChange={handleChange} value={data.firstname} />
-          <input type="text" name="lastname" onChange={handleChange} value={data.lastname} />
-          <input type="text" name="email" onChange={handleChange} value={data.email} />
-          <input type="text" name="title" onChange={handleChange} value={data.title} />
-          <input type="text" name="phone" onChange={handleChange} value={data.phone} />
-          <input type="text" name="aboutme" onChange={handleChange} value={data.aboutme} />
-          <input type="text" name="company" onChange={handleChange} value={data.company} />
-          <input type="text" name="presentation" onChange={handleChange} value={data.presentation} />
+          <input type="text" name="firstname" onChange={handleChange} value={data?.firstname} />
+          <input type="text" name="lastname" onChange={handleChange} value={data?.lastname} />
+          <input type="text" name="email" onChange={handleChange} value={data?.email} />
+          <input type="text" name="title" onChange={handleChange} value={data?.title} />
+          <input type="text" name="phone" onChange={handleChange} value={data?.phone} />
+          <input type="text" name="aboutme" onChange={handleChange} value={data?.aboutme} />
+          <input type="text" name="company" onChange={handleChange} value={data?.company} />
+          <input type="text" name="presentation" onChange={handleChange} value={data?.presentation} />
           {/* <input value={data.topics.map(topic => <>{topic}</>)} /> */}
           <button onClick={handleEdit} >Submit</button>
         </form>
 
       </div>
-      <br/>
-      <br/>
-      <hr/>
+      <br />
+      <br />
+      <hr />
       <form onSubmit={handleSubmit}>
 
         <input type="text" name="firstname" onChange={handleCreateChange} value={create?.firstname} />
@@ -120,7 +122,8 @@ const Speaker = ({ speaker }) => {
         <input type="text" name="company" onChange={handleCreateChange} value={create?.company} />
         <input type="text" name="presentation" onChange={handleCreateChange} value={create?.presentation} />
         {/* <input value={data.topics.map(topic => <>{topic}</>)} /> */}
-        <button onClick={handleEdit} >Submit</button>
+        {/* <button onClick={handleEdit} >Submit</button> */}
+        <button  >Submit</button>
       </form>
 
     </>
