@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 const Speaker = ({ speaker }) => {
   const router = useRouter()
   const [data, setData] = useState(speaker)
-  const [create, setCreate] = useState("")
+  const [create, setCreate] = useState(null)
 
   const handleChange = (e) => {
     const { name, value } = e.target;    
@@ -64,14 +64,14 @@ const Speaker = ({ speaker }) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Event was not updated");
+        throw new Error("Speaker was not updated");
       }
-      setCreate("")      
-
+      
     } catch (error) {
       console.log(error);
     }
     router.refresh();
+    setCreate(null)      
   }
   return (
     <>
@@ -111,14 +111,14 @@ const Speaker = ({ speaker }) => {
       <hr/>
       <form onSubmit={handleSubmit}>
 
-        <input type="text" name="firstname" onChange={handleCreateChange} value={create.firstname} />
-        <input type="text" name="lastname" onChange={handleCreateChange} value={create.lastname} />
-        <input type="text" name="email" onChange={handleCreateChange} value={create.email} />
-        <input type="text" name="title" onChange={handleCreateChange} value={create.title} />
-        <input type="text" name="phone" onChange={handleCreateChange} value={create.phone} />
-        <input type="text" name="aboutme" onChange={handleCreateChange} value={create.aboutme} />
-        <input type="text" name="company" onChange={handleCreateChange} value={create.company} />
-        <input type="text" name="presentation" onChange={handleCreateChange} value={create.presentation} />
+        <input type="text" name="firstname" onChange={handleCreateChange} value={create?.firstname} />
+        <input type="text" name="lastname" onChange={handleCreateChange} value={create?.lastname} />
+        <input type="text" name="email" onChange={handleCreateChange} value={create?.email} />
+        <input type="text" name="title" onChange={handleCreateChange} value={create?.title} />
+        <input type="text" name="phone" onChange={handleCreateChange} value={create?.phone} />
+        <input type="text" name="aboutme" onChange={handleCreateChange} value={create?.aboutme} />
+        <input type="text" name="company" onChange={handleCreateChange} value={create?.company} />
+        <input type="text" name="presentation" onChange={handleCreateChange} value={create?.presentation} />
         {/* <input value={data.topics.map(topic => <>{topic}</>)} /> */}
         <button onClick={handleEdit} >Submit</button>
       </form>
