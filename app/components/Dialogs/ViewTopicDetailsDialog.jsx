@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
+import { Button } from "@mui/joy";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,9 +9,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useRouter } from "next/navigation";
 import TopicDetailsView from "../TopicDetailsView/TopicDetailsView";
 import EditTopicForm from "../Forms/EditTopicForm";
-import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Border from "@/public/image/graphics/orangeblue.jpg";
 import Image from "next/image";
-import "./Dialog.css"
+import "./Dialog.css";
 
 const ViewTopicDetailDialog = ({ topic, text }) => {
   const router = useRouter();
@@ -51,7 +51,6 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
     }));
   };
   const handleSubmit = async () => {
-  
     try {
       const response = await fetch(
         `http://localhost:3000/api/topics/${edit?._id}`,
@@ -64,7 +63,6 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
       if (!response.ok) {
         throw new Error("Topic was not updated");
       }
-  
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +75,6 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
     <div>
       <div className="btn-dialog">
         <h4 onClick={handleClickOpen}>{text}</h4>
-
       </div>
       <Dialog
         open={open}
@@ -95,24 +92,37 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
           },
         }}
       >
-       <Image src={Border} alt="oranglebluebackground" className="border-image"/>
-        
-          <DialogTitle><span style={{textDecoration:"underline", fontSize:"25px"}}><strong>{topic?.title}</strong></span> </DialogTitle>
-          <DialogContent>
-            <DialogContentText>Event: Atlanta Tech Con 2025</DialogContentText>
-            {isEditing ? (
-              <EditTopicForm edit={edit} handleChange={handleChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange} />
-            ) : (
-              <TopicDetailsView topic={topic} />
-            )}
-          </DialogContent>
- 
+        <Image
+          src={Border}
+          alt="oranglebluebackground"
+          className="border-image"
+        />
+
+        <DialogTitle>
+          <span style={{ textDecoration: "underline", fontSize: "25px" }}>
+            <strong>{topic?.title}</strong>
+          </span>{" "}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>Event: Atlanta Tech Con 2025</DialogContentText>
+          {isEditing ? (
+            <EditTopicForm
+              edit={edit}
+              handleChange={handleChange}
+              handleDateChange={handleDateChange}
+              handleTimeChange={handleTimeChange}
+            />
+          ) : (
+            <TopicDetailsView topic={topic} />
+          )}
+        </DialogContent>
+
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           {isEditing ? (
-            <Button onClick={handleSubmit}>SAVE</Button>
+            <Button onClick={handleSubmit}>Save</Button>
           ) : (
-            <Button onClick={() => setIsEditing(true)}>EDIT</Button>
+            <Button onClick={() => setIsEditing(true)}>Edit</Button>
           )}
         </DialogActions>
       </Dialog>

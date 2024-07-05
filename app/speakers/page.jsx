@@ -1,12 +1,14 @@
 import React from 'react'
 import SpeakersList from '../components/SpeakersList/SpeakersList'
+import { Container } from '@mui/joy'
+import PageTitle from '../components/PageTitle/PageTitle'
 
 const SpeakersPage = () => {
   return (
-    <div>
-        Speakers Page
+    <Container fixed>
+        <PageTitle heading="Speakers"/>
         <SpeakersList />
-    </div>
+    </Container >
 
 )}
 

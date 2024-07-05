@@ -1,5 +1,8 @@
 import React from 'react'
 import Speaker from '../Speaker/Speaker';
+import SearchSpeakers from '../SearchBar/SearchSpeakers'
+
+
 const getSpeakers = async () => {
     try {
         const response = await fetch("http://localhost:3000/api/speakers", {
@@ -15,10 +18,13 @@ const getSpeakers = async () => {
 }
 
 const SpeakersList = async () => {
-    const speakersData = await getSpeakers();    
+    const speakersData = await getSpeakers(); 
+    console.log("SPEAKERS::::")   
+    console.log(speakersData)
     return (
         <div>
-            SpeakersList            
+            <SearchSpeakers items={speakersData.speakers} />
+                    
             {speakersData?.speakers?.map(speaker => 
                 <Speaker key={speaker?._id} speaker={speaker} />)}
         </div>
