@@ -4,18 +4,21 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
 
-    const {
-        firstname,
-        lastname,
-        email,
-        title,
-        company,
-        phone,
-        session,
-        presentation,
-        aboutme,
-        photo
-    } = await request.json();
+    // const {
+    //     firstname,
+    //     lastname,
+    //     email,
+    //     title,
+    //     company,
+    //     phone,
+    //     session,
+    //     presentation,
+    //     aboutme,
+    //     photo
+    // } = await request.json();
+    const leon = await request.json()
+    console.log(leon)
+
     const speaker = await Speaker.create({
         firstname,
         lastname,

@@ -1,17 +1,11 @@
 "use client"
 import React, { useState } from 'react'
-import "./Login.css"
-import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Button from '@mui/joy/Button';
-import Link from '@mui/joy/Link';
-import { signIn } from "next-auth/react"
-import { Container } from '@mui/material';
+import SpeakersList from '../components/SpeakersList/SpeakersList'
+import { Button, Container, FormControl, Input, Sheet, Typography } from '@mui/joy'
+import { FormLabel } from '@mui/material'
+import Link from 'next/link'
 
-const Login = () => {
+const SpeakerSignUp = () => {
   const [formData, setFormData] = useState({ email: "da@email.com", password: "admin123" });
 
   const handleChange = (e) => {
@@ -27,14 +21,13 @@ const Login = () => {
       email: formData.email,
       password: formData.password,
       redirect: true,
-      callbackUrl: "/"
+      callbackUrl: "/speakerdashboard"
 
     })
 
     if (!response || response.error) {
       setError(response?.error || "Failed to sign in");
     }
-
   }
   return (
     <Container fixed>
@@ -58,7 +51,7 @@ const Login = () => {
           >
             <div>
               <Typography level="h4" component="h1">
-                <b>Welcome!</b>
+                <b>Welcome Speaker!</b>
               </Typography>
               <Typography level="body-sm">Sign in to continue.</Typography>
             </div>
@@ -86,7 +79,7 @@ const Login = () => {
             </FormControl>
             <Button onClick={handleSubmit} sx={{ mt: 1 /* margin top */ }}>Log in</Button>
             <Typography
-              endDecorator={<Link href="/signup">Sign up</Link>}
+              endDecorator={<Link href="/speakerssignup">Speaker Sign up</Link>}
               fontSize="sm"
               sx={{ alignSelf: 'center' }}
             >
@@ -99,4 +92,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default SpeakerSignUp

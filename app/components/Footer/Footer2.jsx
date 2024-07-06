@@ -1,7 +1,7 @@
 import React from "react";
 import ItemsContainer from "./ItemsContainer";
 import SocialIcons from "./SocialIcons";
-
+import "./Footer.css"
 const Footer2 = () => {
   return (
     <footer className="bg-gray-900 text-white">
