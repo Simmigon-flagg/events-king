@@ -18,25 +18,32 @@ const Speakers = () => {
     console.log("ids:-", rowIds)
     console.log(user)
   };
-  const handleSelection = async () => {
-    console.log(user?.id)
-    const response = await fetch(`/api/users/${user?.id}`)
-    const data = await response.json()
-    const events = data.user.events;
-    const update = [...ids, ...events]
+  const handleSelection = async () => { 
+    try {
+      const response = await fetch(`/api/users/${user?.id}`);
+      if (!response.ok) throw new Error("Network response was not ok");
+      
+      const data = await response.json();
+      const events = data.user.events;
 
-    data.user.events = update
-    const updateResponse = await fetch(`/api/users/${user?.id}`, {
-      method: "PUT",
-      headers: {
-        "Context-Type": "application/json",
-      },
-      body: JSON.stringify({ events: data?.user.events })
-    })
-
-    const updatedJSONResponse = await updateResponse.json()
-    console.log(updatedJSONResponse)
+      const update = Array.from(new Set([...ids, ...events]));
+      data.user.events = update;
+  
+      const updateResponse = await fetch(`/api/users/${user?.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ events: data.user.events })
+      });
+  
+      if (!updateResponse.ok) throw new Error("Update response was not ok");
+  
+    } catch (error) {
+      console.error("Fetch or Update error: ", error);
+    }
   };
+  
   useEffect(() => {
     const fetch = async () => {
       const user = await getSession()
