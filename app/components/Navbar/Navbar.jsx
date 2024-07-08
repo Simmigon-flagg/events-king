@@ -1,31 +1,28 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Navbar.css';
 import Link from 'next/link';
 import { signOut, getSession } from "next-auth/react"
 import Clock from '@/lib/Clock';
+import { useRouter } from 'next/navigation';
+import { UsersContext } from '@/context/UsersContext';
 
 
 const Navbar = () => {
-
+    const { users, setUsers } = useContext(UsersContext)
     const [isOpen, setIsOpen] = useState(false);
     const [user, setUser] = useState(null)
+    const {router} = useRouter()
+
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
     const onSignOut = async () => {
-        signOut()
+        setUser(null)
+        await signOut()
+        router.replace("/")
     }
-
-    useEffect(() => {
-        const fetch = async () => {
-            const user = await getSession()
-
-            setUser(user?.user)
-        }
-        fetch()
-    }, [])
 
     return (
         <nav className="navbar">
@@ -40,21 +37,23 @@ const Navbar = () => {
             <div onClick={toggleMenu} className={`navbar-links ${isOpen ? 'open' : ''}`}>
                 <Link href="/">Home</Link>
                 <Link href="/about">About</Link>
-                <Link href="/login">Login/Registar</Link>
                 <Link href="/checkin">Check In</Link>
                 <Link href="/testpage">Test Page</Link>
-                {user?.name ?
+                {users?.name ?
                     <>
                         <Link href="/speakers">Speakers</Link>
                         <Link href="/events">Events</Link>
                         <Link href="/topics">Topics</Link>
-                        <button onClick={onSignOut}>Sign out</button>
                     </>
                     :
                     <>
-                    </>}
+                    <Link href="/" onClick={onSignOut}>Sign out</Link>
+                    <Link href="/login">Login/Registar</Link>
+                    <Link href="/registration/speakers">Speaker registration</Link>
 
-                <Link href="/">{user?.name}</Link>
+                    </>}
+                    <Link href="/">{users?.name}</Link>
+
 
             </div>
             <div className="navbar-toggle" onClick={toggleMenu}>

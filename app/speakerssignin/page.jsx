@@ -1,70 +1,37 @@
-"use client";
+"use client"
+import React, { useState } from 'react'
+import SpeakersList from '../components/SpeakersList/SpeakersList'
+import { Button, Container, FormControl, Input, Sheet, Typography } from '@mui/joy'
+import { FormLabel } from '@mui/material'
+import Link from 'next/link'
 
-import React, { useContext, useState } from 'react';
-import "./Login.css";
-import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Button from '@mui/joy/Button';
-import Link from '@mui/joy/Link';
-import { getSession, signIn } from "next-auth/react";
-import { Container } from '@mui/material';
-import { useRouter } from 'next/navigation';
-import { UsersContext } from '@/context/UsersContext';
-
-const Login = () => {
+const SpeakerSignUp = () => {
   const [formData, setFormData] = useState({ email: "da@email.com", password: "admin123" });
-  const [error, setError] = useState(null);
-  const { users, setUsers } = useContext(UsersContext);
-  const router = useRouter();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
+
     setFormData(prev => ({
       ...prev,
       [name]: value
-    }));
-  };
-
+    }))
+  }
   const handleSubmit = async () => {
     const response = await signIn("credentials", {
       email: formData.email,
       password: formData.password,
-      redirect: false,
-    });
+      redirect: true,
+      callbackUrl: "/speakerdashboard"
+
+    })
 
     if (!response || response.error) {
       setError(response?.error || "Failed to sign in");
-      return;
     }
-
-    const data = await getSession();
-    if (data && data.user) {
-      try {
-        const res = await fetch(`/api/users/${data.user.id}`);
-        if (!res.ok) throw new Error("Network response was not ok");
-
-        const applicationData = await res.json();
-        setUsers((prev) => ({
-          ...prev,
-          user: applicationData.user
-        }
-          
-          ));
-        
-
-        router.push("/");
-      } catch (error) {
-        setError(error.message);
-        console.error("Fetch user data error: ", error);
-      }
-    }
-  };
-
+  }
   return (
     <Container fixed>
+
       <div className='login'>
         <main>
           <Sheet
@@ -84,13 +51,14 @@ const Login = () => {
           >
             <div>
               <Typography level="h4" component="h1">
-                <b>Welcome!</b>
+                <b>Welcome Speaker!</b>
               </Typography>
               <Typography level="body-sm">Sign in to continue.</Typography>
             </div>
             <FormControl>
               <FormLabel>Email</FormLabel>
               <Input
+
                 onChange={handleChange}
                 name="email"
                 type="email"
@@ -101,6 +69,7 @@ const Login = () => {
             <FormControl>
               <FormLabel>Password</FormLabel>
               <Input
+
                 onChange={handleChange}
                 value={formData.password}
                 name="password"
@@ -109,9 +78,8 @@ const Login = () => {
               />
             </FormControl>
             <Button onClick={handleSubmit} sx={{ mt: 1 /* margin top */ }}>Log in</Button>
-            {error && <Typography color="error">{error}</Typography>}
             <Typography
-              endDecorator={<Link href="/signup">Sign up</Link>}
+              endDecorator={<Link href="/speakerssignup">Speaker Sign up</Link>}
               fontSize="sm"
               sx={{ alignSelf: 'center' }}
             >
@@ -121,7 +89,7 @@ const Login = () => {
         </main>
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default Login;
+export default SpeakerSignUp

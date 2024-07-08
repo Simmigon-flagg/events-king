@@ -12,7 +12,10 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+
+     events: [{ type: Schema.Types.ObjectId, ref: "Events", default: [] }], // Event is optional, default to an empty array
+     topics: [{ type: Schema.Types.ObjectId, ref: "Topic", default: [] }], // Topics is optional, default to an empty array
 }, {
     timestamps: true,
 }

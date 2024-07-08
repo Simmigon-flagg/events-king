@@ -11,8 +11,9 @@ const speakerSchema = new Schema({
     company: String,
     description: String,    
     presentation: String,
-    topics: [{ type: Schema.Types.ObjectId, ref: "Topic", default: [] }], // Topics is optional, default to an empty array
-    image: { type: Schema.Types.ObjectId, ref: "Image" } // Reference to the Image model
+    topics: [{ type: Schema.Types.ObjectId, ref: "Topic", default: [] }],     
+    image: { type: Schema.Types.ObjectId, ref: "Image" } 
+    
 }, {
     timestamps: true,
 });

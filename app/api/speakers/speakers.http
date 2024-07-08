@@ -2,16 +2,7 @@ POST http://localhost:3000/api/speakers HTTP/1.1
 content-type: application/json
 
 {
-    "firstname": "Speaker 2 TEST",
-    "lastname": "String",
-    "email": "String",
-    "title": "String",
-    "company": "String",
-    "phone": "String",
-    "session": "String",
-    "presentation": "String",
-    "aboutme": "String",
-    "photo": "image"
+    "email": "String"
 }
 
 ### get all speakers
@@ -25,8 +16,15 @@ PUT http://localhost:3000/api/speakers HTTP/1.1
 content-type: application/json
 
 {
-    "_id":"6682be2309748d3822e17767",
-    "firstname": "CRUD UPDATE"
+    "firstname": "Speaker 2 TEST",
+    "lastname": "String",    
+    "title": "String",
+    "company": "String",
+    "phone": "String",
+    "session": "String",
+    "presentation": "String",
+    "aboutme": "String",
+    "photo": "image"
 }
 
 ###

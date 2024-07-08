@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import "./Sign-up.css"
 import Sheet from '@mui/joy/Sheet';
 import CssBaseline from '@mui/joy/CssBaseline';
@@ -10,14 +10,41 @@ import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import { Container } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
-const Login = () => {
+const SignUp = () => {
+  const router = useRouter();
+  const [data, setData] = useState()
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value)
+    setData((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+
+  }
+  const handleSumbit = async () => {    
+
+
+
+    // Uncomment the following lines to use the fetch API
+    const response = await fetch("/api/users", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    console.log(response)
+    router.replace("/login")
+  };
+
   return (
     <Container fixed>
-
       <div className='login'>
         <main>
-
           <CssBaseline />
           <Sheet
             sx={{
@@ -40,47 +67,51 @@ const Login = () => {
               </Typography>
               <Typography level="body-sm">Sign in to continue.</Typography>
             </div>
-            <FormControl>
+            <>
+
               <FormLabel>Email</FormLabel>
               <Input
-                // html input attribute
+                onChange={handleChange}
+                value={data?.email}
                 name="email"
                 type="email"
                 placeholder="johndoe@email.com"
               />
-            </FormControl>
-            <FormControl>
+
+
               <FormLabel>User Name</FormLabel>
               <Input
-                // html input attribute
-                name="username"
+                onChange={handleChange}
+                value={data?.name}
+                name="name"
                 type="text"
                 placeholder="User Name"
               />
-            </FormControl>
-            <FormControl>
+
+
               <FormLabel>Password</FormLabel>
               <Input
-                // html input attribute
+                onChange={handleChange}
+                value={data?.password}
                 name="password"
                 type="password"
                 placeholder="password"
               />
-            </FormControl>
-            <Button sx={{ mt: 1 /* margin top */ }}>Sign Up</Button>
-            <Typography
-              endDecorator={<Link href="/login">Login</Link>}
-              fontSize="sm"
-              sx={{ alignSelf: 'center' }}
-            >
-              I have an account.
-            </Typography>
+              
+              <Button onClick={handleSumbit} sx={{ mt: 1 /* margin top */ }}>Sign Up</Button>
+              <Typography
+                endDecorator={<Link href="/login">Login</Link>}
+                fontSize="sm"
+                sx={{ alignSelf: 'center' }}
+              >
+                I have an account.
+              </Typography>
+            </>
           </Sheet>
         </main>
-
       </div>
     </Container>
-  )
+  );
 }
 
-export default Login
+export default SignUp;

@@ -125,6 +125,7 @@ const EventFormDialog = ({ text }) => {
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
             const email = formJson.email;
+            
             handleClose();
           },
         }}

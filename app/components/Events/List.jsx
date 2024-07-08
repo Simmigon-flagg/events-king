@@ -16,7 +16,7 @@ const getEvents = async () => {
 }
 const EventsList = async () => {
   const { events } = await getEvents();
-
+  console.log(events)
   return (
     <SearchEvents items={events}/>
 
