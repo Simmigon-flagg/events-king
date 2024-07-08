@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <ThemeProvider>
-        <body className={inter.className} style={{ display: "flex", flexDirection: "column", gap: 100}}>
+        <body className={inter.className} style={{ display: "flex", flexDirection: "column",  gap: 100}}>
           <CssBaseline />
             <Navbar />                
                   {children}                      

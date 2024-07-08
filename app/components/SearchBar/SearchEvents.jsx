@@ -12,7 +12,7 @@ import EventFormDialog from "../Dialogs/EventFormDialog";
 import EditEventDetailsDialog from "../Dialogs/EditEventDetailsDialog";
 import Dates from "@/lib/Dates";
 
-const SearchBar = ({ items, id }) => {
+const SearchBar = ({ items, id , setUserSelection, user }) => {
   const router = useRouter();
   const [ids, setIds] = useState([]);
 
@@ -24,7 +24,9 @@ const SearchBar = ({ items, id }) => {
     setIds(rowIds);
     console.log()
     console.log("ids:-", rowIds)
+    console.log(user)
   };
+  
   const handleDeleteSelected = async () => {
 
     try {

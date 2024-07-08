@@ -116,7 +116,7 @@ const SearchBar = ({ items, id }) => {
 
     };
 
-    const filteredItems = items.filter(item => {
+    const filteredItems = items?.filter(item => {
         if (searchTerm.title === "" || searchTerm.title == null) {
             return item;
         }
@@ -172,7 +172,7 @@ const SearchBar = ({ items, id }) => {
         },
     ];
 
-    const rows = filteredItems.map((item, index) => {
+    const rows = filteredItems?.map((item, index) => {
         return {
             id: item._id, // Ensure IDs start from 1
             rowNumber: index + 1, // Ensure IDs start from 1
