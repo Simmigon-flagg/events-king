@@ -30,8 +30,7 @@ const Home = () => {
   const handleCreateSpeaker = (data, user, speaker) => {
 
 
-    console.log(speaker)
-    console.log(user)
+    
 
   }
   const handleCreateSponsor = (data, user, df) => {

@@ -14,7 +14,13 @@ export async function PUT(request, { params }) {
 export async function GET(request, { params }) {
     const { id } = params;
     await connectMongoDB();
-    const user = await User.findOne({ _id: id });
-
+    const userData = await User.findOne({ _id: id });
+    const user = {
+        _id: userData._id,
+        name: userData.name,
+        email: userData.email,
+        events: userData.events,
+        topics: userData.topics,
+    }
     return NextResponse.json({ user }, { status: 200 })
 }

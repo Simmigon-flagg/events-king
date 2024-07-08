@@ -24,7 +24,7 @@ const SearchBar = ({ items, id , setUserSelection, user }) => {
     setIds(rowIds);
     console.log()
     console.log("ids:-", rowIds)
-    console.log(user)
+    
   };
   
   const handleDeleteSelected = async () => {

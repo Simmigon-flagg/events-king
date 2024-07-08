@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar/Navbar"
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@/context/ThemeContext';
 import Footer2 from "./components/Footer/Footer2";
+import UsersContextProvider from "@/context/UsersContext";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,13 +18,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <ThemeProvider>
-        <body className={inter.className} style={{ display: "flex", flexDirection: "column",  gap: 100}}>
-          <CssBaseline />
-            <Navbar />                
-                  {children}                      
+        <UsersContextProvider>
+
+          <body className={inter.className} style={{ display: "flex", flexDirection: "column", gap: 100 }}>
+            <CssBaseline />
+            <Navbar />
+            {children}
             <Footer2 />
-            
-        </body>
+
+          </body>
+
+        </UsersContextProvider>
       </ThemeProvider>
     </html>
   );

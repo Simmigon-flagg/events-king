@@ -30,13 +30,13 @@ const Login = () => {
   };
 
   const handleCreateSpeaker = async (data, user) => {
-    console.log(data)
+    
     const speaker = {
       ...user,
       ...data
       
     }
-    console.log(speaker)
+ 
     // 
     await fetch("/api/speakers", {
       method: "POST",
