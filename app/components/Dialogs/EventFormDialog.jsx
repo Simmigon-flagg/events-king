@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
+import {Button} from "@mui/joy";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -111,8 +111,8 @@ const EventFormDialog = ({ text }) => {
   return (
     <div className="dialog-container">
       <div className="btn-dialog">
-        <Button variant="contained" onClick={handleClickOpen}>
-          {text} <AddCircleIcon color="green" />
+        <Button onClick={handleClickOpen}>
+          {text} <AddCircleIcon />
         </Button>
       </div>
       <Dialog
