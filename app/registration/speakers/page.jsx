@@ -1,49 +1,61 @@
 "use client";
 
-import SearchBar from '@/app/components/SearchBar/SearchBar';
+import { UsersContext } from '@/context/UsersContext';
 import Dates from '@/lib/Dates';
 import Times from '@/lib/Times';
-import { Box, Button, Input } from '@mui/joy';
+import { Box, Button, Input, Skeleton } from '@mui/joy';
+import { Paper } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import { getSession } from 'next-auth/react';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 const Speakers = () => {
-  const [user, setUser] = useState()
+  const { users, setUsers, handleRemove } = useContext(UsersContext);
+
   const [ids, setIds] = useState([]);
+
   const getIds = (rowIds) => {
     setIds(rowIds);
-    console.log()
-    console.log("ids:-", rowIds)
-    console.log(user)
+    console.log("ids:-", rowIds);
   };
+
   const handleSelection = async () => {
-    console.log(user?.id)
-    const response = await fetch(`/api/users/${user?.id}`)
-    const data = await response.json()
-    const events = data.user.events;
-    const update = [...ids, ...events]
+    try {
+      const response = await fetch(`/api/users/${users?.user?._id}`);
+      if (!response.ok) throw new Error("Network response was not ok");
 
-    data.user.events = update
-    const updateResponse = await fetch(`/api/users/${user?.id}`, {
-      method: "PUT",
-      headers: {
-        "Context-Type": "application/json",
-      },
-      body: JSON.stringify({ events: data?.user.events })
-    })
+      const data = await response.json();
+      const existingEvents = data.user.events || [];
 
-    const updatedJSONResponse = await updateResponse.json()
-    console.log(updatedJSONResponse)
-  };
-  useEffect(() => {
-    const fetch = async () => {
-      const user = await getSession()
-      setUser(user?.user)
+      // Merge existing IDs with new IDs and remove duplicates using Set
+      const updatedEvents = Array.from(new Set([...existingEvents, ...ids]));
+
+      // Update the user's context with the new events
+      setUsers((prevUsers) => ({
+        ...prevUsers,
+        user: {
+          ...prevUsers.user,
+          events: updatedEvents
+        }
+      }));
+
+      const updateResponse = await fetch(`/api/users/${users?.user?._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ events: updatedEvents })
+      });
+
+      if (!updateResponse.ok) throw new Error("Update response was not ok");
+
+      const updatedJSONResponse = await updateResponse.json();
+      console.log("Update successful: ", updatedJSONResponse);
+
+    } catch (error) {
+      console.error("Fetch or Update error: ", error);
     }
-    fetch()
-  }, [])
+  };
 
   const [events, setEvents] = useState([]);
   const [searchTerm, setSearchTerm] = useState({
@@ -86,13 +98,11 @@ const Speakers = () => {
         <>
           {<Link href={`/eventdetails/${params.row._id}`}>{params.row.title}</Link>}
         </>
-
       ),
-
     },
     { field: 'description', headerName: 'Description', width: 150 },
     { field: 'location', headerName: 'Location', width: 150 },
-    { field: 'speaker', headerName: 'Speaker', width: 150 },
+    { field: 'host', headerName: 'Host', width: 150 },
     { field: 'date', headerName: 'Date', width: 150 },
     { field: 'time', headerName: 'Time', width: 150 },
   ];
@@ -103,15 +113,32 @@ const Speakers = () => {
     rowNumber: index + 1,
     title: item.title,
     description: item.description,
-    speaker: item.speaker,
+    host: item.host,
     date: Dates(item.date, item.time),
     time: Times(item.date, item.time),
     location: item.location
   }));
 
+
   return (
     <div>
-      <h1>Speakers Registration {user?.name}</h1>
+      <h1>Speakers Registration </h1>
+      {users !== undefined ?
+
+        <>
+          {users?.user?.events ? (
+            <>
+              {users?.user?.events.map((event_id) => (<div key={event_id} ><Link href={`/eventdetails/${event_id}`}>{event_id}</Link> <Button onClick={() => handleRemove(event_id)}></Button></div>))}
+            </>
+
+          ) : (
+
+            <Skeleton width={200} height={100} />
+          )}</>
+        :
+        <p>No events</p>
+
+      }
       <Input
         className="search-session-input"
         type="text"
@@ -120,7 +147,7 @@ const Speakers = () => {
         placeholder="Search Title"
         onChange={handleSearch}
       />
-      <Button onClick={() => handleSelection()} >add event</Button>
+      <Button onClick={() => handleSelection()}>Add Event</Button>
 
       <Box sx={{ height: 400, width: '100%' }}>
         <DataGrid
@@ -135,7 +162,7 @@ const Speakers = () => {
           }}
           pageSizeOptions={[6]}
           checkboxSelection
-          onRowSelectionModelChange={(selectedId) => getIds(selectedId)}
+          onRowSelectionModelChange={(selectedIds) => getIds(selectedIds)}
         />
       </Box>
     </div>

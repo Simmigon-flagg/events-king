@@ -16,8 +16,7 @@ export async function POST(request) {
     //     aboutme,
     //     photo
     // } = await request.json();
-    const leon = await request.json()
-    console.log(leon)
+  
 
     const speaker = await Speaker.create({
         firstname,

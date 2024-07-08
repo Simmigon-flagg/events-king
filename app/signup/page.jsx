@@ -27,7 +27,7 @@ const SignUp = () => {
   }
   const handleSumbit = async () => {    
 
-    console.log(data);
+
 
     // Uncomment the following lines to use the fetch API
     const response = await fetch("/api/users", {
