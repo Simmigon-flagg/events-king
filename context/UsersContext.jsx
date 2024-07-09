@@ -41,10 +41,10 @@ export const UsersContextProvider = ({ children }) => {
   }
 
   const handleRemove = async (event_id) => {
-   // alert("Removed Id "+ event_id)
-    // console.log(users?.user?.events)
+    // alert("Removed Id " + event_id)
+    console.log(users?.user?.events)
     const removedId = users?.user?.events.filter((id) => id !== event_id)
-  
+
 
     console.log(users?.user)
     const remove = await fetch(`/api/users/${users?.user?._id}`, {
@@ -52,17 +52,17 @@ export const UsersContextProvider = ({ children }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ events: removedId })
     })
-    
+
     const data = await remove.json()
     console.log(data)
-      setUsers(prev => ({
+    setUsers(prev => ({
       ...prev,
       user: {
         ...prev.user,
         events: data.editedUser.events
       }
     }))
-  
+
   }
 
   const contextValue = { users, setUsers, userEvents, signOutUser, handleRemove };
