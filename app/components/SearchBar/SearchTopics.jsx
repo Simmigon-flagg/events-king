@@ -11,6 +11,7 @@ import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
 import ChipAvatar from "../Chips/ChipAvatar";
 import Dates from "@/lib/Dates";
 import Times from "@/lib/Times";
+import NewSpeakerFormDialog from "../Dialogs/NewSpeakerFormDialog";
 
 
 const SearchBar = ({ items, id }) => {
@@ -194,7 +195,7 @@ const SearchBar = ({ items, id }) => {
           onChange={handleSearch}
         />
         <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length === 0}><FaTrash style={{ color: ids.length === 0 ? 'lightGray' : 'red' }} /></Button>
-        <AddTopicFormDialog text="NEW" />
+        <NewSpeakerFormDialog text="NEW" />
       </div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid

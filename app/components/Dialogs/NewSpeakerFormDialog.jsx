@@ -13,6 +13,7 @@ import "./Dialog.css";
 import Border from "@/public/image/graphics/orangeblue.jpg";
 import Image from "next/image";
 import NewSpeakerForm from "../Forms/NewSpeakerForm";
+import { Avatar } from "@mui/material";
 
 const NewSpeakerFormDialog = ({text}) => {
   const router = useRouter();
@@ -41,19 +42,19 @@ const NewSpeakerFormDialog = ({text}) => {
     }));
   };
 
-  const handleDateChange = (date) => {
-    setFormData((prev) => ({
-      ...prev,
-      date: date ? date.format("YYYY-MM-DD") : null,
-    }));
-  };
+  // const handleDateChange = (date) => {
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     date: date ? date.format("YYYY-MM-DD") : null,
+  //   }));
+  // };
 
-  const handleTimeChange = (time) => {
-    setFormData((prev) => ({
-      ...prev,
-      time: time ? time.format("HH:mm") : null,
-    }));
-  };
+  // const handleTimeChange = (time) => {
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     time: time ? time.format("HH:mm") : null,
+  //   }));
+  // };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -85,7 +86,7 @@ const NewSpeakerFormDialog = ({text}) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/api/topics", {
+      const response = await fetch("http://localhost:3000/api/speakers", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -94,12 +95,15 @@ const NewSpeakerFormDialog = ({text}) => {
       });
       if (response.ok) {
         setFormData({
+          firstname: "",
+          lastname: "",
           title: "",
+          company: "",
+          email: "",
+          phone: "",
           description: "",
-          speaker: "",
-          date: null,
-          time: null,
-          location: "",
+          topics: [],
+          presentation: [],
           image: null,
         });
         const { topic } = await response.json();
@@ -140,15 +144,15 @@ const NewSpeakerFormDialog = ({text}) => {
       }}
     >
       <Image src={Border} alt="oranglebluebackground" className="border-image" />
-      <DialogTitle>New Speaker</DialogTitle>
-      <DialogContent>
+      <DialogTitle>Add New Speaker</DialogTitle>
+    
+      <DialogContent sx={{display:"flex", flexDirection:"column",  alignItems: 'center'}}>
+      <Avatar variant="solid" sx={{ width: 60, height: 60 }}/> <p style={{textDecoration:"underline", color:"blue", fontSize:"12px"}}>Edit</p>
         <DialogContentText>
           <NewSpeakerForm
             formData={formData}
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
-            handleDateChange={handleDateChange}
-            handleTimeChange={handleTimeChange}
           />
         </DialogContentText>
       </DialogContent>

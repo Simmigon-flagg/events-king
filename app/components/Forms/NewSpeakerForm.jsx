@@ -1,104 +1,96 @@
 "use client";
 import React from "react";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
+import { FormLabel, Input, Textarea } from "@mui/joy";
 import "./Form.css";
 
-const NewSpeakerForm = ({
-  formData,
-  handleChange,
-  handleMultiChange,
-  handleDateChange,
-  handleTimeChange,
-}) => {
+const NewSpeakerForm = ({ formData, handleChange, handleMultiChange }) => {
   return (
     <div className="form-container">
       <div className="form-box">
-       
         <div className="wrapper-inline">
-        <TextField
-          id="topics-form-input"
-          label="First Name"
-          type="text"
-          name="firstname"
-          value={formData.firstname}
-          onChange={handleChange}
-          sx={{ marginBottom: "10px" }}
-        />
+          <div className="input-field">
+            <FormLabel>First Name</FormLabel>
+            <Input
+              type="text"
+              onChange={handleChange}
+              value={formData.firstname}
+              name="firstname"
+              sx={{ width: "230px" }}
+            />
+          </div>
 
-          <TextField
-            id="topics-form-input"
-            label="Last Name"
-            type="text"
-            name="lastname"
-            value={formData.lastname}
-            onChange={handleChange}
-            sx={{ width: "230px" }}
-          />
-
-         
+          <div className="input-field">
+            <FormLabel>Last Name</FormLabel>
+            <Input
+              type="text"
+              onChange={handleChange}
+              value={formData.lastname}
+              name="lastname"
+              sx={{ width: "230px" }}
+            />
+          </div>
         </div>
 
         <div className="wrapper-inline">
-
-        <TextField
-          id="topics-form-input"
-          label="Company/Organization"
-          type="text"
-          name="company"
-          value={formData.company}
-          onChange={handleChange}
-          sx={{ width: "230px" }}
-        />
-        <TextField
-          id="topics-form-input"
-          label="Company/Organization"
-          type="text"
-          name="company"
-          value={formData.company}
-          onChange={handleChange}
-          sx={{ width: "230px" }}
-        />
-     </div>
-
-      {/* <div className="wrapper-inline">
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={["DatePicker"]}>
-            <DatePicker
-              id="topics-form-input"
-              label="Date"
-              value={formData.date ? dayjs(formData.date) : null}
-              onChange={handleDateChange}
+          <div className="input-field">
+            <FormLabel>Title/Occupation/Role</FormLabel>
+            <Input
+              type="text"
+              onChange={handleChange}
+              value={formData.title}
+              name="title"
+              sx={{ width: "230px" }}
             />
-          </DemoContainer>
-        </LocalizationProvider>
+          </div>
 
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={["TimePicker"]}>
-            <TimePicker
-              id="topics-form-input"
-              label="Time"
-              value={formData.time ? dayjs(formData.time, "HH:mm") : null}
-              onChange={handleTimeChange}
+          <div className="input-field">
+            <FormLabel>Company</FormLabel>
+            <Input
+              type="text"
+              onChange={handleChange}
+              value={formData.company}
+              name="company"
+              sx={{ width: "230px" }}
             />
-          </DemoContainer>
-        </LocalizationProvider>
-      </div> */}
+          </div>
+        </div>
+        <div className="wrapper-inline">
+          <div className="input-field">
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="text"
+              onChange={handleChange}
+              value={formData.email}
+              name="email"
+              sx={{ width: "230px" }}
+            />
+          </div>
 
-      <TextField
-        id="topics-form-input"
-        label="Description"
-        multiline
-        rows={4}
-        value={formData.description}
-        onChange={handleMultiChange}
-      />
-    </div>
+          <div className="input-field">
+            <FormLabel>Phone</FormLabel>
+            <Input
+              type="text"
+              onChange={handleChange}
+              value={formData.phone}
+              name="phone"
+              sx={{ width: "230px" }}
+            />
+          </div>
+        </div>
+
+        <div className="input-field">
+          <FormLabel>Description</FormLabel>
+          <Textarea
+            minRows={4}
+            maxRows={5}
+            type="text"
+            onChange={handleChange}
+            value={formData.description}
+            name="description"
+          />
+        </div>
+      </div>
     </div>
   );
 };
