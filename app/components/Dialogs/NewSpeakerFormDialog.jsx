@@ -19,12 +19,15 @@ const NewSpeakerFormDialog = ({text}) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
     title: "",
+    company: "",
+    email: "",
+    phone: "",
     description: "",
-    speaker: "",
-    date: null,
-    time: null,
-    location: "",
+    topics: [],
+    presentation: [],
     image: null,
   });
 
@@ -64,6 +67,7 @@ const NewSpeakerFormDialog = ({text}) => {
     setOpen(false);
   };
   const handleDeleteTopic = async (topic_id) => {
+
     try {
       const response = await fetch(`/api/events/${event_id}`, {
         method: "PUT",
@@ -84,7 +88,6 @@ const NewSpeakerFormDialog = ({text}) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch("http://localhost:3000/api/speakers", {
         method: "POST",
@@ -106,11 +109,11 @@ const NewSpeakerFormDialog = ({text}) => {
           presentation: [],
           image: null,
         });
-        const { topic } = await response.json();
+        const { speaker } = await response.json();
 
-        handleDeleteTopic(topic?._id);
+        handleDeleteTopic(speaker?._id);
       } else {
-        throw new Error("Failed to create a topic");
+        throw new Error("Failed to create a speaker");
       }
     } catch (error) {
       console.log(error);

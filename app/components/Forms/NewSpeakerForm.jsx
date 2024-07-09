@@ -85,7 +85,7 @@ const NewSpeakerForm = ({ formData, handleChange, handleMultiChange }) => {
             minRows={4}
             maxRows={5}
             type="text"
-            onChange={handleChange}
+            onChange={handleMultiChange}
             value={formData.description}
             name="description"
           />
