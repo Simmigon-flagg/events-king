@@ -128,7 +128,7 @@ const Speakers = () => {
         <>
           {users?.user?.events ? (
             <>
-              {users?.user?.events.map((event_id) => (<div key={event_id} ><Link href={`/eventdetails/${event_id}`}>{event_id}</Link> <Button onClick={() => handleRemove(event_id)}></Button></div>))}
+             <Link href={`/eventdetails/${event_id}`}>{ events.map(event => {if(event._id === event_id){ return event.title}})}</Link>
             </>
 
           ) : (

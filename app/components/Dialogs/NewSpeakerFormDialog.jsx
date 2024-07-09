@@ -26,8 +26,8 @@ const NewSpeakerFormDialog = ({text}) => {
     email: "",
     phone: "",
     description: "",
-    topics: [],
-    presentation: [],
+    topics: null,
+    presentation: null,
     image: null,
   });
 
@@ -105,13 +105,15 @@ const NewSpeakerFormDialog = ({text}) => {
           email: "",
           phone: "",
           description: "",
-          topics: [],
-          presentation: [],
+          topics: null,
+          presentation: null,
           image: null,
+          
         });
-        const { speaker } = await response.json();
+        const { speakers } = await response.json();
+        console.log(speakers.speakers)
 
-        handleDeleteTopic(speaker?._id);
+        // handleDeleteTopic(speaker?._id);
       } else {
         throw new Error("Failed to create a speaker");
       }
@@ -119,6 +121,7 @@ const NewSpeakerFormDialog = ({text}) => {
       console.log(error);
     }
     setOpen(false);
+    router.refresh();
   };
 
   return (

@@ -39,11 +39,11 @@ const Navbar = () => {
                 <Link href="/about">About</Link>
                 <Link href="/checkin">Check In</Link>
                 <Link href="/testpage">Test Page</Link>
+                <Link href="/speakers">Speakers</Link>
+                <Link href="/events">Events</Link>
+                <Link href="/topics">Topics</Link>
                 {users?.name ?
                     <>
-                        <Link href="/speakers">Speakers</Link>
-                        <Link href="/events">Events</Link>
-                        <Link href="/topics">Topics</Link>
                     </>
                     :
                     <>
