@@ -1,25 +1,25 @@
 "use client";
 import React, { useState } from "react";
-import {Button} from "@mui/joy";
+import TopicsForm from "../Forms/TopicsForm";
+import { Button, Tooltip } from "@mui/joy";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import "./Dialog.css";
 import { useRouter } from "next/navigation";
-import EventsForm from "../Forms/EventsForm";
-import Border from "@/public/image/graphics/orangeblue.jpg" 
+import "./Dialog.css";
+import Border from "@/public/image/graphics/orangeblue.jpg"
 import Image from "next/image";
 
-const EventFormDialog = ({ text }) => {
+const NewTopicFormDialog = ({ text, event_id, eventTopic }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    host: "",
+    speaker: "",
     date: null,
     time: null,
     location: "",
@@ -33,7 +33,6 @@ const EventFormDialog = ({ text }) => {
       [name]: value,
     }));
   };
-
   const handleMultiChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -55,13 +54,6 @@ const EventFormDialog = ({ text }) => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      image: e.target.files[0],
-    }));
-  };
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -69,38 +61,52 @@ const EventFormDialog = ({ text }) => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    Object.keys(formData).forEach((key) => {
-      if (key === "topics") {
-        formData[key].forEach((topic) => data.append(key, topic));
-      } else {
-        data.append(key, formData[key]);
-      }
-    });
+  const handleDeleteTopic = async (topic_id) => {
 
     try {
-      const response = await fetch("/api/events", {
-        method: "POST",
-        body: data,
+      const response = await fetch(`/api/events/${event_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ topics: [topic_id, ...eventTopic] }),
       });
 
+      if (!response.ok) {
+        throw new Error("Failed to update event topics");
+      }
+
+      router.refresh();
+    } catch (error) {
+      console.error("Error updating event topics:", error);
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:3000/api/topics", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       if (response.ok) {
         setFormData({
           title: "",
-          host: "",
-          date: "",
-          time: "",
-          location: "",
           description: "",
-          topics: [],
+          speaker: "",
+          date: null,
+          time: null,
+          location: "",
           image: null,
         });
-        router.refresh();
+        const { topic } = await response.json();
+
+        handleDeleteTopic(topic?._id);
       } else {
-        throw new Error("Failed to create a event");
+        throw new Error("Failed to create a topic");
       }
     } catch (error) {
       console.log(error);
@@ -111,9 +117,16 @@ const EventFormDialog = ({ text }) => {
   return (
     <div className="dialog-container">
       <div className="btn-dialog">
-        <Button onClick={handleClickOpen}>
-          {text} <AddCircleIcon />
-        </Button>
+        <Tooltip
+          title="Create a brand new topic."
+          variant="solid"
+          size="lg"
+          placement="top-end"
+        >
+          <Button variant="solid" onClick={handleClickOpen}>
+            {text} <AddCircleIcon color="green" />
+          </Button>
+        </Tooltip>
       </div>
       <Dialog
         open={open}
@@ -122,27 +135,22 @@ const EventFormDialog = ({ text }) => {
           component: "form",
           onSubmit: (event) => {
             event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            
             handleClose();
           },
         }}
       >
-         <Image src={Border} alt="oranglebluebackground" className="border-image"/>
-        <DialogTitle>New Event</DialogTitle>
+        <Image src={Border} alt="oranglebluebackground" className="border-image" />
+        <DialogTitle>New Session</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <EventsForm
+            <TopicsForm
               formData={formData}
-              handleFileChange={handleFileChange}
               handleChange={handleChange}
               handleMultiChange={handleMultiChange}
               handleDateChange={handleDateChange}
               handleTimeChange={handleTimeChange}
             />
-          </DialogContentText>          
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
@@ -155,4 +163,4 @@ const EventFormDialog = ({ text }) => {
   );
 };
 
-export default EventFormDialog;
+export default NewTopicFormDialog;

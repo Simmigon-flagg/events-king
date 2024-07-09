@@ -1,0 +1,20 @@
+.topic-view-dialog-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    border-radius: 10px;
+    border: 1px;
+    min-width: auto;
+    min-height: auto;
+    gap: 15px;
+    
+}
+
+.view-topic-label{
+    font-weight: bold;
+}
+
+.view-topic-info-text{
+    margin-left: 10px;
+    /* margin-bottom: 20px; */
+}

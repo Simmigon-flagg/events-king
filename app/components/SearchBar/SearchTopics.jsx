@@ -11,6 +11,7 @@ import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
 import ChipAvatar from "../Chips/ChipAvatar";
 import Dates from "@/lib/Dates";
 import Times from "@/lib/Times";
+import NewSpeakerFormDialog from "../Dialogs/NewSpeakerFormDialog";
 
 
 const SearchBar = ({ items, id }) => {
