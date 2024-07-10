@@ -97,23 +97,12 @@ const ViewSpeakerDetailDialog = ({ speaker, text }) => {
           }}
         >
           <Avatar variant="solid" sx={{ width: 56, height: 56 }} />
-          {isEditing ? (
-            <p
-              style={{
-                textDecoration: "underline",
-                color: "blue",
-                fontSize: "12px",
-              }}
-            >
-              Edit
-            </p>
-          ) : (
             <span style={{ textDecoration: "underline", fontSize: "25px" }}>
               <strong>
                 {speaker?.firstname} {speaker?.lastname}
               </strong>
             </span>
-          )}
+      
         </DialogTitle>
         <DialogContent>
           <DialogContentText>Speaker Info</DialogContentText>

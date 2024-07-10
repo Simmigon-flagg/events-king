@@ -9,8 +9,16 @@
     gap: 15px;
     
 }
-.input-field{
-    /* TBA */
+
+.add-avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 30px;
+    border: 0.5px solid rgb(239, 234, 234) ;
+    border-radius: 10px;
+
 }
 
 .container-topic-forms{

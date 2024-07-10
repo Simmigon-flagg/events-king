@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { Button, Tooltip } from "@mui/joy";
 import Dialog from "@mui/material/Dialog";
@@ -14,9 +14,12 @@ import Border from "@/public/image/graphics/orangeblue.jpg";
 import Image from "next/image";
 import NewSpeakerForm from "../Forms/NewSpeakerForm";
 import { Avatar } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Badge from "@mui/material/Badge";
 
 const NewSpeakerFormDialog = ({text}) => {
   const router = useRouter();
+  const inputRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstname: "",
@@ -45,19 +48,51 @@ const NewSpeakerFormDialog = ({text}) => {
     }));
   };
 
-  // const handleDateChange = (date) => {
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     date: date ? date.format("YYYY-MM-DD") : null,
-  //   }));
-  // };
 
-  // const handleTimeChange = (time) => {
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     time: time ? time.format("HH:mm") : null,
-  //   }));
-  // };
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      backgroundColor: "#44b700",
+      color: "#44b700",
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      "&::after": {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "50%",
+        animation: "ripple 1.2s infinite ease-in-out",
+        border: "1px solid currentColor",
+        content: '""',
+      },
+    },
+    "@keyframes ripple": {
+      "0%": {
+        transform: "scale(.8)",
+        opacity: 1,
+      },
+      "100%": {
+        transform: "scale(2.4)",
+        opacity: 0,
+      },
+    },
+  }));
+
+  const handleImageClick = () => {
+    inputRef.current.click();
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+   
+    setFormData((prev) => ({
+      ...prev,
+      image: e.target.files[0],
+    }));
+   
+   
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -153,12 +188,15 @@ const NewSpeakerFormDialog = ({text}) => {
       <DialogTitle>Add New Speaker</DialogTitle>
     
       <DialogContent sx={{display:"flex", flexDirection:"column",  alignItems: 'center'}}>
-      <Avatar variant="solid" sx={{ width: 60, height: 60 }}/> <p style={{textDecoration:"underline", color:"blue", fontSize:"12px"}}>Edit</p>
+      
         <DialogContentText>
           <NewSpeakerForm
             formData={formData}
             handleChange={handleChange}
             handleMultiChange={handleMultiChange}
+            handleImageClick={handleImageClick}
+            handleImageChange={handleImageChange}
+            inputRef={inputRef}
           />
         </DialogContentText>
       </DialogContent>
