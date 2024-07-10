@@ -3,7 +3,7 @@ import SearchSpeakers from "../SearchBar/SearchSpeakers";
 
 const getSpeakers = async () => {
   try {
-    const response = await fetch("http://localhost:3000/api/speakers", {
+    const response = await fetch("http://localhost:3000/api/users", {
       cache: "no-store",
     });
     if (!response.ok) {
@@ -17,10 +17,11 @@ const getSpeakers = async () => {
 
 const SpeakersList = async () => {
   const speakersData = await getSpeakers();
-
+  const usersData = speakersData.users.filter(user => user.role === "speaker" )
+  console.log(usersData)
   return (
     <>
-      <SearchSpeakers items={speakersData.speakers} />
+      <SearchSpeakers items={usersData} />
     </>
   );
 };

@@ -15,7 +15,7 @@ import { useRouter } from 'next/navigation';
 import { UsersContext } from '@/context/UsersContext';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: "da@email.com", password: "admin123" });
+  const [formData, setFormData] = useState({ email: "da@gmail.com", password: "admin123" });
   const [error, setError] = useState(null);
   const { users, setUsers } = useContext(UsersContext);
   const router = useRouter();

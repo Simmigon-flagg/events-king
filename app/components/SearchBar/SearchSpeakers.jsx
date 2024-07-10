@@ -6,13 +6,7 @@ import { Box, Button } from "@mui/joy";
 import { DataGrid } from "@mui/x-data-grid";
 import Input from "@mui/joy/Input";
 import "./search.css";
-import AddTopicFormDialog from "../Dialogs/AddTopicFormDialog";
-import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
-import ChipAvatar from "../Chips/ChipAvatar";
-import Dates from "@/lib/Dates";
-import Times from "@/lib/Times";
 import ViewSpeakerDetailDialog from "../Dialogs/ViewSpeakerDetailDialog";
-import Image from "next/image";
 import Avatar from '@mui/joy/Avatar';
 import NewSpeakerFormDialog from "../Dialogs/NewSpeakerFormDialog";
 
@@ -37,7 +31,7 @@ const SearchBar = ({ items, id }) => {
     try {
       // Fetch the existing event
       const res = await fetch(
-        `http://localhost:3000/api/speakers/${speakerId}`,
+        `http://localhost:3000/api/users/${speakerId}`,
         {
           method: "GET",
           headers: {
@@ -52,7 +46,7 @@ const SearchBar = ({ items, id }) => {
       const updatedTopics = [...topics, topic_Id];
 
       const updateRes = await fetch(
-        `http://localhost:3000/api/speakers/${speakerId}`,
+        `http://localhost:3000/api/users/${speakerId}`,
         {
           method: "PUT",
           headers: {
@@ -81,7 +75,7 @@ const SearchBar = ({ items, id }) => {
     try {
       await Promise.all(
         ids.map((id) => {
-          fetch(`/api/speakers?id=${id}`, { method: "DELETE" });
+          fetch(`/api/users?id=${id}`, { method: "DELETE" });
         })
       );
       alert("Items deleted successfully!");
@@ -206,9 +200,9 @@ const SearchBar = ({ items, id }) => {
         <Button
           variant="soft"
           onClick={handleDeleteSelected}
-          disabled={ids.length === 0}
+          disabled={ids?.length === 0}
         >
-          <FaTrash style={{ color: ids.length === 0 ? "lightGray" : "red" }} />
+          <FaTrash style={{ color: ids?.length === 0 ? "lightGray" : "red" }} />
         </Button>
         <NewSpeakerFormDialog text="NEW" />
       </div>

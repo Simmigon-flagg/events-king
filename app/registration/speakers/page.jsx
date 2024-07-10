@@ -3,7 +3,7 @@
 import { UsersContext } from '@/context/UsersContext';
 import Dates from '@/lib/Dates';
 import Times from '@/lib/Times';
-import { Box, Button, Input, Skeleton } from '@mui/joy';
+import { Box, Button, Input, Skeleton, Typography } from '@mui/joy';
 import { Paper } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import Link from 'next/link';
@@ -35,6 +35,7 @@ const Speakers = () => {
         ...prevUsers,
         user: {
           ...prevUsers.user,
+          role: "speaker",
           events: updatedEvents
         }
       }));
@@ -44,7 +45,7 @@ const Speakers = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ events: updatedEvents })
+        body: JSON.stringify({ events: updatedEvents, role: "speaker" })
       });
 
       if (!updateResponse.ok) throw new Error("Update response was not ok");
@@ -84,6 +85,7 @@ const Speakers = () => {
     fetchEventData();
   }, []);
 
+
   const filteredItems = events.filter(item => {
     if (!searchTerm.title) return item;
     if (item.title.toLowerCase().includes(searchTerm.title.toLowerCase())) return item;
@@ -122,14 +124,15 @@ const Speakers = () => {
 
   return (
     <div>
+      <Typography variant='1' fontSize={30}>{users?.user?.name}</Typography>
+      <Typography variant='1' fontSize={30}>{users?.user?.role}</Typography>
       <h1>Speakers Registration </h1>
       {users !== undefined ?
 
         <>
           {users?.user?.events ? (
             <>
-               {users?.user?.events.map(event_id => (  events.map(events =>  events?._id === event_id  ?  <><Link href={`/eventdetails/${events?._id}`}>{events.title}</Link><Button onClick={() =>handleRemove(events?._id)}>remove</Button></> : null)  ))}
-              {/* {users?.user?.events.map(event => { { return <><p key={event?._id}>{event?._id} <Button onClick={() => handleRemove(event?._id)}>Remove</Button></p></> } })} */}
+              {users?.user?.events.map(event_id => (events.map(events => events?._id === event_id ? <><Link href={`/eventdetails/${events?._id}`}>{events.title}</Link><Button onClick={() => handleRemove(events?._id)}>remove</Button></> : null)))}
             </>
 
           ) : (
