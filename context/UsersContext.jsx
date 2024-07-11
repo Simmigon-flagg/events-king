@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React, { useState, useEffect, createContext } from 'react';
 import { nanoid } from 'nanoid';
 import { signOut, getSession } from 'next-auth/react';
@@ -6,71 +7,97 @@ import { signOut, getSession } from 'next-auth/react';
 const id = nanoid();
 
 const initialValues = {
-  id: id,
-  firstName: "",
-  lastName: "",
-  email: ""
-}
 
-export const UsersContext = createContext({});
+};
+
+export const UsersContext = createContext(initialValues);
 
 export const UsersContextProvider = ({ children }) => {
+  const [users, setUsers] = useState({});
 
-  const [users, setUsers] = useState({})
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getSession()
-      const userData = await fetch(`/api/users/${data.user.id}`)
-      const userJson = await userData.json()
-
-      setUsers((prev) => ({
-        ...prev,
-        user: userJson.user
+      try {
+        const session = await getSession();
+        if (session) {
+          const response = await fetch(`/api/users/${session.user.id}`);
+          const userData = await response.json();
+          console.log(userData)
+          setUsers(prev => ({
+            ...prev,
+            user: userData.user
+          }));
+        }
+      } catch (error) {
+        console.error('Failed to fetch user data:', error);
       }
-      ))
-    }
-    fetchData()
-  }, [])
+    };
+    fetchData();
+  }, []);
 
   const signOutUser = async () => {
-    const data = await signOut()
-    console.log(data)
-  }
+    try {
+      await signOut();
+      setUsers({});
+    } catch (error) {
+      console.error('Failed to sign out:', error);
+    }
+  };
+
   const userEvents = (events) => {
-    console.log(events)
-  }
+    console.log(events);
+  };
 
   const handleRemove = async (event_id) => {
-    // alert("Removed Id " + event_id)
-    console.log(users?.user?.events)
-    const removedId = users?.user?.events.filter((id) => id !== event_id)
+    if (!users?.user?.events) {
+      console.error('No events found to remove');
+      return;
+    }
 
+    const updatedEvents = users.user.events.filter(id => id !== event_id);
 
-    console.log(users?.user)
-    const remove = await fetch(`/api/users/${users?.user?._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ events: removedId })
-    })
+    try {
+      const response = await fetch(`/api/users/${users.user._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ events: updatedEvents })
+      });
 
-    const data = await remove.json()
-    console.log(data)
-    setUsers(prev => ({
-      ...prev,
-      user: {
-        ...prev.user,
-        events: data.editedUser.events
-      }
-    }))
+      const data = await response.json();
+      setUsers(prev => ({
+        ...prev,
+        user: {
+          ...prev.user,
+          events: data.editedUser.events
+        }
+      }));
+    } catch (error) {
+      console.error('Failed to update user events:', error);
+    }
+  };
+  const handleSave = async (user_id) => {
 
-  }
+    try {
+      const response = await fetch(`/api/users/${user_id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(users)
+      });
 
-  const contextValue = { users, setUsers, userEvents, signOutUser, handleRemove };
+      const data = await response.json();
+ 
+    } catch (error) {
+      console.error('Failed to update user events:', error);
+    }
+  };
+
+  const contextValue = { users, setUsers, userEvents, signOutUser, handleRemove, handleSave };
+
   return (
     <UsersContext.Provider value={contextValue}>
       {children}
     </UsersContext.Provider>
-  )
-}
+  );
+};
 
-export default UsersContextProvider
+export default UsersContextProvider;

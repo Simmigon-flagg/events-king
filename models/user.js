@@ -17,6 +17,14 @@ const userSchema = new Schema({
         type: String,
         default: null
     },
+    firstname: String,
+    lastname: String,         
+    title: String,
+    phone: String,    
+    aboutme: String,
+    company: String,
+    description: String,    
+    presentation: String,
 
     events: [{ type: Schema.Types.ObjectId, ref: "Events", default: [] }], // Event is optional, default to an empty array
     topics: [{ type: Schema.Types.ObjectId, ref: "Topic", default: [] }], // Topics is optional, default to an empty array
