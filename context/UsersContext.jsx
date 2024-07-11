@@ -89,7 +89,7 @@ export const UsersContextProvider = ({ children }) => {
     }
   };
 
-  const contextValue = { users, setUsers, userEvents, signOutUser, handleRemove, handleSave };
+  const contextValue = { users, setUsers, signOutUser, handleRemove, handleSave };
 
   return (
     <UsersContext.Provider value={contextValue}>

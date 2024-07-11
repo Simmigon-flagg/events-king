@@ -1,7 +1,7 @@
 import React from 'react'
-import SpeakersList from '../components/SpeakersList/SpeakersList'
+import SpeakersList from '../../components/SpeakersList/SpeakersList'
 import { Container } from '@mui/joy'
-import PageTitle from '../components/PageTitle/PageTitle'
+import PageTitle from '../../components/PageTitle/PageTitle'
 
 const SpeakersPage = () => {
   return (

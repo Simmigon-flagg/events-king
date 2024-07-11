@@ -38,11 +38,13 @@ const Navbar = () => {
                 <Link href="/">Home</Link>
                 <Link href="/about">About</Link>
                 {/* <Link href="/checkin">Check In</Link> */}
-                <Link href="/testpage">Test Page</Link>
-                <Link href="/speakers">Speakers</Link>
+                <Link href="/testpage">Test Page</Link>                
                 <Link href="/events">Events</Link>
                 <Link href="/topics">Topics</Link>
                 <Link href="/userprofile">User profile</Link>
+                <Link href="/participate/speakers">Speakers</Link>
+                <Link href="/participate/attendees">Attendees</Link>
+                <Link href="/participate/sponsors">Sponsors</Link>
                 {users?.name ?
                     <>
                 
