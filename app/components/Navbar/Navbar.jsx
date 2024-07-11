@@ -42,8 +42,10 @@ const Navbar = () => {
                 <Link href="/speakers">Speakers</Link>
                 <Link href="/events">Events</Link>
                 <Link href="/topics">Topics</Link>
+                <Link href="/userprofile">User profile</Link>
                 {users?.name ?
                     <>
+                
                     </>
                     :
                     <>

@@ -6,13 +6,18 @@ import { signOut, getSession } from 'next-auth/react';
 const id = nanoid();
 
 const initialValues = {
-  id: id,
-  firstName: "",
-  lastName: "",
-  email: ""
+  firstname: "",
+  lastname: "",
+  email: "",
+  title: "",
+  phone: "",
+  aboutme: "",
+  company: "",
+  presentation: "",
+  description: ""
 }
 
-export const SpeakersContext = createContext({});
+export const SpeakersContext = createContext(initialValues);
 
 export const SpeakersContextProvider = ({ children }) => {
 
@@ -20,7 +25,7 @@ export const SpeakersContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getSession()
-      const speakerData = await fetch(`/api/users/${data.speaker.id}`)
+      const speakerData = await fetch(`/api/speakers/${data.speaker.id}`)
       const speakerJson = await speakerData.json()
 
       setSpeakers((prev) => ({
@@ -44,7 +49,7 @@ export const SpeakersContextProvider = ({ children }) => {
 
 
     console.log(speakers?.speaker)
-    const remove = await fetch(`/api/users/${speakers?.speaker?._id}`, {
+    const remove = await fetch(`/api/speakers/${speakers?.speaker?._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ events: removedId })
