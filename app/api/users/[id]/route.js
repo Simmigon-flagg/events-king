@@ -5,8 +5,7 @@ import { NextResponse } from "next/server";
 export async function PUT(request, { params }) {
     const { id } = params;
     const editedUser = await request.json();
-    console.log("editedUser")
-    console.log(editedUser.user._id)
+    
     await connectMongoDB();
     await User.findByIdAndUpdate(editedUser.user._id, editedUser?.user);
     return NextResponse.json({ editedUser }, { status: 200 })
@@ -25,6 +24,7 @@ export async function GET(request, { params }) {
         topics: userData.topics,
         role: userData.role,
         firstname: userData.firstname,                
+        title: userData.title,                
         lastname: userData.lastname,
         company: userData.company,
         phone: userData.phone,

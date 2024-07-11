@@ -18,7 +18,7 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value)
+    
     setData((prev) => ({
       ...prev,
       [name]: value
@@ -37,7 +37,7 @@ const SignUp = () => {
       },
       body: JSON.stringify(data)
     })
-    console.log(response)
+    
     router.replace("/login")
   };
 

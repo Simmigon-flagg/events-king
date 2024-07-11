@@ -66,6 +66,7 @@ const Userprofile = () => {
             <Typography>{users?.user?.topics}</Typography>
             <Input onChange={handleChange} value={users?.user?.firstname } name='firstname' type='text' />
             <Input onChange={handleChange} value={users?.user?.lastname } name='lastname' type='text' />
+            <Input onChange={handleChange} value={users?.user?.title } name='title' type='text' />
             <Input onChange={handleChange} value={users?.user?.company } name='company' type='text' />
             <Input onChange={handleChange} value={users?.user?.phone } name='phone' type='text' />
             <Input onChange={handleChange} value={users?.user?.description } name='description' type='text' />

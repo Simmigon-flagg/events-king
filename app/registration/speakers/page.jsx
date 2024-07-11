@@ -16,7 +16,7 @@ const Speakers = () => {
 
   const getIds = (rowIds) => {
     setIds(rowIds);
-    console.log("ids:-", rowIds);
+    
   };
 
   const handleSelection = async () => {

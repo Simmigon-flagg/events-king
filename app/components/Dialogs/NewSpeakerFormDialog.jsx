@@ -84,7 +84,7 @@ const NewSpeakerFormDialog = ({text}) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    
    
     setFormData((prev) => ({
       ...prev,
@@ -146,7 +146,7 @@ const NewSpeakerFormDialog = ({text}) => {
           
         });
         const { speakers } = await response.json();
-        console.log(speakers.speakers)
+        
 
         // handleDeleteTopic(speaker?._id);
       } else {

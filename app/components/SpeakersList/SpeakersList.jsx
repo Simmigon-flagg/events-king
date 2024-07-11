@@ -18,7 +18,7 @@ const getSpeakers = async () => {
 const SpeakersList = async () => {
   const speakersData = await getSpeakers();
   const usersData = speakersData.users.filter(user => user.role === "speaker" )
-  console.log(usersData)
+  
   return (
     <>
       <SearchSpeakers items={usersData} />

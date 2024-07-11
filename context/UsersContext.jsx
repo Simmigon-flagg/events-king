@@ -22,7 +22,7 @@ export const UsersContextProvider = ({ children }) => {
         if (session) {
           const response = await fetch(`/api/users/${session.user.id}`);
           const userData = await response.json();
-          console.log(userData)
+          
           setUsers(prev => ({
             ...prev,
             user: userData.user
@@ -44,9 +44,7 @@ export const UsersContextProvider = ({ children }) => {
     }
   };
 
-  const userEvents = (events) => {
-    console.log(events);
-  };
+  
 
   const handleRemove = async (event_id) => {
     if (!users?.user?.events) {
