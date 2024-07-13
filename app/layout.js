@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@/context/ThemeContext';
 import Footer2 from "./components/Footer/Footer2";
 import UsersContextProvider from "@/context/UsersContext";
+import AllUsersContextProvider from "@/context/AllUsersContext";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,15 +20,17 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ThemeProvider>
         <UsersContextProvider>
+          <AllUsersContextProvider>
 
-          <body className={inter.className} style={{ display: "flex", flexDirection: "column", gap: 100 }}>
-            <CssBaseline />
-            <Navbar />
-            {children}
-            <Footer2 />
+            <body className={inter.className} style={{ display: "flex", flexDirection: "column", gap: 100 }}>
+              <CssBaseline />
+              {/* <Navbar /> */}
+              {children}
+              {/* <Footer2 /> */}
 
-          </body>
+            </body>
 
+          </AllUsersContextProvider>
         </UsersContextProvider>
       </ThemeProvider>
     </html>
