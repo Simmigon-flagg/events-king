@@ -6,6 +6,8 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import Footer2 from "./components/Footer/Footer2";
 import UsersContextProvider from "@/context/UsersContext";
 import AllUsersContextProvider from "@/context/AllUsersContext";
+import AllEventsContextProvider from "@/context/AllEvents";
+import AllTopicsContextProvider, { AllTopicsContext } from "@/context/AllTopics";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,15 +23,21 @@ export default function RootLayout({ children }) {
       <ThemeProvider>
         <UsersContextProvider>
           <AllUsersContextProvider>
+            <AllEventsContextProvider>
+              <AllTopicsContextProvider>
 
-            <body className={inter.className} style={{ display: "flex", flexDirection: "column", gap: 100 }}>
-              <CssBaseline />
-              {/* <Navbar /> */}
-              {children}
-              {/* <Footer2 /> */}
 
-            </body>
 
+                <body className={inter.className} style={{ display: "flex", flexDirection: "column", gap: 100 }}>
+                  <CssBaseline />
+                  {/* <Navbar /> */}
+                  {children}
+                  {/* <Footer2 /> */}
+
+                </body>
+
+              </AllTopicsContextProvider>
+            </AllEventsContextProvider>
           </AllUsersContextProvider>
         </UsersContextProvider>
       </ThemeProvider>

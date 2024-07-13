@@ -11,6 +11,8 @@ import Content2 from './Content2';
 import NotFound from './NotFound';
 import Header from './Header';
 import AllUsersList from '../components/AllUsersList/AllUsersList';
+import AllEventsList from '../components/AllEventsList/AllEventsList';
+import AllTopicsList from '../components/AllTopicsList/AllTopicsList';
 
 
 function Copyright() {
@@ -188,9 +190,9 @@ export default function Paperbase() {
       case 'Users':
         return <AllUsersList />;
       case 'Events':
-        return <Content2 />;
+        return <AllEventsList />;
       case 'Topics':
-        return <Content2 />;
+        return <AllTopicsList />;
       case 'Speakers':
         return <AllUsersList />;
       case 'Venue':
