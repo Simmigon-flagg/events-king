@@ -4,11 +4,11 @@ import React, { useContext } from "react";
 import { AllTopicsContext } from "@/context/AllTopics";
 
 const AllTopicsList =  () => {
-  const { allTopics } = useContext(AllTopicsContext)
+  const { topics } = useContext(AllTopicsContext)
   
   return (
     <>
-     {JSON.stringify(allTopics)}
+     {JSON.stringify(topics)}
     </>
   );
 };

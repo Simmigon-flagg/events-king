@@ -4,11 +4,11 @@ import React, { useContext } from "react";
 import { AllUsersContext } from "@/context/AllUsersContext";
 
 const AllUsersList =  () => {
-  const { allUsers } = useContext(AllUsersContext)
+  const { users } = useContext(AllUsersContext)
   
   return (
     <>
-     {JSON.stringify(allUsers)}
+     {JSON.stringify(users)}
     </>
   );
 };

@@ -13,7 +13,7 @@ const initialValues = {
 export const AllTopicsContext = createContext(initialValues);
 
 export const AllTopicsContextProvider = ({ children }) => {
-  const [allTopics, setAllTopics] = useState({});
+  const [topics, setTopics] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +22,7 @@ export const AllTopicsContextProvider = ({ children }) => {
         if (session) {
           const response = await fetch(`/api/topics`);
           const data = await response.json();
-          setAllTopics(data)
+          setTopics(data)
         }
       } catch (error) {
         console.error('Failed to fetch user data:', error);
@@ -32,7 +32,7 @@ export const AllTopicsContextProvider = ({ children }) => {
   }, []);
 
 
-  const contextValue = { allTopics, setAllTopics };
+  const contextValue = { topics, setTopics };
 
   return (
     <AllTopicsContext.Provider value={contextValue}>

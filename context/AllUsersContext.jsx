@@ -13,19 +13,17 @@ const initialValues = {
 export const AllUsersContext = createContext(initialValues);
 
 export const AllUsersContextProvider = ({ children }) => {
-  const [allUsers, setAllUsers] = useState({});
+  const [users, setUsers] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const session = await getSession();
-        console.log(session)
-        if (session) {
+      try {            
+        
           const response = await fetch(`/api/users`);
           const userData = await response.json();
-          console.log(userData)
-          setAllUsers(userData);
-        }
+          
+          setUsers(userData);
+        
       } catch (error) {
         console.error('Failed to fetch user data:', error);
       }
@@ -36,7 +34,7 @@ export const AllUsersContextProvider = ({ children }) => {
   const signOutUser = async () => {
     try {
       await signOut();
-      setAllUsers({});
+      setUsers({});
     } catch (error) {
       console.error('Failed to sign out:', error);
     }
@@ -60,7 +58,7 @@ export const AllUsersContextProvider = ({ children }) => {
       });
 
       const data = await response.json();
-      setAllUsers(prev => ({
+      setUsers(prev => ({
         ...prev,
         user: {
           ...prev.user,
@@ -87,7 +85,7 @@ export const AllUsersContextProvider = ({ children }) => {
     }
   };
 
-  const contextValue = { allUsers, setAllUsers };
+  const contextValue = { users, setUsers };
 
   return (
     <AllUsersContext.Provider value={contextValue}>

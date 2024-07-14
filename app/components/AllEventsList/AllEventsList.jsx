@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { AllEventsContext } from "@/context/AllEvents";
 
 const AllEventsList =  () => {
-  const { allEvents } = useContext(AllEventsContext)
+  const { events } = useContext(AllEventsContext)
   
   return (
     <>
-     {JSON.stringify(allEvents)}
+     {JSON.stringify(events)}
     </>
   );
 };

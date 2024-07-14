@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import SpeakersList from '../components/SpeakersList/SpeakersList'
+import SpeakersList from '../components/AllSpeakersList/AllSpeakersList'
 import { Button, Container, FormControl, Input, Sheet, Typography } from '@mui/joy'
 import { FormLabel } from '@mui/material'
 import Link from 'next/link'

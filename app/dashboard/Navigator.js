@@ -35,7 +35,6 @@ const categories = [
     id: 'Events',
     children: [
       { id: 'Attendees', icon: <SettingsIcon /> },
-      { id: 'Speakers', icon: <PhonelinkSetupIcon /> },
       { id: 'Sponsors', icon: <TimerIcon /> },
     ],
   },

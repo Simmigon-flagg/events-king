@@ -13,7 +13,7 @@ const initialValues = {
 export const AllEventsContext = createContext(initialValues);
 
 export const AllEventsContextProvider = ({ children }) => {
-  const [allEvents, setAllEvents] = useState({});
+  const [events, setEvents] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +22,7 @@ export const AllEventsContextProvider = ({ children }) => {
         if (session) {
           const response = await fetch(`/api/events`);
           const data = await response.json();
-          setAllEvents(data)
+          setEvents(data)
         }
       } catch (error) {
         console.error('Failed to fetch user data:', error);
@@ -32,7 +32,7 @@ export const AllEventsContextProvider = ({ children }) => {
   }, []);
 
 
-  const contextValue = { allEvents, setAllEvents };
+  const contextValue = { events, setEvents };
 
   return (
     <AllEventsContext.Provider value={contextValue}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import SpeakersList from '../components/SpeakersList/SpeakersList'
+import SpeakersList from '../components/AllSpeakersList/AllSpeakersList'
 import { Container } from '@mui/joy'
 
 const SpeakersPage = () => {
