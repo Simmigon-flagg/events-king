@@ -1,10 +1,10 @@
 "use client";
-import { FormLabel } from "@mui/joy";
+
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import "./SpeakerDetailsView.css";
 
-const SpeakerDetailsView = ({ speaker }) => {
+const SpeakerDetailsView = ({ edit }) => {
   const {
     image,
     firstname,
@@ -16,7 +16,7 @@ const SpeakerDetailsView = ({ speaker }) => {
     topics,
     presentation,
     description,
-  } = speaker;
+  } = edit;
 
   return (
     <div className="topic-view-dialog-container">

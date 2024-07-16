@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
-import { FormLabel, Input, Textarea } from "@mui/joy";
+// import { FormLabel, Input, Textarea } from "@mui/joy";
 import "./Form.css";
 import { HiPencilAlt } from "react-icons/hi";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
+import { FormLabel, Input } from "@mui/material";
 
 const NewSpeakerForm = ({
   formData,
@@ -135,9 +136,9 @@ const NewSpeakerForm = ({
 
         <div className="input-field">
           <FormLabel>Description</FormLabel>
-          <Textarea
-            minRows={4}
-            maxRows={5}
+          <textarea
+            // minRows={4}
+            // maxRows={5}
             type="text"
             onChange={handleMultiChange}
             value={formData.description}

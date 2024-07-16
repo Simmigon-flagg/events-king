@@ -1,6 +1,5 @@
 "use client";
-
-import { FormLabel, Input, Textarea } from "@mui/joy";
+import { FormLabel, Input } from "@mui/material";
 import "./Form.css";
 import {
   DatePicker,
@@ -77,7 +76,7 @@ const EditTopicForm = ({
 
       <div className="input-field">
         <FormLabel>Description</FormLabel>
-        <Textarea
+        <textarea
           minRows={4}
           maxRows={5}
           type="text"

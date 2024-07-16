@@ -1,14 +1,14 @@
 "use client"
 import React, { useContext } from "react";
 import { SpeakersContext } from "@/context/SpeakersContext";
+import SearchBar from "../SearchBar/SearchSpeakers";
 
 const AllSpeakersList = () => {
   const { speakers } = useContext(SpeakersContext)
-  // const usersData = speakersData.users.filter(user => user.role === "speaker" )
   
   return (
     <>
-       {JSON.stringify(speakers)}
+      {speakers ? <SearchBar items={speakers.speakers} /> : <Skeleton />}
     </>
   );
 };

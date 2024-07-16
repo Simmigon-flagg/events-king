@@ -1,14 +1,14 @@
 "use client"
 import React, { useRef, useState } from 'react'
 import "./Sign-up.css"
-import Sheet from '@mui/joy/Sheet';
-import CssBaseline from '@mui/joy/CssBaseline';
-import Typography from '@mui/joy/Typography';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Button from '@mui/joy/Button';
-import Link from '@mui/joy/Link';
+// import Sheet from '@mui/joy/Sheet';
+// import CssBaseline from '@mui/joy/CssBaseline';
+// import Typography from '@mui/joy/Typography';
+// import FormControl from '@mui/joy/FormControl';
+// import FormLabel from '@mui/joy/FormLabel';
+// import Input from '@mui/joy/Input';
+// import button from '@mui/joy/button';
+// import Link from '@mui/joy/Link';
 import { Container } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
@@ -98,7 +98,7 @@ const SignUp = () => {
                 placeholder="password"
               />
               
-              <Button onClick={handleSumbit} sx={{ mt: 1 /* margin top */ }}>Sign Up</Button>
+              <button onClick={handleSumbit} sx={{ mt: 1 /* margin top */ }}>Sign Up</button>
               <Typography
                 endDecorator={<Link href="/login">Login</Link>}
                 fontSize="sm"

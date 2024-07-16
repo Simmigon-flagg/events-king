@@ -44,52 +44,91 @@ export const UsersContextProvider = ({ children }) => {
     }
   };
 
-  
+  const reloadUsers = async () => {
+    const fetchData = async () => {
+      try {
 
-  const handleRemove = async (event_id) => {
-    if (!users?.user?.events) {
-      console.error('No events found to remove');
-      return;
-    }
+        const response = await fetch(`/api/users`);
+        const data = await response.json();
+        setUsers(data)
 
-    const updatedEvents = users.user.events.filter(id => id !== event_id);
+      } catch (error) {
+        console.error('Failed to fetch user data:', error);
+      }
+    };
+    fetchData();
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+
+        const response = await fetch(`/api/users`);
+        const data = await response.json();
+        setUsers(data)
+
+      } catch (error) {
+        console.error('Failed to fetch user data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const createUser = async (data) => {
+
+
+    const response = await fetch("/api/users", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    await reloadUsers()
+  };
+
+  const updateUser = async (edit) => {
 
     try {
-      const response = await fetch(`/api/users/${users.user._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ events: updatedEvents })
-      });
-
-      const data = await response.json();
-      setUsers(prev => ({
-        ...prev,
-        user: {
-          ...prev.user,
-          events: data.editedUser.events
+      const response = await fetch(`/api/users/${edit.id}`,
+        {
+          method: "PUT",
+          header: { "Content-type": "application/json" },
+          body: JSON.stringify(edit),
         }
-      }));
+      );
+      if (!response.ok) {
+        throw new Error("Topic was not updated");
+      }
+      await reloadUsers()
+
     } catch (error) {
-      console.error('Failed to update user events:', error);
+      console.log(error);
     }
   };
-  const handleSave = async (user_id) => {
 
+  const deleteUser = async (ids) => {
+    
     try {
-      const response = await fetch(`/api/users/${user_id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(users)
-      });
+      await Promise.all(
+        ids.map((id) => {
+          fetch(`/api/users?id=${id}`, { method: "DELETE" });
+        })
+      );
 
-      const data = await response.json();
- 
+
     } catch (error) {
-      console.error('Failed to update user events:', error);
+      alert("Failed to delete items");
+      console.error(error);
     }
+
+    await reloadUsers()
   };
 
-  const contextValue = { users, setUsers, signOutUser, handleRemove, handleSave };
+  useEffect(() => {
+    reloadUsers();
+  }, []);
+  const contextValue = { users, setUsers, signOutUser, createUser, updateUser, deleteUser };
 
   return (
     <UsersContext.Provider value={contextValue}>

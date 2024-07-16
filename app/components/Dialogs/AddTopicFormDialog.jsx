@@ -1,7 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TopicsForm from "../Forms/TopicsForm";
-import { Button, Tooltip } from "@mui/joy";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -12,8 +11,11 @@ import { useRouter } from "next/navigation";
 import "./Dialog.css";
 import Border from "@/public/image/graphics/orangeblue.jpg"
 import Image from "next/image";
+import { Button, Tooltip } from "@mui/material";
+import { AllTopicsContext } from "@/context/AllTopics";
 
 const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
+  const { createTopic } = useContext(AllTopicsContext)
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -33,6 +35,7 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
       [name]: value,
     }));
   };
+
   const handleMultiChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -61,6 +64,7 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleDeleteTopic = async (topic_id) => {
 
     try {
@@ -81,52 +85,40 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
       console.error("Error updating event topics:", error);
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:3000/api/topics", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        setFormData({
-          title: "",
-          description: "",
-          speaker: "",
-          date: null,
-          time: null,
-          location: "",
-          image: null,
-        });
-        const { topic } = await response.json();
-
-        handleDeleteTopic(topic?._id);
-      } else {
-        throw new Error("Failed to create a topic");
-      }
-    } catch (error) {
-      console.log(error);
-    }
     setOpen(false);
+    const response = await createTopic(formData)
+
+      setFormData({
+        title: "",
+        description: "",
+        speaker: "",
+        date: null,
+        time: null,
+        location: "",
+        image: null,
+      });
+    
+
+ 
   };
 
   return (
     <div className="dialog-container">
       <div className="btn-dialog">
-        <Tooltip
+        {/* <Tooltip
           title="Create a brand new topic."
           variant="solid"
           size="lg"
           placement="top-end"
         >
-          <Button variant="solid" onClick={handleClickOpen}>
-            {text} <AddCircleIcon color="green" />
-          </Button>
-        </Tooltip>
+      </Tooltip> */}
+        <button onClick={handleClickOpen}>
+          {text} <AddCircleIcon color="green" />
+
+        </button>
       </div>
       <Dialog
         open={open}
@@ -153,10 +145,10 @@ const AddTopicFormDialog = ({ text, event_id, eventTopic }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" onClick={handleSubmit}>
+          <button onClick={handleClose}>Cancel</button>
+          <button type="submit" onClick={handleSubmit}>
             Save
-          </Button>
+          </button>
         </DialogActions>
       </Dialog>
     </div>

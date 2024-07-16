@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { Container, Dialog, DialogContentText } from '@mui/material'
-import Button from '@mui/joy/Button';
-import ButtonGroup from '@mui/joy/ButtonGroup';
+// import Button from '@mui/joy/Button';
+// import ButtonGroup from '@mui/joy/ButtonGroup';
 import { DialogActions, DialogContent, DialogTitle, Input } from '@mui/joy';
 import { getSession } from "next-auth/react"
 import { useRouter } from 'next/navigation';
@@ -52,9 +52,9 @@ const Login = () => {
       <div className='login'>
 
         <React.Fragment>
-          <Button variant="outlined" onClick={handleClickOpen}>
+          <button variant="outlined" onClick={handleClickOpen}>
             Speaker
-          </Button>
+          </button>
           <Dialog
             open={open}
             onClose={handleClose}
@@ -203,8 +203,8 @@ const Login = () => {
 
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button type="submit">Subscribe</Button>
+              <button onClick={handleClose}>Cancel</button>
+              <button type="submit">Subscribe</button>
             </DialogActions>
           </Dialog> 
         </React.Fragment>

@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { Button } from "@mui/joy";
+import React, { useContext, useState } from "react";
+// import { Button } from "@mui/joy";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -11,9 +11,11 @@ import { useRouter } from "next/navigation";
 import "./Dialog.css"
 import Border from "@/public/image/graphics/orangeblue.jpg"
 import Image from "next/image";
+import { AllEventsContext } from "@/context/AllEvents";
 
 const EditEventDetailsDialog = ({ event, text }) => {
   const router = useRouter();
+  const { updateEvent } = useContext(AllEventsContext);
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(event);
 
@@ -23,12 +25,12 @@ const EditEventDetailsDialog = ({ event, text }) => {
 
   const handleClose = () => {
     setOpen(false);
-   
+
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     setEdit((prev) => ({
       ...prev,
       [name]: value,
@@ -50,24 +52,7 @@ const EditEventDetailsDialog = ({ event, text }) => {
   };
   const handleSubmit = async () => {
     console.log("EDIT EVENTS!!!!!")
-    try {
-      const response = await fetch(
-        `http://localhost:3000/api/events/${edit.id}`,
-        {
-          method: "PUT",
-          header: { "Content-type": "application/json" },
-          body: JSON.stringify(edit),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Event was not updated");
-      }
-      router.push("/events");
-  
-    } catch (error) {
-      console.log(error);
-    }
-    router.refresh();
+    updateEvent(edit)
     handleClose();
   };
 
@@ -75,9 +60,12 @@ const EditEventDetailsDialog = ({ event, text }) => {
     <div>
       <div className="btn-dialog">
 
-        {<Button size="sm" variant="outlined" onClick={handleClickOpen}>
-            {text}
-          </Button>}
+        {<button
+          size="sm"
+          variant="outlined"
+          onClick={handleClickOpen}>
+          {text}
+        </button>}
       </div>
       <Dialog
         open={open}
@@ -95,16 +83,16 @@ const EditEventDetailsDialog = ({ event, text }) => {
           },
         }}
       >
-         <Image src={Border} alt="oranglebluebackground" className="border-image" />
+        <Image src={Border} alt="oranglebluebackground" className="border-image" />
         <DialogTitle>{event.title}</DialogTitle>
         <DialogContent>
           <DialogContentText>Details</DialogContentText>
-          <EditEventForm edit={edit} handleChange={handleChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange}/>
+          <EditEventForm edit={edit} handleChange={handleChange} handleDateChange={handleDateChange} handleTimeChange={handleTimeChange} />
 
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit}>Save</Button>
+          <button onClick={handleClose}>Cancel</button>
+          <button onClick={handleSubmit}>Save</button>
         </DialogActions>
       </Dialog>
     </div>

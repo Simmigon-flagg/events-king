@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { Button } from "@mui/joy";
+import React, { useContext, useState } from "react";
+
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -12,8 +12,11 @@ import EditTopicForm from "../Forms/EditTopicForm";
 import Border from "@/public/image/graphics/orangeblue.jpg";
 import Image from "next/image";
 import "./Dialog.css";
+// import { button } from "@mui/material";
+import { AllTopicsContext } from "@/context/AllTopics";
 
 const ViewTopicDetailDialog = ({ topic, text }) => {
+  const { updateTopic } = useContext(AllTopicsContext)
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -51,21 +54,9 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
     }));
   };
   const handleSubmit = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/api/topics/${edit?._id}`,
-        {
-          method: "PUT",
-          header: { "Content-type": "application/json" },
-          body: JSON.stringify(edit),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Topic was not updated");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+
+    updateTopic(edit)
+
     router.refresh();
     setIsEditing(false);
     handleClose();
@@ -118,11 +109,11 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <button onClick={handleClose}>Cancel</button>
           {isEditing ? (
-            <Button onClick={handleSubmit}>Save</Button>
+            <button onClick={handleSubmit}>Save</button>
           ) : (
-            <Button onClick={() => setIsEditing(true)}>Edit</Button>
+            <button onClick={() => setIsEditing(true)}>Edit</button>
           )}
         </DialogActions>
       </Dialog>

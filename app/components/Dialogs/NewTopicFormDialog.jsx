@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import TopicsForm from "../Forms/TopicsForm";
-import { Button, Tooltip } from "@mui/joy";
+// import { button, Tooltip } from "@mui/joy";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -123,9 +123,9 @@ const NewTopicFormDialog = ({ text, event_id, eventTopic }) => {
           size="lg"
           placement="top-end"
         >
-          <Button variant="solid" onClick={handleClickOpen}>
+          <button variant="solid" onClick={handleClickOpen}>
             {text} <AddCircleIcon color="green" />
-          </Button>
+          </button>
         </Tooltip>
       </div>
       <Dialog
@@ -153,10 +153,10 @@ const NewTopicFormDialog = ({ text, event_id, eventTopic }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" onClick={handleSubmit}>
+          <button onClick={handleClose}>Cancel</button>
+          <button type="submit" onClick={handleSubmit}>
             Save
-          </Button>
+          </button>
         </DialogActions>
       </Dialog>
     </div>

@@ -186,7 +186,7 @@ export default function Paperbase() {
   const renderComponent = () => {
     
     switch (pageComponents) {
-      case 'Database':
+      case 'Authentication':
         return <Content />;
       case 'Users':
         return <AllUsersList />;
@@ -196,6 +196,10 @@ export default function Paperbase() {
         return <AllTopicsList />;
       case 'Speakers':
         return <AllSpeakersList />;
+      case 'Attendees':
+        return <Content2 />;
+      case 'Sponsors':
+        return <Content2 />;
       case 'Venue':
         return <Content2 />;
 

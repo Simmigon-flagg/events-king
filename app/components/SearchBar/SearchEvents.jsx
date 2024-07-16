@@ -1,18 +1,20 @@
 "use client";
 import Link from "next/link";
 import { FaTrash } from "react-icons/fa";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Box } from "@mui/material";
+import { Box, Input } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/joy";
-import Input from "@mui/joy/Input";
+
 import "./search.css";
 import EventFormDialog from "../Dialogs/EventFormDialog";
 import EditEventDetailsDialog from "../Dialogs/EditEventDetailsDialog";
 import Dates from "@/lib/Dates";
+import { AllEventsContext } from "@/context/AllEvents";
 
-const SearchBar = ({ items, id , setUserSelection, user }) => {
+const SearchBar = ({ items, id, setUserSelection, user }) => {
+  const { setEvents, deleteEvent, reloadEvents } = useContext(AllEventsContext);
   const router = useRouter();
   const [ids, setIds] = useState([]);
 
@@ -22,25 +24,12 @@ const SearchBar = ({ items, id , setUserSelection, user }) => {
 
   const getIds = (rowIds) => {
     setIds(rowIds);
-    console.log()
-    console.log("ids:-", rowIds)
-    
   };
-  
-  const handleDeleteSelected = async () => {
 
-    try {
-      await Promise.all(
-        ids.map((id) => {
-          fetch(`/api/events?id=${id}`, { method: "DELETE" });
-        })
-      );
-      alert("Items deleted successfully!");
-      router.refresh();
-    } catch (error) {
-      alert("Failed to delete items");
-      console.error(error);
-    }
+  const handleDeleteSelected = async () => {
+    
+    await deleteEvent(ids)
+    
   };
 
   const handleSearch = (e) => {
@@ -51,7 +40,7 @@ const SearchBar = ({ items, id , setUserSelection, user }) => {
     }));
   };
 
-  const filteredItems = items.filter((item) => {
+  const filteredItems = items?.events?.filter((item) => {
     if (searchTerm.title === "" || searchTerm.title == null) {
       return item;
     }
@@ -105,7 +94,7 @@ const SearchBar = ({ items, id , setUserSelection, user }) => {
         </Link>
       ),
     },
-   
+
     {
       field: "host",
       headerName: "Host",
@@ -131,8 +120,8 @@ const SearchBar = ({ items, id , setUserSelection, user }) => {
           {'Date'}
         </strong>),
       renderCell: (params) => (
-        <Link href={`/eventdetails/${params.row.id}`}>         
-         {Dates(params.row.date, params.row.time)}
+        <Link href={`/eventdetails/${params.row.id}`}>
+          {Dates(params.row.date, params.row.time)}
         </Link>
       ),
     },
@@ -151,7 +140,7 @@ const SearchBar = ({ items, id , setUserSelection, user }) => {
     },
   ];
 
-  const rows = filteredItems.map((item, index) => {
+  const rows = filteredItems?.map((item, index) => {
     return {
       id: item._id, // Ensure IDs start from 1
       ids: index + 1,
@@ -171,11 +160,13 @@ const SearchBar = ({ items, id , setUserSelection, user }) => {
         <Input
           type="text"
           name="title"
-          value={searchTerm.title}
+          // variant="outlined"
+          value={searchTerm?.title}
           placeholder="Search by Title"
           onChange={handleSearch}
         />
-        <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length === 0}><FaTrash style={{ color: ids.length === 0 ? 'lightGray' : 'red' }} /></Button>
+        {/* <Button onClick={handleDeleteSelected} disabled={ids.length === 0}><FaTrash style={{ color: ids.length === 0 ? 'lightGray' : 'red' }} /></Button> */}
+        <button onClick={handleDeleteSelected} ><FaTrash /></button>
         <EventFormDialog text="NEW" />
       </div>
 

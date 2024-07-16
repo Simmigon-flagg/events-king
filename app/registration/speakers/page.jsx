@@ -3,7 +3,7 @@
 import { UsersContext } from '@/context/UsersContext';
 import Dates from '@/lib/Dates';
 import Times from '@/lib/Times';
-import { Box, Button, Input, Skeleton, Typography } from '@mui/joy';
+import { Box, button, Input, Skeleton, Typography } from '@mui/joy';
 import { Paper } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import Link from 'next/link';
@@ -132,7 +132,7 @@ const Speakers = () => {
         <>
           {users?.user?.events ? (
             <>
-              {users?.user?.events.map(event_id => (events.map(events => events?._id === event_id ? <><Link href={`/eventdetails/${events?._id}`}>{events.title}</Link><Button onClick={() => handleRemove(events?._id)}>remove</Button></> : null)))}
+              {users?.user?.events.map(event_id => (events.map(events => events?._id === event_id ? <><Link href={`/eventdetails/${events?._id}`}>{events.title}</Link><button onClick={() => handleRemove(events?._id)}>remove</button></> : null)))}
             </>
 
           ) : (
@@ -151,7 +151,7 @@ const Speakers = () => {
         placeholder="Search Title"
         onChange={handleSearch}
       />
-      <Button onClick={() => handleSelection()}>Add Event</Button>
+      <button onClick={() => handleSelection()}>Add Event</button>
 
       <Box sx={{ height: 400, width: '100%' }}>
         <DataGrid

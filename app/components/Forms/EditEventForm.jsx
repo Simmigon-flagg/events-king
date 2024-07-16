@@ -1,5 +1,5 @@
 "use client";
-import { FormLabel, Input, Textarea } from "@mui/joy";
+
 
 import "./Form.css";
 import {
@@ -10,6 +10,7 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import dayjs from "dayjs";
+import { FormLabel, Input, TextareaAutosize } from "@mui/material";
 
 const EditEventForm = ({
   edit,
@@ -78,7 +79,7 @@ const EditEventForm = ({
 
       <div className="input-field">
         <FormLabel>Description</FormLabel>
-        <Textarea
+        <textarea
           minRows={4}
           maxRows={5}
           type="text"

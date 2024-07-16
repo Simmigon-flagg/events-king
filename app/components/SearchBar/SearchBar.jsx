@@ -14,7 +14,7 @@ const SearchBar = ({ items, id }) => {
 
     const getIds = (rowIds) => {
         setIds(rowIds);
-        console.log("ids:", ids)
+       
         handleAddTopicToEvent()
     };
 
@@ -54,7 +54,7 @@ const SearchBar = ({ items, id }) => {
             }
 
             const updatedData = await updateRes.json();
-            console.log("Updated Event:", updatedData);
+            
         } catch (error) {
             console.error("Error updating event:", error);
         }

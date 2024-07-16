@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
       <ThemeProvider>
         <UsersContextProvider>
           <AllUsersContextProvider>
-
             <AllEventsContextProvider>
               <AllTopicsContextProvider>
                 <SpeakersContextProvider>

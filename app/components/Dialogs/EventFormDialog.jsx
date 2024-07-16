@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import {Button} from "@mui/joy";
+import React, { useContext, useEffect, useState } from "react";
+import { Button } from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -8,14 +8,16 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import "./Dialog.css";
-import { useRouter } from "next/navigation";
+
 import EventsForm from "../Forms/EventsForm";
-import Border from "@/public/image/graphics/orangeblue.jpg" 
+import Border from "@/public/image/graphics/orangeblue.jpg";
 import Image from "next/image";
+import { AllEventsContext } from "@/context/AllEvents";
 
 const EventFormDialog = ({ text }) => {
-  const router = useRouter();
+
   const [open, setOpen] = useState(false);
+  const { setEvents, createEvent } = useContext(AllEventsContext);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -70,8 +72,9 @@ const EventFormDialog = ({ text }) => {
     setOpen(false);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
       if (key === "topics") {
@@ -81,56 +84,30 @@ const EventFormDialog = ({ text }) => {
       }
     });
 
-    try {
-      const response = await fetch("/api/events", {
-        method: "POST",
-        body: data,
-      });
-
-      if (response.ok) {
-        setFormData({
-          title: "",
-          host: "",
-          date: "",
-          time: "",
-          location: "",
-          description: "",
-          topics: [],
-          image: null,
-        });
-        router.refresh();
-      } else {
-        throw new Error("Failed to create a event");
-      }
-    } catch (error) {
-      console.log(error);
-    }
     setOpen(false);
+    await createEvent(data);
+
   };
 
+  useEffect(() => {
+
+  }, [formData])
   return (
     <div className="dialog-container">
       <div className="btn-dialog">
-        <Button onClick={handleClickOpen}>
+        <button onClick={handleClickOpen}>
           {text} <AddCircleIcon />
-        </Button>
+        </button>
       </div>
       <Dialog
         open={open}
         onClose={handleClose}
         PaperProps={{
           component: "form",
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            
-            handleClose();
-          },
+          onSubmit: handleSubmit,
         }}
       >
-         <Image src={Border} alt="oranglebluebackground" className="border-image"/>
+        <Image src={Border} alt="oranglebluebackground" className="border-image" />
         <DialogTitle>New Event</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -142,13 +119,11 @@ const EventFormDialog = ({ text }) => {
               handleDateChange={handleDateChange}
               handleTimeChange={handleTimeChange}
             />
-          </DialogContentText>          
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" onClick={handleSubmit}>
-            Save
-          </Button>
+          <button onClick={handleClose}>Cancel</button>
+          <button type="submit">Save</button>
         </DialogActions>
       </Dialog>
     </div>

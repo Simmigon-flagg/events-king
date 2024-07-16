@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 
-import { Button, Tooltip } from "@mui/joy";
+
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -13,7 +13,7 @@ import "./Dialog.css";
 import Border from "@/public/image/graphics/orangeblue.jpg";
 import Image from "next/image";
 import NewSpeakerForm from "../Forms/NewSpeakerForm";
-import { Avatar } from "@mui/material";
+import { Avatar, Tooltip } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 
@@ -164,13 +164,13 @@ const NewSpeakerFormDialog = ({text}) => {
     <div className="btn-dialog">
       <Tooltip
         title="Add new speaker"
-        variant="solid"
+        // variant="solid"
         size="lg"
         placement="top-end"
       >
-        <Button variant="solid" onClick={handleClickOpen}>
+        <button variant="solid" onClick={handleClickOpen}>
           {text} <AddCircleIcon color="green" />
-        </Button>
+        </button>
       </Tooltip>
     </div>
     <Dialog
@@ -201,10 +201,10 @@ const NewSpeakerFormDialog = ({text}) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button type="submit" onClick={handleSubmit}>
+        <button onClick={handleClose}>Cancel</button>
+        <button type="submit" onClick={handleSubmit}>
           Save
-        </Button>
+        </button>
       </DialogActions>
     </Dialog>
   </div>

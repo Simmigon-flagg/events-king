@@ -1,10 +1,10 @@
 "use client";
 import { FaTrash } from "react-icons/fa";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Box, Button } from "@mui/joy";
+
 import { DataGrid } from "@mui/x-data-grid";
-import Input from "@mui/joy/Input";
+
 import "./search.css";
 import AddTopicFormDialog from "../Dialogs/AddTopicFormDialog";
 import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
@@ -12,9 +12,13 @@ import ChipAvatar from "../Chips/ChipAvatar";
 import Dates from "@/lib/Dates";
 import Times from "@/lib/Times";
 import NewSpeakerFormDialog from "../Dialogs/NewSpeakerFormDialog";
+import { Box, Input } from "@mui/material";
+import { AllTopicsContext } from "@/context/AllTopics";
 
 
 const SearchBar = ({ items, id }) => {
+  const { topics, deleteTopic } = useContext(AllTopicsContext)
+
   const router = useRouter();
   const [ids, setIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState({
@@ -30,61 +34,13 @@ const SearchBar = ({ items, id }) => {
     }));
   };
 
-  const handleGetId = async (topic_Id, eventId) => {
-    try {
-      // Fetch the existing event
-      const res = await fetch(`http://localhost:3000/api/events/${eventId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const data = await res.json();
-      const { event } = data;
-      const { topics } = event;
-      const updatedTopics = [...topics, topic_Id];
-
-      const updateRes = await fetch(
-        `http://localhost:3000/api/events/${eventId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ topics: updatedTopics }),
-        }
-      );
-
-      if (!updateRes.ok) {
-        throw new Error("Failed to update event");
-      }
-
-      const updatedData = await updateRes.json();
-      console.log("Updated Event:", updatedData);
-    } catch (error) {
-      console.error("Error updating event:", error);
-    }
-  };
-
   const getIds = (rowIds) => {
     setIds(rowIds);
   };
 
   const handleDeleteSelected = async () => {
-    try {
-      await Promise.all(
-        ids.map((id) => {
+    deleteTopic(ids)
 
-          fetch(`/api/topics?id=${id}`, { method: "DELETE" });
-        })
-      );
-      alert("Items deleted successfully!");
-      router.refresh();
-    } catch (error) {
-      alert("Failed to delete items");
-      console.error(error);
-    }
   };
 
   const columns = [
@@ -141,7 +97,7 @@ const SearchBar = ({ items, id }) => {
       ),
     },
 
-    
+
     {
       field: "time",
       headerName: "Time",
@@ -188,13 +144,14 @@ const SearchBar = ({ items, id }) => {
     <>
       <div className="search-container">
         <Input
+          variant="outlined"
           type="text"
           name="title"
           value={searchTerm.title}
           placeholder="Search by Title"
           onChange={handleSearch}
         />
-        <Button variant="soft" onClick={handleDeleteSelected} disabled={ids.length === 0}><FaTrash style={{ color: ids.length === 0 ? 'lightGray' : 'red' }} /></Button>
+        <button variant="soft" onClick={handleDeleteSelected} disabled={ids?.length === 0}><FaTrash style={{ color: ids?.length === 0 ? 'lightGray' : 'red' }} /></button>
         <AddTopicFormDialog text="NEW" />
       </div>
       <Box sx={{ height: 400, width: "100%" }}>

@@ -8,8 +8,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/joy/Button";
-import SvgIcon from "@mui/joy/SvgIcon";
+// import Button from "@mui/joy/Button";
+// import SvgIcon from "@mui/joy/SvgIcon";
 import { styled } from "@mui/joy";
 
 const VisuallyHiddenInput = styled("input")`
@@ -90,7 +90,7 @@ const EventsForm = ({
             </DemoContainer>
           </LocalizationProvider>
         </div>
-        <Button
+        <button
           sx={{ marginBottom: '10px' }}
           onChange={handleFileChange}
           name="image"
@@ -124,7 +124,7 @@ const EventsForm = ({
           )}
 
           <VisuallyHiddenInput type="file" />
-        </Button>
+        </button>
 
         <TextField
           id="topics-form-input"

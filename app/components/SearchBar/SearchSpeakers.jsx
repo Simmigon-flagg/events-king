@@ -2,13 +2,15 @@
 import { FaTrash } from "react-icons/fa";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Box, Button } from "@mui/joy";
+
+import { Avatar, Box, Input } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import Input from "@mui/joy/Input";
 import "./search.css";
 import ViewSpeakerDetailDialog from "../Dialogs/ViewSpeakerDetailDialog";
-import Avatar from '@mui/joy/Avatar';
+
 import NewSpeakerFormDialog from "../Dialogs/NewSpeakerFormDialog";
+import { InputRounded } from "@mui/icons-material";
+import ChipAvatar from "../Chips/ChipAvatar";
 
 
 const SearchBar = ({ items, id }) => {
@@ -16,6 +18,7 @@ const SearchBar = ({ items, id }) => {
   const [ids, setIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState({
     title: "",
+    firstname: ""
   });
 
   const handleSearch = (e) => {
@@ -100,8 +103,8 @@ const SearchBar = ({ items, id }) => {
             speaker={params.row}
             text={params.row.firstname}
           />
+          <ChipAvatar name={params.row.firstname} image={params.row.firstname} />
         </div>
-        // <ChipAvatar name={params.row.firstname} image={params.row.firstname} />
       ),
     },
     {
@@ -114,6 +117,25 @@ const SearchBar = ({ items, id }) => {
           speaker={params.row}
           text={params.row.lastname}
         />
+      ),
+    },
+
+    {
+      field: "email",
+      headerName: "Email",
+      width: 150,
+      renderHeader: () => <strong>{"Email"}</strong>,
+      renderCell: (params) => (
+        <ViewSpeakerDetailDialog speaker={params.row} text={params.row.email} />
+      ),
+    },
+    {
+      field: "phone",
+      headerName: "Phone",
+      width: 150,
+      renderHeader: () => <strong>{"Phone"}</strong>,
+      renderCell: (params) => (
+        <ViewSpeakerDetailDialog speaker={params.row} text={params.row.phone} />
       ),
     },
 
@@ -152,6 +174,18 @@ const SearchBar = ({ items, id }) => {
       ),
     },
     {
+      field: "role",
+      headerName: "Role",
+      width: 150,
+      renderHeader: () => <strong>{"Role"}</strong>,
+      renderCell: (params) => (
+        <ViewSpeakerDetailDialog
+          speaker={params.row}
+          text={params.row.role}
+        />
+      ),
+    },
+    {
       field: "presentation",
       headerName: "Presentation",
       width: 150,
@@ -165,10 +199,16 @@ const SearchBar = ({ items, id }) => {
     },
   ];
   const filteredItems = items?.filter((item) => {
-    if (searchTerm.title === "" || searchTerm.title == null) {
+    if (searchTerm?.title === "" || searchTerm?.title == null) {
       return item;
     }
-    if (item.title.toLowerCase().includes(searchTerm.title.toLowerCase())) {
+    if (item?.title?.toLowerCase().includes(searchTerm?.title?.toLowerCase())) {
+      return item;
+    }
+    if (searchTerm?.firstname === "" || searchTerm?.firstname == null) {
+      return item;
+    }
+    if (item?.firstname?.toLowerCase().includes(searchTerm?.firstname?.toLowerCase())) {
       return item;
     }
     return null;
@@ -181,10 +221,13 @@ const SearchBar = ({ items, id }) => {
       ids: index + 1, // Ensure IDs start from 1
       firstname: item.firstname,
       lastname: item.lastname,
+      email: item.email,
+      phone: item.phone,
       title: item.title,
       company: item.company,
       topics: item.topics,
       presentation: item.presentation,
+      role: item.role,
     };
   });
   return (
@@ -197,13 +240,13 @@ const SearchBar = ({ items, id }) => {
           placeholder="Search by Title"
           onChange={handleSearch}
         />
-        <Button
+        <button
           variant="soft"
           onClick={handleDeleteSelected}
           disabled={ids?.length === 0}
         >
           <FaTrash style={{ color: ids?.length === 0 ? "lightGray" : "red" }} />
-        </Button>
+        </button>
         <NewSpeakerFormDialog text="NEW" />
       </div>
       <Box sx={{ height: 400, width: "100%" }}>
@@ -212,8 +255,7 @@ const SearchBar = ({ items, id }) => {
           row
           sx={{
             boxShadow: 3,
-            borderColor: "primary",
-            "& .MuiDataGrid-cell:hover": {
+            borderColor: "primary", "& .MuiDataGrid-cell:hover": {
               color: "primary.main",
             },
           }}

@@ -1,10 +1,10 @@
 "use client";
 import * as React from "react";
-import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import CardOverflow from "@mui/joy/CardOverflow";
-import Typography from "@mui/joy/Typography";
-import { Button } from "@mui/joy";
+// import Card from "@mui/joy/Card";
+// import CardContent from "@mui/joy/CardContent";
+// import CardOverflow from "@mui/joy/CardOverflow";
+// import Typography from "@mui/joy/Typography";
+// import { button } from "@mui/joy";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ViewTopicDetailDialog from "../Dialogs/ViewTopicDetailsDialog";
@@ -123,11 +123,11 @@ const EventTopicsCard = ({
           borderColor: "divider",
         }}
       >
-        <Button
+        <button
           color="neutral-light"
           onClick={() => handleDeleteTopic(topic_Id)}
         > X
-        </Button>
+        </button>
       </CardOverflow>
     </Card>
   );

@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import SpeakersList from '../components/AllSpeakersList/AllSpeakersList'
-import { Button, Container, FormControl, Input, Sheet, Typography } from '@mui/joy'
+import { button, Container, FormControl, Input, Sheet, Typography } from '@mui/joy'
 import { FormLabel } from '@mui/material'
 import Link from 'next/link'
 
@@ -77,7 +77,7 @@ const SpeakerSignUp = () => {
                 placeholder="password"
               />
             </FormControl>
-            <Button onClick={handleSubmit} sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+            <button onClick={handleSubmit} sx={{ mt: 1 /* margin top */ }}>Log in</button>
             <Typography
               endDecorator={<Link href="/speakerssignup">Speaker Sign up</Link>}
               fontSize="sm"

@@ -2,13 +2,13 @@
 
 import React, { useContext, useState } from 'react';
 import "./Login.css";
-import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Button from '@mui/joy/Button';
-import Link from '@mui/joy/Link';
+// import Sheet from '@mui/joy/Sheet';
+// import Typography from '@mui/joy/Typography';
+// import FormControl from '@mui/joy/FormControl';
+// import FormLabel from '@mui/joy/FormLabel';
+// import Input from '@mui/joy/Input';
+// import button from '@mui/joy/button';
+// import Link from '@mui/joy/Link';
 import { getSession, signIn } from "next-auth/react";
 import { Container } from '@mui/material';
 import { useRouter } from 'next/navigation';
@@ -108,7 +108,7 @@ const Login = () => {
                 placeholder="password"
               />
             </FormControl>
-            <Button onClick={handleSubmit} sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+            <button onClick={handleSubmit} sx={{ mt: 1 /* margin top */ }}>Log in</button>
             {error && <Typography color="error">{error}</Typography>}
             <Typography
               endDecorator={<Link href="/signup">Sign up</Link>}

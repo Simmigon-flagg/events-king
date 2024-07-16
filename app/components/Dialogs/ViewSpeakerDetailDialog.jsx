@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { Button } from "@mui/joy";
+
 import Border from "@/public/image/graphics/orangeblue.jpg";
 import Image from "next/image";
 import Dialog from "@mui/material/Dialog";
@@ -11,7 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import SpeakerDetailsView from "../Speaker/SpeakerDetailsView";
 import EditSpeakerForm from "../Forms/EditSpeakerForm";
 import SpeakersForm from "../Forms/SpeakersForm";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 
 const ViewSpeakerDetailDialog = ({ speaker, text }) => {
   const router = useRouter();
@@ -31,34 +31,33 @@ const ViewSpeakerDetailDialog = ({ speaker, text }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     setEdit((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
+  
+
 
   const handleSubmit = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/api/speakers/${edit?._id}`,
-        {
-          method: "PUT",
-          header: { "Content-type": "application/json" },
-          body: JSON.stringify(edit),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Topic was not updated");
-      }
-    } catch (error) {
-      console.log(error);
+    console.log("edit")
+    console.log(edit.role)
+    if (edit.role === "speaker") {
+
+
+    } else if (edit.role === "sponsor") {
+
+    }
+    else if (edit.role === "attendee") {
+
     }
 
-    alert("Your changes have been saved!");
+
+    console.log("Your changes have been saved!");
     setIsEditing(false);
     handleClose();
-    router.refresh();
+
   };
 
   return (
@@ -78,7 +77,7 @@ const ViewSpeakerDetailDialog = ({ speaker, text }) => {
             const formJson = Object.fromEntries(formData.entries());
             const email = formJson.email;
 
-            handleClose();
+            // handleClose();
           },
         }}
       >
@@ -97,28 +96,28 @@ const ViewSpeakerDetailDialog = ({ speaker, text }) => {
           }}
         >
           <Avatar variant="solid" sx={{ width: 56, height: 56 }} />
-            <span style={{ textDecoration: "underline", fontSize: "25px" }}>
-              <strong>
-                {speaker?.firstname} {speaker?.lastname}
-              </strong>
-            </span>
-      
+          <span style={{ textDecoration: "underline", fontSize: "25px" }}>
+            <strong>
+              {speaker?.firstname} {speaker?.lastname}
+            </strong>
+          </span>
+
         </DialogTitle>
         <DialogContent>
           <DialogContentText>Speaker Info</DialogContentText>
           {isEditing ? (
             <EditSpeakerForm edit={edit} handleChange={handleChange} />
           ) : (
-            <SpeakerDetailsView speaker={speaker} />
+            <SpeakerDetailsView edit={speaker} />
           )}
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <button onClick={handleClose}>Cancel</button>
           {isEditing ? (
-            <Button onClick={handleSubmit}>Save</Button>
+            <button onClick={handleSubmit}>Save</button>
           ) : (
-            <Button onClick={() => setIsEditing(true)}>Edit</Button>
+            <button onClick={() => setIsEditing(true)}>Edit</button>
           )}
         </DialogActions>
       </Dialog>

@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { nanoid } from 'nanoid';
 
-const BASEURL = 'http://localhost:4000'
+const BASEURL = 'http://localhost:3000/api'
 const fetchEvents = async () => {
 
     try {
@@ -24,7 +24,7 @@ export const EventsContextProvider = ({ children }) => {
             setEvents(eventsData);
         };
 
-        fetchData();
+        fetchData(events);
     }, []);
 
     const createEvent = async (newEvent) => {

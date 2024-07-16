@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+// import button from '@mui/material/button';
 import Grid from '@mui/material/Grid';
 import HelpIcon from '@mui/icons-material/Help';
 import IconButton from '@mui/material/IconButton';
@@ -84,21 +84,21 @@ function Header(props) {
               </Typography>
             </Grid>
             <Grid item>
-              <Button
+              <button
                 sx={{ borderColor: lightColor }}
                 variant="outlined"
                 color="inherit"
                 size="small"
               >
                 Web setup
-              </Button>
+              </button>
             </Grid>
-            <Grid item>
-              <Tooltip title="Help">
+            <Grid item>      <Tooltip title="Help">
                 <IconButton color="inherit">
                   <HelpIcon />
                 </IconButton>
               </Tooltip>
+        
             </Grid>
           </Grid>
         </Toolbar>

@@ -6,7 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Button, Tooltip } from "@mui/joy";
+// import { button, Tooltip } from "@mui/joy";
 import SearchBar from "../SearchBar/SearchBar";
 import Border from "@/public/image/graphics/orangeblue.jpg"
 import Image from "next/image";
@@ -43,9 +43,9 @@ const BrowseSessionDialog = ({ text, topics, event }) => {
             size="lg"
             placement="top-end"
           >
-            <Button className="btn" variant="solid" onClick={handleClickOpen}>
+            <button className="btn" variant="solid" onClick={handleClickOpen}>
               {text}
-            </Button>
+            </button>
           </Tooltip>
         }
       </div>
@@ -76,8 +76,8 @@ const BrowseSessionDialog = ({ text, topics, event }) => {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleAdd}>Add</Button>
+          <button onClick={handleClose}>Cancel</button>
+          <button onClick={handleAdd}>Add</button>
         </DialogActions>
       </Dialog>
     </div>
