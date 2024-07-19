@@ -207,8 +207,8 @@ export default function Paperbase() {
         return <AllAttendeesList />;
       case 'Sponsors':
         return <AllSponsorsList />;
-      case 'Venue':
-        return <Content2 />;
+      // case 'Venue':
+      //   return <Content2 />;
 
     }
     switch (selectedTab) {
