@@ -9,7 +9,7 @@ const Carousel = () => {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
-        const lastIndex = people.length - 1;
+        const lastIndex = people?.length - 1;
         if (index < 0) {
             setIndex(lastIndex)
         }

@@ -5,12 +5,13 @@ import SearchBar from "../SearchBar/SearchSpeakers";
 import { UsersContext } from "@/context/UsersContext";
 import { Skeleton } from "@mui/material";
 
+
 const AllSpeakersList = () => {
   const { users } = useContext(UsersContext)
 
   return (
     <>
-      {users ? <SearchBar items={users.users.filter(user => user.role === "speaker")} /> : <Skeleton />}
+      {users ? <SearchBar items={users.users.filter(user => user.role === "attendee")} /> : <Skeleton />}
     </>
   );
 };

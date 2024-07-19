@@ -38,6 +38,7 @@ const Home = () => {
   }
   return (
     <Container fixed>
+      <Link href={"/dashboard"}><Button>dashboard</Button></Link>
       <Link href={"/registration/attendees"}><Button>attendees</Button></Link>
       <Link href={"/registration/speakers"}><Button>speakers</Button></Link>
       <Link href={"/registration/sponsors"}><Button>sponsors</Button></Link>

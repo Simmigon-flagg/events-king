@@ -1,39 +1,38 @@
 "use client";
 import React, { useContext, useState } from "react";
-
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useRouter } from "next/navigation";
 import TopicDetailsView from "../TopicDetailsView/TopicDetailsView";
 import EditTopicForm from "../Forms/EditTopicForm";
 import Border from "@/public/image/graphics/orangeblue.jpg";
 import Image from "next/image";
 import "./Dialog.css";
-// import { button } from "@mui/material";
 import { AllTopicsContext } from "@/context/AllTopics";
 
 const ViewTopicDetailDialog = ({ topic, text }) => {
-  const { updateTopic } = useContext(AllTopicsContext)
-  const router = useRouter();
+  const { updateTopic } = useContext(AllTopicsContext);
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [edit, setEdit] = useState(topic);
 
   const handleClickOpen = () => {
     setOpen(true);
+    setIsEditing(false);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setIsEditing(false);
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
     setEdit((prev) => ({
       ...prev,
       [name]: value,
@@ -53,11 +52,10 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
       time: time ? time.format("HH:mm") : null,
     }));
   };
-  const handleSubmit = async () => {
 
-    updateTopic(edit)
-
-    router.refresh();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    updateTopic(edit);
     setIsEditing(false);
     handleClose();
   };
@@ -71,17 +69,6 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
         open={open}
         onClose={handleClose}
         className="view-dialog-container"
-        PaperProps={{
-          component: "form",
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-
-            handleClose();
-          },
-        }}
       >
         <Image
           src={Border}
@@ -111,9 +98,9 @@ const ViewTopicDetailDialog = ({ topic, text }) => {
         <DialogActions>
           <button onClick={handleClose}>Cancel</button>
           {isEditing ? (
-            <button onClick={handleSubmit}>Save</button>
+            <button type="submit" onClick={handleSubmit}>Save</button>
           ) : (
-            <button onClick={() => setIsEditing(true)}>Edit</button>
+            <button onClick={handleEdit}>Edit</button>
           )}
         </DialogActions>
       </Dialog>

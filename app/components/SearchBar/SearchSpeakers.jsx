@@ -1,73 +1,26 @@
 "use client";
 import { FaTrash } from "react-icons/fa";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 
-import { Avatar, Box, Input } from "@mui/material";
+import { Avatar, Box, Input, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import "./search.css";
 import ViewSpeakerDetailDialog from "../Dialogs/ViewSpeakerDetailDialog";
-
 import NewSpeakerFormDialog from "../Dialogs/NewSpeakerFormDialog";
-import { InputRounded } from "@mui/icons-material";
 import ChipAvatar from "../Chips/ChipAvatar";
 
+const SearchBar = ({ items }) => {
 
-const SearchBar = ({ items, id }) => {
-  const router = useRouter();
+
   const [ids, setIds] = useState([]);
-  const [searchTerm, setSearchTerm] = useState({
-    title: "",
-    firstname: ""
-  });
+  const [searchTerm, setSearchTerm] = useState({ firstname: "" });
 
   const handleSearch = (e) => {
     const { name, value } = e.target;
-
     setSearchTerm((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
-
-  const handleGetId = async (topic_Id, speakerId) => {
-    try {
-      // Fetch the existing event
-      const res = await fetch(
-        `http://localhost:3000/api/users/${speakerId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const data = await res.json();
-      const { event } = data;
-      const { topics } = event;
-      const updatedTopics = [...topics, topic_Id];
-
-      const updateRes = await fetch(
-        `http://localhost:3000/api/users/${speakerId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ topics: updatedTopics }),
-        }
-      );
-
-      if (!updateRes.ok) {
-        throw new Error("Failed to update event");
-      }
-
-      const updatedData = await updateRes.json();
-      console.log("Updated Event:", updatedData);
-    } catch (error) {
-      console.error("Error updating event:", error);
-    }
   };
 
   const getIds = (rowIds) => {
@@ -77,12 +30,10 @@ const SearchBar = ({ items, id }) => {
   const handleDeleteSelected = async () => {
     try {
       await Promise.all(
-        ids.map((id) => {
-          fetch(`/api/users?id=${id}`, { method: "DELETE" });
-        })
+        ids.map((id) => fetch(`/api/users?id=${id}`, { method: "DELETE" }))
       );
-      alert("Items deleted successfully!");
-      router.refresh();
+      // alert("Items deleted successfully!");
+
     } catch (error) {
       alert("Failed to delete items");
       console.error(error);
@@ -92,17 +43,29 @@ const SearchBar = ({ items, id }) => {
   const columns = [
     { field: "ids", headerName: "#", width: 50 },
     {
+      field: "admin",
+      headerName: "admin",
+      width: 150,
+      renderHeader: () => <strong>{"Admin"}</strong>,
+      renderCell: (params) => {
+        <ViewSpeakerDetailDialog speaker={params.row} text={params.row.admin}
+
+      />
+        
+      },
+    },
+
+    {
       field: "firstname",
       headerName: "First Name",
       width: 200,
       renderHeader: () => <strong>{"First Name"}</strong>,
       renderCell: (params) => (
         <div className="speaker-name">
-          <Avatar variant="solid" alt="SE" size="sm"> {params.row.firstname && params.row.firstname.substring(0, 1) + params.row.lastname.substring(0, 1)}</Avatar>
-          <ViewSpeakerDetailDialog
-            speaker={params.row}
-            text={params.row.firstname}
-          />
+          <Avatar variant="solid" alt="SE" size="sm">
+            {params.row.firstname && params.row.firstname.substring(0, 1) + params.row.lastname.substring(0, 1)}
+          </Avatar>
+    
           <ChipAvatar name={params.row.firstname} image={params.row.firstname} />
         </div>
       ),
@@ -113,98 +76,76 @@ const SearchBar = ({ items, id }) => {
       width: 150,
       renderHeader: () => <strong>{"Last Name"}</strong>,
       renderCell: (params) => (
-        <ViewSpeakerDetailDialog
-          speaker={params.row}
-          text={params.row.lastname}
-        />
+        <ViewSpeakerDetailDialog speaker={params.row} text={params.row.lastname} />
       ),
     },
-
     {
       field: "email",
       headerName: "Email",
       width: 150,
       renderHeader: () => <strong>{"Email"}</strong>,
-      renderCell: (params) => (
-        <ViewSpeakerDetailDialog speaker={params.row} text={params.row.email} />
-      ),
-    },
-    {
-      field: "phone",
-      headerName: "Phone",
-      width: 150,
-      renderHeader: () => <strong>{"Phone"}</strong>,
-      renderCell: (params) => (
-        <ViewSpeakerDetailDialog speaker={params.row} text={params.row.phone} />
-      ),
-    },
-
-    {
-      field: "title",
-      headerName: "Title",
-      width: 150,
-      renderHeader: () => <strong>{"Title/Occupation"}</strong>,
-      renderCell: (params) => (
-        <ViewSpeakerDetailDialog speaker={params.row} text={params.row.title} />
-      ),
-    },
-
-    {
-      field: "company",
-      headerName: "Company",
-      width: 150,
-      renderHeader: () => <strong>{"Company"}</strong>,
-      renderCell: (params) => (
-        <ViewSpeakerDetailDialog
-          speaker={params.row}
-          text={params.row.company}
-        />
-      ),
-    },
-    {
-      field: "topics",
-      headerName: "Topics",
-      width: 150,
-      renderHeader: () => <strong>{"Topics"}</strong>,
-      renderCell: (params) => (
-        <ViewSpeakerDetailDialog
-          speaker={params.row}
-          text={params.row.topics}
-        />
-      ),
+      renderCell: (params) => <ViewSpeakerDetailDialog speaker={params.row} text={params.row.email} />,
     },
     {
       field: "role",
       headerName: "Role",
       width: 150,
       renderHeader: () => <strong>{"Role"}</strong>,
-      renderCell: (params) => (
-        <ViewSpeakerDetailDialog
-          speaker={params.row}
-          text={params.row.role}
-        />
-      ),
+      renderCell: (params) => <ViewSpeakerDetailDialog speaker={params.row} text={params.row.role} />,
     },
+    {
+      field: "phone",
+      headerName: "Phone",
+      width: 150,
+      renderHeader: () => <strong>{"Phone"}</strong>,
+      renderCell: (params) => <ViewSpeakerDetailDialog speaker={params.row} text={params.row.phone} />,
+    },
+    {
+      field: "title",
+      headerName: "Title",
+      width: 150,
+      renderHeader: () => <strong>{"Title/Occupation"}</strong>,
+      renderCell: (params) => <ViewSpeakerDetailDialog speaker={params.row} text={params.row.title} />,
+    },
+    {
+      field: "company",
+      headerName: "Company",
+      width: 150,
+      renderHeader: () => <strong>{"Company"}</strong>,
+      renderCell: (params) => <ViewSpeakerDetailDialog speaker={params.row} text={params.row.company} />,
+    },
+    {
+      field: "events",
+      headerName: "Events",
+      width: 150,
+      renderHeader: () => <strong>{"Events"}</strong>,
+      renderCell: (params) => <ViewSpeakerDetailDialog speaker={params.row} text={params.row.events} />,
+    },
+    {
+      field: "topics",
+      headerName: "Topics",
+      width: 150,
+      renderHeader: () => <strong>{"Topics"}</strong>,
+      renderCell: (params) => <ViewSpeakerDetailDialog speaker={params.row} text={params.row.topics} />,
+    },
+    {
+      field: "aboutme",
+      headerName: "About me",
+      width: 150,
+      renderHeader: () => <strong>{"About me"}</strong>,
+      renderCell: (params) => <ViewSpeakerDetailDialog speaker={params.row} text={params.row.aboutme} />,
+    },
+
     {
       field: "presentation",
       headerName: "Presentation",
       width: 150,
       renderHeader: () => <strong>{"Presentation"}</strong>,
-      renderCell: (params) => (
-        <ViewSpeakerDetailDialog
-          speaker={params.row}
-          text={params.row.presentation}
-        />
-      ),
+      renderCell: (params) => <ViewSpeakerDetailDialog speaker={params.row} text={params.row.presentation} />,
     },
   ];
+
   const filteredItems = items?.filter((item) => {
-    if (searchTerm?.title === "" || searchTerm?.title == null) {
-      return item;
-    }
-    if (item?.title?.toLowerCase().includes(searchTerm?.title?.toLowerCase())) {
-      return item;
-    }
     if (searchTerm?.firstname === "" || searchTerm?.firstname == null) {
       return item;
     }
@@ -214,48 +155,54 @@ const SearchBar = ({ items, id }) => {
     return null;
   });
 
-  const rows = filteredItems?.map((item, index) => {
-    return {
-      id: item._id, // Ensure IDs start from 1
-      _id: item._id, // Ensure IDs start from 1
-      ids: index + 1, // Ensure IDs start from 1
-      firstname: item.firstname,
-      lastname: item.lastname,
-      email: item.email,
-      phone: item.phone,
-      title: item.title,
-      company: item.company,
-      topics: item.topics,
-      presentation: item.presentation,
-      role: item.role,
-    };
-  });
+  const rows = filteredItems?.map((item, index) => ({
+    id: item._id,
+    _id: item._id,
+    ids: index + 1,
+    name: item.name,
+    email: item.email,
+    events: item.events,
+    topics: item.topics,
+    role: item.role,
+    aboutme: item.aboutme,
+    company: item.company,
+    description: item.description,
+    firstname: item.firstname,
+    lastname: item.lastname,
+    phone: item.phone,
+    presentation: item.presentation,
+    title: item.title,
+    admin: item.admin
+
+  }));
+
   return (
     <>
       <div className="search-container">
         <Input
           type="text"
-          name="title"
-          value={searchTerm.title}
-          placeholder="Search by Title"
+          name="firstname"
+          value={searchTerm.firstname}
+          placeholder="Search by First Name"
           onChange={handleSearch}
         />
-        <button
-          variant="soft"
+        <Button
+          variant="contained"
+          color="secondary"
           onClick={handleDeleteSelected}
-          disabled={ids?.length === 0}
+          disabled={ids && ids?.length === 0}
         >
-          <FaTrash style={{ color: ids?.length === 0 ? "lightGray" : "red" }} />
-        </button>
+          <FaTrash style={{ color: ids && ids?.length === 0 ? "lightGray" : "red" }} />
+        </Button>
         <NewSpeakerFormDialog text="NEW" />
       </div>
-      <Box sx={{ height: 400, width: "100%" }}>
+      <Box sx={{ height: 400 }}>
         <DataGrid
           rows={rows}
-          row
           sx={{
             boxShadow: 3,
-            borderColor: "primary", "& .MuiDataGrid-cell:hover": {
+            borderColor: "primary.main",
+            "& .MuiDataGrid-cell:hover": {
               color: "primary.main",
             },
           }}

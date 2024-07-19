@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Border from "@/public/image/graphics/orangeblue.jpg";
 import Image from "next/image";
@@ -12,24 +12,41 @@ import SpeakerDetailsView from "../Speaker/SpeakerDetailsView";
 import EditSpeakerForm from "../Forms/EditSpeakerForm";
 import SpeakersForm from "../Forms/SpeakersForm";
 import { Avatar, Button } from "@mui/material";
+import { UsersContext } from "@/context/UsersContext";
 
 const ViewSpeakerDetailDialog = ({ speaker, text }) => {
-  const router = useRouter();
+  const { updateUser, reloadUsers } = useContext(UsersContext)
   const [open, setOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [edit, setEdit] = useState(speaker);
-
+  useEffect(() => {
+    const fetchData = async () => {
+      if (open) {
+        await reloadUsers();
+      }
+    };
+    fetchData();
+  }, [open]);
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setEdit(speaker);
+    setEdit(edit);
     setIsEditing(false);
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name,value)
+    setEdit((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleAdmin = (e) => {
     const { name, value } = e.target;
 
     setEdit((prev) => ({
@@ -37,26 +54,16 @@ const ViewSpeakerDetailDialog = ({ speaker, text }) => {
       [name]: value,
     }));
   };
-  
+
 
 
   const handleSubmit = async () => {
-    console.log("edit")
-    console.log(edit.role)
-    if (edit.role === "speaker") {
-
-
-    } else if (edit.role === "sponsor") {
-
-    }
-    else if (edit.role === "attendee") {
-
-    }
-
-
-    console.log("Your changes have been saved!");
-    setIsEditing(false);
     handleClose();
+    setIsEditing(false);
+    await updateUser(edit)
+    
+    console.log(edit)
+    console.log("Your changes have been saved!");
 
   };
 
@@ -78,6 +85,7 @@ const ViewSpeakerDetailDialog = ({ speaker, text }) => {
             const email = formJson.email;
 
             // handleClose();
+
           },
         }}
       >
@@ -98,7 +106,7 @@ const ViewSpeakerDetailDialog = ({ speaker, text }) => {
           <Avatar variant="solid" sx={{ width: 56, height: 56 }} />
           <span style={{ textDecoration: "underline", fontSize: "25px" }}>
             <strong>
-              {speaker?.firstname} {speaker?.lastname}
+              {edit?.firstname} {edit?.lastname}
             </strong>
           </span>
 
@@ -106,16 +114,16 @@ const ViewSpeakerDetailDialog = ({ speaker, text }) => {
         <DialogContent>
           <DialogContentText>Speaker Info</DialogContentText>
           {isEditing ? (
-            <EditSpeakerForm edit={edit} handleChange={handleChange} />
+            <EditSpeakerForm edit={edit} handleChange={handleChange}  />
           ) : (
-            <SpeakerDetailsView edit={speaker} />
+            <SpeakerDetailsView edit={edit} />
           )}
         </DialogContent>
 
         <DialogActions>
           <button onClick={handleClose}>Cancel</button>
           {isEditing ? (
-            <button onClick={handleSubmit}>Save</button>
+            <button onClick={() => handleSubmit()}>Save</button>
           ) : (
             <button onClick={() => setIsEditing(true)}>Edit</button>
           )}

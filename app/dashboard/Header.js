@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
@@ -16,11 +16,15 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+import { AuthContext } from '@/context/AuthContext';
+
+
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
-function Header(props) {
-  const { selectedTab , handleTabChange, onDrawerToggle } = props;
- 
+const Header = (props) => {
+  const { selectedTab, handleTabChange, onDrawerToggle } = props;
+  const { auth, signOutUser } = useContext(AuthContext)
+
   return (
     <React.Fragment>
       <AppBar color="primary" elevation={0}>
@@ -62,9 +66,12 @@ function Header(props) {
               </Tooltip>
             </Grid>
             <Grid item>
-              <IconButton color="inherit" sx={{ p: 0.5 }}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
-              </IconButton>
+              <Avatar variant="solid" alt="SE" size="sm">
+                {auth?.user?.name && auth?.user?.name.substring(0, 1)}
+
+                {/* {users?.firstname && users?.firstname.substring(0, 1) + params.row.lastname.substring(0, 1)} */}
+              </Avatar>
+            
             </Grid>
           </Grid>
         </Toolbar>
@@ -94,11 +101,11 @@ function Header(props) {
               </button>
             </Grid>
             <Grid item>      <Tooltip title="Help">
-                <IconButton color="inherit">
-                  <HelpIcon />
-                </IconButton>
-              </Tooltip>
-        
+              <IconButton color="inherit">
+                <HelpIcon />
+              </IconButton>
+            </Tooltip>
+
             </Grid>
           </Grid>
         </Toolbar>
@@ -107,11 +114,13 @@ function Header(props) {
         <Tabs value={selectedTab} onChange={handleTabChange} textColor="inherit">
           <Tab label="Users" />
           <Tab label="Sign-in method" />
-          <Tab label="Templates" />
+          <Tab onClick={() => signOutUser()}label="Sign-out" />
+          
+          
           <Tab label="Usage" />
         </Tabs>
       </AppBar>
-   
+
     </React.Fragment>
   );
 }

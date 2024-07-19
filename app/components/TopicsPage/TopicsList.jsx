@@ -3,7 +3,7 @@ import SearchTopics from '../SearchBar/SearchTopics'
 
 const getTopics = async () => {
   try {
-    const response = await fetch("http://localhost:3000/api/topics", {
+    const response = await fetch("/api/topics", {
       cache: "no-store"
     })
     if (!response.ok) {
@@ -20,9 +20,7 @@ const TopicsList = async () => {
   const { topics } = await getTopics();
 
   return (
-    <>
-      <SearchTopics items={topics} />
-    </>
+    <SearchTopics items={topics} />
 
   )
 }

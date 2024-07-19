@@ -2,20 +2,23 @@
 
 import React, { useContext, useState } from 'react';
 import "./Login.css";
-// import Sheet from '@mui/joy/Sheet';
-// import Typography from '@mui/joy/Typography';
-// import FormControl from '@mui/joy/FormControl';
-// import FormLabel from '@mui/joy/FormLabel';
-// import Input from '@mui/joy/Input';
-// import button from '@mui/joy/button';
-// import Link from '@mui/joy/Link';
+import Sheet from '@mui/joy/Sheet';
+import Typography from '@mui/joy/Typography';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
+import button from '@mui/joy/button';
+import Link from '@mui/joy/Link';
 import { getSession, signIn } from "next-auth/react";
-import { Container } from '@mui/material';
+// import { Container, FormControl, FormLabel, Input, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { UsersContext } from '@/context/UsersContext';
+import { Container } from '@mui/joy';
+// import { Sheet } from '@mui/joy';
+// import Link from 'next/link';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: "da@gmail.com", password: "admin123" });
+  const [formData, setFormData] = useState({ email: "admin@gmail.com", password: "123456" });
   const [error, setError] = useState(null);
   const { users, setUsers } = useContext(UsersContext);
   const router = useRouter();
@@ -54,8 +57,8 @@ const Login = () => {
           
           ));
         
-
-        router.push("/");
+          
+        router.push("/dashboard");
       } catch (error) {
         setError(error.message);
         console.error("Fetch user data error: ", error);

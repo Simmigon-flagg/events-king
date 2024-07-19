@@ -22,7 +22,7 @@ export const UsersContextProvider = ({ children }) => {
         if (session) {
           const response = await fetch(`/api/users/${session.user.id}`);
           const userData = await response.json();
-          
+          console.log(userData)
           setUsers(prev => ({
             ...prev,
             user: userData.user
@@ -50,6 +50,7 @@ export const UsersContextProvider = ({ children }) => {
 
         const response = await fetch(`/api/users`);
         const data = await response.json();
+        
         setUsers(data)
 
       } catch (error) {
@@ -60,11 +61,13 @@ export const UsersContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    
     const fetchData = async () => {
       try {
 
         const response = await fetch(`/api/users`);
         const data = await response.json();
+        
         setUsers(data)
 
       } catch (error) {
@@ -88,27 +91,27 @@ export const UsersContextProvider = ({ children }) => {
   };
 
   const updateUser = async (edit) => {
-
+    alert("User updated!")
     try {
       const response = await fetch(`/api/users/${edit.id}`,
         {
           method: "PUT",
-          header: { "Content-type": "application/json" },
-          body: JSON.stringify(edit),
+          header: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user: edit }),
         }
       );
       if (!response.ok) {
-        throw new Error("Topic was not updated");
+        throw new Error("Users was not updated");
       }
-      await reloadUsers()
-
+      
     } catch (error) {
       console.log(error);
     }
+    await reloadUsers()
   };
 
   const deleteUser = async (ids) => {
-    
+
     try {
       await Promise.all(
         ids.map((id) => {
@@ -128,7 +131,7 @@ export const UsersContextProvider = ({ children }) => {
   useEffect(() => {
     reloadUsers();
   }, []);
-  const contextValue = { users, setUsers, signOutUser, createUser, updateUser, deleteUser };
+  const contextValue = { users, setUsers, signOutUser, createUser, updateUser, deleteUser, reloadUsers };
 
   return (
     <UsersContext.Provider value={contextValue}>

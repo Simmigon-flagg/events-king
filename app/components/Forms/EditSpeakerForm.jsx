@@ -1,11 +1,12 @@
 "use client";
 
-import { FormLabel, Input } from "@mui/material";
+import { FormControlLabel, FormLabel, Input, Radio, RadioGroup } from "@mui/material";
 import "./Form.css";
 
 const EditSpeakerForm = ({
   edit,
-  handleChange
+  handleChange,
+  handleAdmin
 }) => {
   return (
     <div className="form-container">
@@ -75,13 +76,39 @@ const EditSpeakerForm = ({
         </div>
       </div>
 
-      
 
+      <div className="input-field">
+        <FormLabel>Role</FormLabel>
+        <select name="role" onChange={handleChange} value={edit?.role}>
+          <option value="speaker">Speaker</option>
+          <option value="sponsor">Sponsor</option>
+          <option value="attendee">Attendee</option>
+        </select>
+      </div>
+      <div className="input-admin">
+        <FormLabel>Admin</FormLabel>
+        <RadioGroup name="admin" value={edit.admin} onChange={handleChange}>
+          <FormControlLabel value="true" control={<Radio />} label="Set to Admin" />
+          <FormControlLabel value="false" control={<Radio />} label="Remove Admin" />
+        </RadioGroup>
+      </div>
+
+      <div className="input-field">
+        <FormLabel>About me</FormLabel>
+        <textarea
+          // minRows={4}
+          // maxRows={5}
+          type="text"
+          onChange={handleChange}
+          value={edit?.aboutme}
+          name="aboutme"
+        />
+      </div>
       <div className="input-field">
         <FormLabel>Description</FormLabel>
         <textarea
-          minRows={4}
-          maxRows={5}
+          // minRows={4}
+          // maxRows={5}
           type="text"
           onChange={handleChange}
           value={edit?.description}

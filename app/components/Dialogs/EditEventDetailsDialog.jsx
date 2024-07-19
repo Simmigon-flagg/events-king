@@ -51,7 +51,7 @@ const EditEventDetailsDialog = ({ event, text }) => {
     }));
   };
   const handleSubmit = async () => {
-    console.log("EDIT EVENTS!!!!!")
+    
     updateEvent(edit)
     handleClose();
   };

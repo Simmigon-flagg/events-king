@@ -9,6 +9,7 @@ import AllUsersContextProvider from "@/context/AllUsersContext";
 import AllEventsContextProvider from "@/context/AllEvents";
 import AllTopicsContextProvider from "@/context/AllTopics";
 import SpeakersContextProvider from "@/context/SpeakersContext";
+import AuthContextProvider from "@/context/AuthContext";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,27 +22,29 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <ThemeProvider>
-        <UsersContextProvider>
-          <AllUsersContextProvider>
-            <AllEventsContextProvider>
-              <AllTopicsContextProvider>
-                <SpeakersContextProvider>
+      <AuthContextProvider>
+        <ThemeProvider>
+          <UsersContextProvider>
+            <AllUsersContextProvider>
+              <AllEventsContextProvider>
+                <AllTopicsContextProvider>
+                  <SpeakersContextProvider>
 
-                  <body className={inter.className} style={{ display: "flex", flexDirection: "column", gap: 100 }}>
-                    <CssBaseline />
-                    {/* <Navbar /> */}
-                    {children}
-                    {/* <Footer2 /> */}
+                    <body className={inter.className} style={{ display: "flex", flexDirection: "column", gap: 100 }}>
+                      <CssBaseline />
+                      {/* <Navbar /> */}
+                      {children}
+                      {/* <Footer2 /> */}
 
-                  </body>
+                    </body>
 
-                </SpeakersContextProvider>
-              </AllTopicsContextProvider>
-            </AllEventsContextProvider>
-          </AllUsersContextProvider>
-        </UsersContextProvider>
-      </ThemeProvider>
+                  </SpeakersContextProvider>
+                </AllTopicsContextProvider>
+              </AllEventsContextProvider>
+            </AllUsersContextProvider>
+          </UsersContextProvider>
+        </ThemeProvider>
+      </AuthContextProvider>
     </html>
   );
 }

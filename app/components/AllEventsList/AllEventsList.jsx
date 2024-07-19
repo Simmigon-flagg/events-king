@@ -7,9 +7,10 @@ const AllEventsList = () => {
   const { events } = useContext(AllEventsContext)
 
   return (
-    <>
+  <>
       {events ? <SearchBar items={events} /> : <Skeleton />}
-    </>
+  </>
+
   );
 };
 export default AllEventsList;

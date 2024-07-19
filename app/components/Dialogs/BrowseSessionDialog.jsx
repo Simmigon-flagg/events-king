@@ -10,6 +10,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import SearchBar from "../SearchBar/SearchBar";
 import Border from "@/public/image/graphics/orangeblue.jpg"
 import Image from "next/image";
+import { Tooltip } from "@mui/material";
+
 
 const BrowseSessionDialog = ({ text, topics, event }) => {
   const router = useRouter();

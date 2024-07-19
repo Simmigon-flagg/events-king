@@ -16,6 +16,9 @@ const SpeakerDetailsView = ({ edit }) => {
     topics,
     presentation,
     description,
+    aboutme,
+    role,
+    admin
   } = edit;
 
   return (
@@ -67,6 +70,26 @@ const SpeakerDetailsView = ({ edit }) => {
       </div>
 
       <div className="grid-container">
+        <div className="grid-item">
+          <label className="view-topic-label" htmlFor="role">
+            Role:
+          </label>
+          <div className="view-topic-info-text">{role}</div>
+        </div>
+        <div className="grid-item">
+          <label className="view-topic-label" htmlFor="admin">
+            Admin:
+          </label>
+          <div className="view-topic-info-text">{String(admin)}</div>
+        </div>
+      </div>
+      <div className="grid-container">
+        <div className="grid-item">
+          <label className="view-topic-label" htmlFor="aboutme">
+            about me:
+          </label>
+          <div className="view-topic-info-text">{aboutme}</div>
+        </div>
         <div className="grid-item">
           <label className="view-topic-label" htmlFor="description">
             Description:

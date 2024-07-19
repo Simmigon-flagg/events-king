@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+"use client"
+import React, { useContext, useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +15,10 @@ import AllUsersList from '../components/AllUsersList/AllUsersList';
 import AllEventsList from '../components/AllEventsList/AllEventsList';
 import AllTopicsList from '../components/AllTopicsList/AllTopicsList';
 import AllSpeakersList from '../components/AllSpeakersList/AllSpeakersList';
+import AllAttendeesList from '../components/AllAttendeesList/AllAttendeesList';
+import AllSponsorsList from '../components/AllSponsorsList/AllSponsorsList';
+import { AuthContext } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 
 function Copyright() {
@@ -176,7 +181,9 @@ const drawerWidth = 256;
 export default function Paperbase() {
   const [pageComponents, setPageComponents] = useState()
   const [loading, setLoading] = useState(false);
+  const router = useRouter()
   const [selectedTab, setSelectedTab] = React.useState(0);
+  const { auth, signOutUser } = useContext(AuthContext)
 
   const handleTabChange = (event, newValue) => {
     console.log(event)
@@ -184,7 +191,7 @@ export default function Paperbase() {
   };
 
   const renderComponent = () => {
-    
+
     switch (pageComponents) {
       case 'Authentication':
         return <Content />;
@@ -197,16 +204,16 @@ export default function Paperbase() {
       case 'Speakers':
         return <AllSpeakersList />;
       case 'Attendees':
-        return <Content2 />;
+        return <AllAttendeesList />;
       case 'Sponsors':
-        return <Content2 />;
+        return <AllSponsorsList />;
       case 'Venue':
         return <Content2 />;
 
     }
     switch (selectedTab) {
       case 0:
-        return <Typography variant="body1">User content</Typography>;
+        return <Typography variant="body1">  {`Welcome to King event's, ${auth?.user?.firstname || auth?.user?.name}!`}</Typography>;
       case 1:
         return <Typography variant="body1">Sign-in method content</Typography>;
       case 2:
@@ -238,6 +245,7 @@ export default function Paperbase() {
               variant="temporary"
               open={mobileOpen}
               onClose={handleDrawerToggle}
+              onClick={handleDrawerToggle}
               setPageComponents={setPageComponents}
             />
           )}

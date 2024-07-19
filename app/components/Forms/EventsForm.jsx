@@ -11,6 +11,7 @@ import TextField from "@mui/material/TextField";
 // import Button from "@mui/joy/Button";
 // import SvgIcon from "@mui/joy/SvgIcon";
 import { styled } from "@mui/joy";
+import { SvgIcon } from "@mui/material";
 
 const VisuallyHiddenInput = styled("input")`
   clip: rect(0 0 0 0);

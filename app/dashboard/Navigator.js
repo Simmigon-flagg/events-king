@@ -18,6 +18,7 @@ import TimerIcon from '@mui/icons-material/Timer';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
 import { green } from '@mui/material/colors';
+import { useRouter } from 'next/navigation';
 
 const categories = [
   {
@@ -58,6 +59,7 @@ const itemCategory = {
 export default function Navigator(props) {
   const { setPageComponents, ...other } = props;
   const [activeItem, setActiveItem] = React.useState('Schedule');
+  const router = useRouter()
 
   const handleItemClick = (id) => {
     setActiveItem(id);
@@ -70,7 +72,7 @@ export default function Navigator(props) {
         <ListItem sx={{ ...item, ...itemCategory, fontSize: 22, color: '#fff' }}>
           King Event Dashboard
         </ListItem>
-        <ListItem sx={{ ...item, ...itemCategory }}>
+        <ListItem sx={{ ...item, ...itemCategory }}  onClick={() => router.replace("/kingevents")}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>

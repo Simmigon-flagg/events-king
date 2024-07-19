@@ -17,9 +17,9 @@ import { AllTopicsContext } from "@/context/AllTopics";
 
 
 const SearchBar = ({ items, id }) => {
-  const { topics, deleteTopic } = useContext(AllTopicsContext)
+  const { deleteTopic } = useContext(AllTopicsContext)
 
-  const router = useRouter();
+
   const [ids, setIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState({
     title: "",
@@ -72,7 +72,7 @@ const SearchBar = ({ items, id }) => {
       ),
     },
     {
-
+      
       field: "speaker",
       headerName: "Speaker",
       width: 150,
@@ -82,20 +82,21 @@ const SearchBar = ({ items, id }) => {
         </strong>),
       renderCell: (params) => (
         <ChipAvatar name={params.row.speaker} image={params.row.image} />
-      ),
-    },
-
-    {
-      field: "date",
-      headerName: "Date",
-      width: 150,
-      renderCell: (params) => (
-        <>
+        ),
+      },
+      
+      {
+        field: "date",
+        headerName: "Date",
+        width: 150,
+        renderCell: (params) => (
+          <>
           {Dates(params.row.date, params.row.time)}
         </>
 
-      ),
-    },
+),
+},
+
 
 
     {
@@ -111,6 +112,18 @@ const SearchBar = ({ items, id }) => {
           {Times(params.row.date, params.row.time)}
         </>
 
+      ),
+    },
+    {
+      field: "description",
+      headerName: "Description",
+      width: 150,
+      renderHeader: () => (
+        <strong>
+          {'Description'}
+        </strong>),
+      renderCell: (params) => (
+        <ViewTopicDetailDialog topic={params.row} text={params.row.description} />
       ),
     },
 
@@ -151,10 +164,10 @@ const SearchBar = ({ items, id }) => {
           placeholder="Search by Title"
           onChange={handleSearch}
         />
-        <button variant="soft" onClick={handleDeleteSelected} disabled={ids?.length === 0}><FaTrash style={{ color: ids?.length === 0 ? 'lightGray' : 'red' }} /></button>
+        <button variant="soft" onClick={handleDeleteSelected} disabled={ids && ids?.length === 0}><FaTrash style={{ color: ids && ids?.length === 0 ? 'lightGray' : 'red' }} /></button>
         <AddTopicFormDialog text="NEW" />
       </div>
-      <Box sx={{ height: 400, width: "100%" }}>
+      <Box sx={{ height: 400}}>
         <DataGrid
           rows={rows}
           row
@@ -175,6 +188,9 @@ const SearchBar = ({ items, id }) => {
           }}
           pageSizeOptions={[6]}
           checkboxSelection
+          scrollbarSize={3}
+        
+          
           onRowSelectionModelChange={(selectedId) => getIds(selectedId)}
         />
       </Box>

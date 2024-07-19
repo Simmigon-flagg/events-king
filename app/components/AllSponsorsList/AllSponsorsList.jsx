@@ -10,7 +10,7 @@ const AllSpeakersList = () => {
 
   return (
     <>
-      {users ? <SearchBar items={users.users.filter(user => user.role === "speaker")} /> : <Skeleton />}
+      {users ? <SearchBar items={users.users.filter(user => user.role === "sponsor")} /> : <Skeleton />}
     </>
   );
 };

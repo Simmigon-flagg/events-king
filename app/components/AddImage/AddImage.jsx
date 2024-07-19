@@ -1,6 +1,9 @@
 "use client"
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
+import { Button, SvgIcon, styled } from '@mui/joy';
+
+
 
 const VisuallyHiddenInput = styled('input')`
   clip: rect(0 0 0 0);
@@ -51,12 +54,12 @@ const AddImage = ({ event }) => {
     };
     return (
         <div>
-            <button
+            <Button
                 onChange={handleFileChange}
                 name="image"
                 component="label"
                 role={undefined}
-                tabIndex={-1}       
+                tabIndex={-1}
                 color="neutral"
                 startDecorator={
                     <SvgIcon>
@@ -78,9 +81,9 @@ const AddImage = ({ event }) => {
             >
                 Upload an Image
                 <VisuallyHiddenInput type="file" />
-            </button>
+            </Button>
             <div><h3>{image?.image?.name}</h3>
-                <button
+                <Button
                     onClick={handleSubmitImage}
                     startDecorator={
                         <SvgIcon>
@@ -90,7 +93,7 @@ const AddImage = ({ event }) => {
                 >
                     Save
 
-                </button>  </div>
+                </Button>  </div>
         </div>
     )
 }

@@ -127,7 +127,7 @@ const EventDetails = async ({ params }) => {
           />
         </div>
 
-        <div className="added-sessions">{view?.length > 0 ? view : "No session added yet."}</div>
+        <div className="added-sessions">{view && view?.length > 0 ? view : "No session added yet."}</div>
       </div>
     </Container>
   );
